@@ -1,0 +1,9 @@
+<% if @closed == 'false' %>
+  $('#users-table tbody').html("<%= escape_javascript(render @users, closed: true )%>");
+  $('#close-link').attr('href', '<%= users_path( closed: false )%>');
+  $('#close-link').text('Includi procedimenti chiusi' );
+<% else %>
+  $('#users-table tbody').html("<%= escape_javascript(render @users, closed: false ) %>");
+  $('#close-link').attr('href', '<%= users_path( closed: true )%>');
+  $('#close-link').text( 'Escludi procedimenti chiusi' );
+<% end %>

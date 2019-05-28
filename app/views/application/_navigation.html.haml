@@ -1,0 +1,95 @@
+- opentab, selected = nav_tab( controller: params[:controller], action: params[:action], section: @section )
+
+/ ANAGRAFICA
+- if can? :update, @job
+  %li{ class: "#{ 'selected' if opentab == 'jobs' }" }
+    = link_to fa_icon('wpforms', text: "<span class='text'>#{t('registry', scope: 'jobs', default: 'Details')}</span>".html_safe ), section_edit_job_path(id: @job.id, section: 'details'), class: 'title'
+    %ul.sub-menu
+      %li.title= t('registry', scope: 'jobs', default: 'Details')
+      %li{ class: "#{ 'current' if selected == 'details' }" }= link_to fa_icon('wpforms', text: t('details', scope: 'jobs', default: 'Roles') ), section_edit_job_path(id: @job.id, section: 'details')
+      %li{  class: "#{ 'current' if selected == 'contacts' }" }= link_to fa_icon('address-card', text: t('contacts', scope: 'jobs', default: 'Contacts') ), section_edit_job_path(id: @job.id, section: 'contacts')
+      - unless @job.consolidated?
+        %li{ class: "#{ 'current' if selected == 'design' }" }= link_to fa_icon('wrench', text: t('design', scope: 'jobs', default: 'Contacts') ), section_edit_job_path(id: @job.id, section: 'design')
+      %li{ class: "#{ 'current' if selected == 'roles' }" }= link_to fa_icon('lock', text: t('roles', scope: 'jobs', default: 'Roles') ), section_edit_job_path(id: @job.id, section: 'roles')
+      - if can?( :attachments, @job )
+        %li{ class: "#{ 'current' if selected == 'attachments' }" }= link_to fa_icon('paperclip', text: t('title', scope: 'attachments', default: 'Attachments') ), section_edit_job_path(id: @job.id, section: 'attachments')
+- else
+  %li{ class: "#{ 'selected' if opentab == 'jobs' }" }
+    = link_to fa_icon('wpforms', text: "<span class='text'>#{t('registry', scope: 'jobs', default: 'Details')}</span>".html_safe ), section_job_path(id: @job.id, section: 'details'), class: 'title'
+    %ul.sub-menu
+      %li.title= t('registry', scope: 'jobs', default: 'Details')
+      %li{ class: "#{ 'current' if selected == 'details' }" }= link_to fa_icon('wpforms', text: t('details', scope: 'jobs', default: 'Roles') ), section_job_path(id: @job.id, section: 'details')
+      -# if can?( :print, @job )
+        %li{ class: "#{ 'current' if selected == 'print' }" }= link_to fa_icon( 'print', text: t('export_to_pdf', scope: 'jobs', default: 'Export to PDF file') ), print_job_path(@job), class: 'reveal-modal-mini', onClick: 'return false', data: { url: print_job_path(@job, modal: 1) }
+
+/ PROGRAMMAZIONE
+- if can? :read, @job.timetables
+  %li{ class: "#{ 'selected' if opentab == 'timetables' }" }
+    = link_to fa_icon('calendar', text: "<span class='text'>#{t('title', scope: 'timetables', default: 'Timetable')}</span>".html_safe ), job_timetables_path(job_id: @job.id), class: 'title'
+    %ul.sub-menu
+      %li.title= t('title', scope: 'timetables', default: 'Timetable')
+      %li{ class: "#{ 'current' if selected == 'table' }" }= link_to fa_icon('table', text: 'Tabella'), job_timetables_path(job_id: @job.id)
+      - if can? :create, @job => Timetable
+        %li{ class: "#{ 'current' if selected == 'new' }" }= link_to fa_icon('calendar-plus-o', text: 'Crea attività'), new_job_timetable_path(job_id: @job.id ), data: { url: new_job_timetable_path(job_id: @job.id, modal: 1 ) }, class: 'reveal-modal', onClick: 'return false'
+        %li{ class: "#{ 'current' if selected == 'radon' }" }= link_to fa_icon('calendar-plus-o', text: 'Crea per Radon'), template_job_timetables_path(job_id: @job.id, timetable: { template: 'radon' } ), data: { confirm: t( 'create_multiple_timetables_radon', scope: 'confirmations', default: 'CAUTION: Continuing will generate all the activities for the RADON. Are you sure you want to continue?' ) }
+/ CAMPIONI
+- if can? :read, @job.samples
+  %li{ class: "#{ 'selected' if opentab == 'samples' }" }
+    = link_to fa_icon('cube', text: "<span class='text'>#{t('title', scope: 'samples', default: 'Samples')}</span>".html_safe ), job_samples_path( job_id: @job.id ), class: 'title'
+    %ul.sub-menu
+      %li.title= t('title', scope: 'samples', default: 'Samples')
+      %li{ class: "#{ 'current' if selected == 'index' }" }= link_to fa_icon('table', text: 'Elenco campioni'), job_samples_path( job_id: @job.id )
+      - if can? :create, @job => Sample
+        %li{ class: "#{ 'current' if selected == 'new' }" }= link_to fa_icon('plus', text: 'Aggiungi campione'), new_job_sample_path( job_id: @job.id )
+        %li{ class: "#{ 'current' if selected == 'import' }" }= link_to fa_icon('upload', text: t('title', scope: 'import', default: 'Import files') ), job_import_index_path( job_id: @job.id )
+/ ANALISI
+- if can? :read, @job.analisies
+  %li{ class: "#{ 'selected' if opentab == 'analisies' }" }
+    = link_to fa_icon('flask', text: "<span class='text'>#{t('title', scope: 'analisies', default: 'Analisies')}</span>".html_safe ), job_analisies_path( job_id: @job.id ), class: 'title'
+    %ul.sub-menu
+      %li.title= t('title', scope: 'analisies', default: 'Analisies')
+      %li{ class: "#{ 'current' if selected == 'analisies' }" }= link_to fa_icon('table', text: 'Elenco analisi'), job_analisies_path( job_id: @job.id )
+      %li{ class: "#{ 'current' if selected == 'import' }" }= link_to fa_icon('upload', text: t('title', scope: 'import', default: 'Import files') ), job_import_index_path( job_id: @job.id )
+
+/ RAPPORTI DI ANALISI
+- if can? :read, @job.reports
+  - issued = @job.reports.count
+  - notissued = @job.results.where.not(id:  @job.report_results.ids ).count
+  - cancelled = @job.reports.unscoped.cancelled.count
+  
+  %li{ class: "#{ 'selected' if opentab == 'reports' }" }
+    = link_to fa_icon('file-pdf-o', text: "<span class='text'>#{t('titles', scope: 'reports', default: "Analisy's report")}</span>".html_safe ), filtered_job_reports_path( job_id: @job.id, section: 'issued' ), class: 'title'
+    %ul.sub-menu
+      %li.title= t('titles', scope: 'reports', default: "Analisy's report")
+      %li{ class: "#{ 'current' if selected == 'issued' }" }
+        .grid-x
+          .small-9.cell= link_to fa_icon('check', class: 'text-success', text: t('issued', scope: 'topbar.reports', default: "Analisy's report") ), filtered_job_reports_path( job_id: @job.id, section: 'issued' )
+          .counter.small-2.cell.text-middle.text-right= "#{ issued }"
+      %li{ class: "#{ 'current' if selected == 'notissued' }" }
+        .grid-x
+          .small-9.cell= link_to fa_icon('exclamation-triangle', class: 'text-warning', text: t('notissued', scope: 'topbar.reports', default: "Analisy's report") ), filtered_job_reports_path( job_id: @job.id, section: 'notissued' )
+          .counter.small-2.cell.text-middle.text-right= "#{ notissued }"
+      %li{ class: "#{ 'current' if selected == 'cancelled' }" }
+        .grid-x
+          .small-9.cell= link_to fa_icon('trash', class: 'text-alert', text: t('cancelled', scope: 'topbar.reports', default: "Analisy's report") ), filtered_job_reports_path( job_id: @job.id, section: 'cancelled' )
+          .counter.small-2.cell.text-middle.text-right= "#{ cancelled }"
+
+
+/ HISTORY
+- if can? :read, @job => Log
+  %li.simple{ class: "#{ 'selected' if opentab == 'logs' }" }
+    = link_to fa_icon('history', text: "<span class='text'>#{t('title', scope: 'histories', default: 'History')}</span>".html_safe ), logs_job_path(@job), class: 'title'
+    %ul.sub-menu
+      %li.title= t('title', scope: 'histories', default: 'History')
+/ Print
+- if can? :print, @job
+  %li.simple{ class: "#{ 'selected' if opentab == 'print' }" }
+    = link_to fa_icon('print', text: "<span class='text'>#{t('title', scope: 'jobs.print', default: 'Print job')}</span>".html_safe ), print_job_path(@job), class: 'reveal-modal-mini title', data: { url: print_job_path(@job, modal: 1) }
+    %ul.sub-menu
+      %li.title= t('title', scope: 'jobs.print', default: 'Print job')
+/ DELETE
+- if can? :destroy, @job
+  %li.simple
+    = link_to fa_icon( 'trash', text: "<span class='text'>#{t('delete', default: 'Delete' )}</span>".html_safe ), job_path(@job), class: 'title', method: :delete, data: {confirm: t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) }
+    %ul.sub-menu
+      %li.title= t('delete', default: 'Delete' )

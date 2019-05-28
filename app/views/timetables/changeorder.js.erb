@@ -1,0 +1,5 @@
+<% if @timetable.errors.blank? %>
+  $('table#timetables-table').DataTable().ajax.reload();
+<% else %>
+  alert( "<%= @timetable.errors.map{ |k,v| "#{t(k, scope: 'timetables.fields', default: k)}: #{v}" }.join(', ') %>" );
+<% end %>

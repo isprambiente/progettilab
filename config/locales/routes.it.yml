@@ -1,0 +1,36 @@
+it:
+  routes:
+    # controllers
+    admin: amministrazione
+    analisies: analisi
+    analisy_types: tipologia_analisi
+    attachments: allegati
+    auth: sessione
+    home: home
+    import: importa
+    instructions: istruzioni
+    jobs: procedimenti_attivita
+    logs: registro_eventi
+    manual: manuale
+    matrix_types: matrici
+    nuclides: nuclidi
+    reports: rapporti_di_prova
+    samples: campioni
+    timetables: programmazione
+    units: unita
+    users: utenti
+    
+    # actions
+    create: crea
+    delete: cancella
+    destroy: distruggi
+    download: scarica
+    edit: modifica
+    index: elenco
+    logout: esci
+    new: nuovo
+    print: stampa
+    show: dettagli
+    update: aggiorna
+    verify: verifica_file
+    reopen: riapri

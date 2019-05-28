@@ -1,0 +1,13 @@
+# Contributions to the ProgettiRAD project
+
+## Creator & Maintainer
+
+* Francesco Loreti <francesco.loreti@isprambiente.it> - ISPRA
+
+## Active Developers
+
+* Andrea Ranaldi <andrea.ranaldi@isprambiente.it> - ISPRA
+
+## Previous Developers
+
+## Contributors

@@ -1,0 +1,13 @@
+= form_with model: job, url: job_path(id: job.id, section: 'contacts'), :builder => ExtraFormWith do |f|
+  %h4.text-center= "#{ t('contacts', scope: 'jobs', default: 'Contacts') } #{ t('title', scope: 'jobs', default: 'Details').downcase }".html_safe
+  .small-12.cell= f.text_field :customer, icon: 'building-o'
+  .small-12.cell= f.text_field :address, icon: 'map-o'
+  #contacts
+    .grid-x.grid-padding-x
+      %h5.small-12.large-10.cell Contatti
+      .small-12.large-2.cell= link_to_add_association fa_icon('plus', text: 'Aggiungi contatto'), f, :contacts, class: 'button expanded small radius add-button right', 'data-association-insertion-node' => ".fields", 'data-association-insertion-method' => "append"
+    .fields
+      = f.fields_for :contacts do |contact|
+        = render 'contact_fields', f: contact
+  %br/
+  .small-12.cell= f.submit_button icon: 'save', value: t( 'submit', scope: 'jobs.update', default: 'Save' )

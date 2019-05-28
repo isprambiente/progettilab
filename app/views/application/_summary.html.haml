@@ -1,0 +1,101 @@
+#summary
+  - unless job.blank?
+    #job.section
+      %fieldset
+        %legend
+          = t('title', scope: 'jobs.show', default: "Job's details")
+          %span
+            - if @modal.blank?
+              = link_to fa_icon( 'edit', text: 'Modifica proc/att' ), edit_job_path( id: job.id ), class: 'button small transparent' if can? :update, job
+            - else
+              = link_to fa_icon( 'expand', text: 'Dettaglio proc/att' ), job_path( id: job.id ), class: 'button small transparent' if can? :read, job
+        .grid-x
+          %label.small-12.large-4.cell= t('code', scope: 'jobs.fields', default: 'Code')
+          %span.small-12.large-8.cell= job.code
+        .grid-x
+          %label.small-12.large-4.cell= t('customer', scope: 'jobs.fields', default: 'Customer')
+          %span.small-12.large-8.cell= job.customer
+        .grid-x
+          %label.small-12.large-4.cell= t('title', scope: 'jobs.fields', default: 'Title')
+          %span.small-12.large-8.cell= job.title
+        .grid-x
+          %label.small-12.large-4.cell= t('open_at', scope: 'jobs.fields', default: 'Open at')
+          %span.small-12.large-8.cell= job.open_on
+        .grid-x
+          %label.small-12.large-4.cell= t('planned_closure_at', scope: 'jobs.fields', default: 'Planned closure at')
+          %span.small-12.large-8.cell= job.planned_closure_on
+        .grid-x
+          %label.small-12.large-4.cell= t('close_at', scope: 'jobs.fields', default: 'Close at')
+          %span.small-12.large-8.cell= job.close_on
+  - unless sample.blank?
+    #sample.section
+      %fieldset
+        %legend
+          = t('title', scope: 'samples.show', default: "Sample's details")
+          %span
+            - if @modal.blank?
+              = link_to fa_icon( 'edit', text: 'Modifica campione' ), edit_job_sample_path( job_id: sample.job.id, id: sample.id ), class: 'button small transparent' if can? :update, sample
+            - else
+              = link_to fa_icon( 'expand', text: 'Dettaglio campione' ), job_sample_path( job_id: sample.job.id, id: sample.id ), class: 'button small transparent' if can? :read, sample
+        .grid-x
+          %label.small-12.large-4.cell= t('lab_code', scope: 'samples.fields', default: 'Code')
+          %span.small-12.large-8.cell= sample.lab_code || '-'
+        .grid-x
+          %label.small-12.large-4.cell= t('client_code', scope: 'samples.fields', default: 'Device')
+          %span.small-12.large-8.cell= sample.client_code || '-'
+        .grid-x
+          %label.small-12.large-4.cell= t('start_at', scope: 'samples.fields', default: 'Start at')
+          %span.small-12.large-8.cell= sample.start_on || '-'
+        .grid-x
+          %label.small-12.large-4.cell= t('stop_at', scope: 'samples.fields', default: 'Stop at')
+          %span.small-12.large-8.cell= sample.stop_on || '-'
+  - unless analisy.blank?
+    #analisy.section
+      %fieldset
+        %legend
+          = t('title', scope: 'analisies.show', default: "Analisy's details")
+          %span
+            - if @modal.blank?
+              = link_to fa_icon( 'edit', text: 'Modifica analisi' ), edit_job_sample_analisy_path( job_id: analisy.job.id, sample_id: analisy.sample.id, id: analisy.id ), class: 'button small transparent' if can? :update, analisy
+            - else
+              = link_to fa_icon( 'expand', text: 'Dettaglio analisi' ), job_sample_analisy_path( job_id: analisy.job.id, sample_id: analisy.sample.id, id: analisy.id ), class: 'button small transparent' if can? :read, analisy
+        .grid-x
+          %label.small-12.large-4.cell= t('code', scope: 'analisies.fields', default: 'Id report of analisy')
+          %span.small-12.large-2.cell= analisy.code || '-'
+        .grid-x
+          %label.small-12.large-4.cell= t('status', scope: 'reports.fields', default: 'Status')
+          %span.small-12.large-2.cell= analisy.report.blank? ? t('not_issued', scope: 'reports.fields', default: 'Not issued').upcase : t('issued', scope: 'analisies.fields', default: 'Issued').upcase
+        .grid-x
+          %label.small-12.large-4.cell= t('issued_at', scope: 'reports.fields', default: 'Issued at')
+          %span.small-12.large-8.cell= analisy.report.blank? ? 'n.d.' : analisy.report.issued_on
+        .grid-x
+          %label.small-12.large-4.cell= t('title', scope: 'analisytypes', default: 'Analisy type')
+          %span.small-12.large-8.cell= analisy.type.title
+        .grid-x
+          %label.small-12.large-4.cell= t('body', scope: 'reports.fields', default: 'Note')
+          %span.small-12.large-8.cell= analisy.body || '-'
+        .grid-x
+          %label.small-12.large-4.cell= t('technicians', scope: 'reports.fields', default: "Laboratory technician")
+          %span.small-12.large-8.cell= analisy.analisy_technic_users.blank? ? t('not_inserted', scope: 'reports.fields', default: 'Not found').upcase : analisy.analisy_technic_users.pluck(:label).join(', ')
+        .grid-x
+          %label.small-12.large-4.cell= t('responsible_for_testing', scope: 'reports.fields', default: "responsible for testing")
+          %span.small-12.large-8.cell= analisy.analisy_headtest_users.blank? ? t('not_inserted', scope: 'reports.fields', default: 'Not found').upcase : analisy.analisy_headtest_users.pluck(:label).join(', ')
+        .grid-x
+          %label.small-12.large-4.cell= t('chief', scope: 'reports.fields', default: "Manager")
+          %span.small-12.large-8.cell= analisy.analisy_chief_users.blank? ? t('not_inserted', scope: 'reports.fields', default: 'Not found').upcase : analisy.analisy_chief_users.pluck(:label).join(', ')
+        - unless analisy.results.blank?
+          #results.section
+            .grid-x.small-12.cell
+              %div.text-bold.text-upcase.text-warning.small-12.large-10.cell= t('title', scope: 'analisyresults', default: "Results")
+            .grid-x
+              %label.small-12.large-4.cell= t('results', scope: 'reports.fields', default: 'Results')
+              %span.small-12.large-8.cell
+                %ul.nop.no-margin-left
+                  - analisy.results.each do | result |
+                    %li= result.full_result_with_nuclide.html_safe
+            .grid-x
+              %label.small-12.large-4.cell= t('body', scope: 'reports.fields', default: 'Note')
+              %span.small-12.large-8.cell
+                %ul.nop.no-margin-left
+                  - analisy.results.each do | result |
+                    %li= result.body

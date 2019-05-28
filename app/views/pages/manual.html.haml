@@ -1,0 +1,9 @@
+.grid-x.grid-padding-x
+  .cell.small-2.hide-on-print
+    #menu.sticky= render 'manual_menu'
+  .cell.auto
+    #book{ data: { turbolinks_permanent: true, turbolinks: "false" } }
+      %h3 Manuale operativo
+      %small.text-justify Manuale operativo per il programma di #{ Settings.config.group } #{ Settings.config.title }
+      %hr/
+      = render 'manual'

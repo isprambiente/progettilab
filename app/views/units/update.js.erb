@@ -1,0 +1,5 @@
+<% if @unit.errors.blank? %>
+  $('#miniModal').foundation('close');
+<% else %>
+  $('#modal-body').html("<%= escape_javascript( render 'form' ) %>");
+<% end %>

@@ -1,0 +1,10 @@
+<% if @sample.errors.blank? %>
+  if( $('body').hasClass('is-reveal-open') ) {
+    $('#myModal').foundation('close');
+  } else {
+    $('#sample #form').html("<%= escape_javascript( render 'form' ) %>");
+    alert( 'Campione creato!' );
+  }
+<% else %>
+  $('#sample #form').html("<%= escape_javascript( render 'form' ) %>");
+<% end %>

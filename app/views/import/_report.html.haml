@@ -1,0 +1,21 @@
+- unless @results.blank?
+  %b.cell 3) Report dell'importazione
+  %table.display.responsive
+    %thead
+      %tr
+        %td.text-center Codice univoco
+        %td.text-center Campione
+        %td.text-center Analisi
+        %td.text-center Risultati
+    %tbody
+      - @results.each do | result |
+        %tr
+          %td.text-center= result[0].try(:html_safe)
+          %td.text-left= result[1].try(:html_safe)
+          %td.text-left= result[2].try(:html_safe)
+          %td.text-left= result[3].try(:html_safe)
+
+  :javascript
+    $('#report table').ready( function() {
+      import_table();
+    });

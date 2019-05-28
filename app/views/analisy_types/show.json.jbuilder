@@ -1,0 +1,1 @@
+json.partial! "analisy_types/analisy_type", analisy_type: @analisy_type

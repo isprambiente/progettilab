@@ -1,0 +1,11 @@
+.grid-x
+  .small-12.large-2.cell= link_to fa_icon('plus', text: t('add', default: 'Add')), new_analisy_type_path, class: 'button radius expanded reveal-modal-mini', data: { url: new_analisy_type_path(modal: 1) }
+%table#analisy_types_table.display.responsive{ data: { url: analisy_types_url(format: :json), button: 'false' } }
+  %thead
+    %tr
+      %th.small-5.text-left= t('analisy', scope: 'analisytypes.fields', default: 'Analisy')
+      %th.small-4.text-left= t('instruction', scope: 'analisytypes.fields', default: 'Instruction')
+      %th.small-1.text-center= t('radon', scope: 'analisytypes.fields', default: 'Active?')
+      %th.small-1.text-center= t('active', scope: 'analisytypes.fields', default: 'Active?')
+      %th.small-1.text-center{ data: { orderable: "false", searchable: "false"} }
+  %tbody

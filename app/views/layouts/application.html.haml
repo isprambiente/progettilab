@@ -1,0 +1,50 @@
+!!! 5
+%html.no-js{lang: "#{I18n.locale || I18n.default_locale}"}
+  = render 'head'
+  %body
+    %header#top.hide-on-print
+      #logos.grid-x.grid-padding-x
+        #logo1.small-2.cell
+          = image_tag(Settings.config.logo1.image, width: '100px') unless Settings.config.logo1.image.blank?
+          = image_tag(Settings.config.logo2.image) unless Settings.config.logo2.image.blank?
+        #title.auto.cell.text-middle
+          %h3.site-title= "#{Settings.config.title}"
+      = render 'top_bar'
+      %ul.breadcrumbs= render_breadcrumbs :tag => :li, :separator => ""
+      #spinner.border-radius.shadow.tiny.text-center.reveal{ data: {reveal: true, overlay: false} }= fa_icon 'cog spin', text: t('wait')
+    #page.grid-x.grid-padding-x
+      - if content_for :top
+        .large-12.cell= content_for :top
+      - if content_for :menubar
+        = yield :menubar
+      #content.cell{ class: "#{'with-closed-bar' if content_for :menubar }"}
+        %section#alert
+          = flash_box
+          <!--[if IE 8]><div class="callout alert radius">ATTENZIONE! Il suo browser non è più supportato e non è garantita la compatibilità con questo sito. Le consigliamo di <a href='http://windows.microsoft.com/it-it/internet-explorer/download-ie'>aggiornarlo ad una versione successiva</a> o di utilizzare <a href='https://www.mozilla.org/it/'>Firefox</a> o <a href='https://www.google.it/chrome'>Chrome</a></div><![endif]-->
+          <noscript><div class="callout alert radius">ATTENZIONE! questo sito richiede le funzioni javascript abilitate per funzionare correttamente.</div></noscript>
+        = yield
+      - if content_for :bottom
+        .large-12.cell= content_for :bottom
+    #myModal.reveal.border-radius.shadow.large{ data: { reveal: true, animation_in: "zoom-in", animation_out: "zoom-out", options:"closeOnClick:false;closeOnEsc:false;" } }
+    #miniModal.reveal.border-radius.shadow.small{ data: { reveal: true, animation_in: "zoom-in", animation_out: "zoom-out", options:"closeOnClick:false;closeOnEsc:false;" } }
+
+    %footer= render 'footer_bar'
+
+    - unless Settings.matomo.link.blank?
+      / Matomo
+      :javascript
+        var _paq = _paq || [];
+        /* matomo methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+          var u="#{Settings.matomo.link}";
+          _paq.push(['setTrackerUrl', u+'piwik.php']);
+          _paq.push(['setSiteId', "#{ Settings.matomo.idsite }"]);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+        })();
+      / End Matomo Code
+      / Matomo Image Tracker
+      %noscript= image_tag "#{Settings.matomo.link}?idsite=#{Settings.matomo.idsite}&rec=1", style: "border:0", alt: ""
+      / End Matomo

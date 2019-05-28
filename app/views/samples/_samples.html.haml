@@ -1,0 +1,15 @@
+#samples.section
+	%fieldset
+		%legend=# t('title', scope: 'samples.index', default: "Samples list")
+		%table#samples-table.display.responsive{ data: { url: job_samples_path(@job, format: :json), button: "false" } }
+			%thead
+				%tr
+					%th{ data: { searchable: "false", orderable: "false" } }
+					%th.text-center= t('lab_code', scope: 'samples.fields', default: 'Lab. code')
+					%th.text-center{ data: { orderable: "false", searchable: "false"} }= t('measure_type', scope: 'samples.fields', default: 'Measure type')
+					%th.text-center= t('type_matrix', scope: 'samples.fields', default: 'Type matrix')
+					%th.text-center= t('device', scope: 'samples.fields', default: 'Device')
+					%th.text-center= t('client_code', scope: 'samples.fields', default: 'Client code')
+					%th.text-center= t('accepted_at', scope: 'samples.fields', default: 'Accepted at')
+					%th.text-right{ data: { orderable: "false", searchable: "false"} }
+			%tbody

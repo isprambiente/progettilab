@@ -1,0 +1,11 @@
+- if can?( :create, @job=>Analisy ) && @analisy.blank?
+	%ul#menu.nav-menu.vertical.dropdown.menu.border-radius{ data: { dropdown: { menu: true } } }
+		%li.title= fa_icon('list', text: "<span>Menu #{ t('title', scope: [ controller.controller_name != 'jobs' ? controller.controller_name.downcase.pluralize : '' ].uniq, default: '' ) }</span>".html_safe )
+		%li= link_to( fa_icon( 'plus', text: t( 'title', scope: 'analisies.new', default: 'New analisy' ) ), new_job_sample_analisy_path(@sample), class: 'reveal-modal', remote: true, onClick: 'return false', data: { url: new_job_sample_analisy_path(@sample, modal: 1) } )
+- if @analisy.present?
+	= link_to fa_icon( 'trash', text: t('title', scope: 'analisies.destroy', default: 'Delete sample' ) ), job_sample_analisy_path(job_id: @job.id, sample_id: @sample.id, id: @analisy.id), method: :delete, data: {confirm: t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) }, class: 'button alert small expanded' if can?( :destroy, @analisy )
+	- if @analisy.revision > 0
+		%ul#history.nav-menu.vertical.dropdown.menu.border-radius{ data: { dropdown: { menu: true } } }
+			%li.title= fa_icon('list', text: "<span>#{ t('history', scope: 'reports', default: 'Report canceled') }</span>".html_safe )
+			- @analisy.reports.cancelled.each do | report |
+				%li= link_to "#{ report.file_file_name } del #{ report.issued_on }", download_report_job_sample_analisy_path(job_id: @analisy.job.id, sample_id: @analisy.sample.id, id: @analisy.id, file_id: report.id), target: '_blank'

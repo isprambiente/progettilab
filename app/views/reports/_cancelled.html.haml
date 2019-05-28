@@ -1,0 +1,12 @@
+%table#reports-table.display.responsive{ data: { url: filtered_job_reports_url(job_id: @job.id, section: @section, format: :json), section: @section, job: @job.code } }
+  %thead
+    %tr
+      %th.hide{ data: { orderable: "false", searchable: "false", visible: "false"} }
+      %th.text-center{ data: { orderable: 'true', searchable: 'true' } }= t('code', scope: 'reports.fields', default: 'Report code')
+      %th.text-center{ data: { orderable: 'true', searchable: 'true' } }= t('report_type', scope: 'reports.fields', default: 'Report type')
+      %th.text-center{ data: { orderable: 'true', searchable: 'true' } }= t('issued_at', scope: 'reports.fields', default: 'Data emissione')
+      %th.text-center{ data: { orderable: "false", searchable: "false"} }= t('cancelled_at', scope: 'reports.fields', default: 'Data cancellazione')
+      %th.text-left{ data: { orderable: "false", searchable: "false"} }= t('cancelled_reason', scope: 'reports.fields', default: 'Motivazione')
+      %th{ data: { orderable: "false", searchable: "false" } }
+  %tbody
+  %tfooter

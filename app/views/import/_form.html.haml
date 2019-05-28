@@ -1,0 +1,5 @@
+= form_with scope: :attachment, url: verify_job_import_index_path( job_id: @job.id, section: @section), html: { multipart: true }, data: { remote: 'false' }, :builder => ExtraFormWith do |f|
+  = f.hidden_field :job_code, value: @job.code
+  .grid-x.grid-margin-x
+    .cell.medium-8= f.file_field :file, options: { inline: true, required: true }
+    .cell.auto= f.submit_button icon: 'save', value: 'Verifica prima di importare', options: { name: 'upload', button_class: @preimports.blank? ? 'primary' : 'secondary' }

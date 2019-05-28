@@ -1,0 +1,889 @@
+it:
+  activerecord:
+    errors:
+      models:
+        job:
+          one: Proc/Att
+          other: Proc/Att
+        sample:
+          one: Campione
+          other: Campioni
+        analisy:
+          one: Analisi
+          other: Analisi
+        instruction:
+          attributes:
+            file:
+              in_between: 'La dimensione deve essere tra 0 e 5 mb'
+              invalid_content_type: 'tipologia file non valida'
+        attachment:
+          attributes:
+            file:
+              spoofed_media_type: 'tipologia del file sconoscita'
+              type: 'tipologia non concessa'
+              invalid_content_type: 'tipologia file non valida'
+  "yes": 'Si'
+  "no": 'No'
+  "true": 'Si'
+  "false": 'No'
+  save: 'Salva'
+  logout: 'Esci'
+  back: 'Indietro'
+  required: 'obbligatorio'
+  filter: 'Filtra'
+  print: 'Stampa'
+  add: 'Aggiungi'
+  skip: 'Salta passaggio'
+  remove: 'Rimuovi'
+  remove_filter: 'Rimuovi tutti i filtri'
+  new: 'Nuovo'
+  create: 'Crea'
+  edit: 'Modifica'
+  update: 'Modifica'
+  delete: 'Cancella'
+  destroy: 'Distruggi'
+  close: 'Chiudi'
+  site_not_found: "Pagina non trovata!"
+  not_authorized: 'Non sei autorizzato a utilizzare questa funzione!'
+  role: 'Ruolo'
+  return_to_job: 'Ritorna al proc/att'
+  return_to_sample: 'Ritorna al campione'
+  return_to_samples: 'Ritorna ai campioni'
+  return_to_timetables: 'Ritorna alla programmazione'
+  return_to_analisies: 'Ritorna alle analisi'
+  no_data_found: 'Nessun dato trovato'
+  no_file_found: 'Nessun file trovato'
+  not_present: 'Assenti'
+  download: 'Scarica file'
+  wait: 'Attendere prego...'
+  job_title: 'Proc/Att'
+  jobs: 'Proc/Att'
+  hide_columns: 'Nascondi colonne'
+  all: 'Tutti'
+  select_one_from_list: 'Seleziona una delle seguenti voci'
+  select_more_from_list: 'Seleziona almeno una delle seguenti voci'
+  confirmations:
+    redirect_to_edit: "Stai per essere re-indirizzato su una pagina diversa da quella visualizzata. \nVuoi procedere?"
+    delete: "Il dato cancellato non può essere recuperato. Se confermi, tutti i dati collegati saranno cancellati. \nSei sicuro?"
+    validate: "Una volta validata questa programmazione non sarà più possibile modificarla se non richiedendo lo sblocco al Responsabile di area o di qualità. \nSei sicuro di voler continuare?"
+    create_report: "Stai per generare un report di stampa. \nUna volta creato il report, l'analisi corrispondente non potrà più essere modificata previo annullamento del rapporto di prova. \nContinuare?"
+    create_multiple_timetables_radon: "ATTENZIONE: Stai per generare le tutte le attività per il RADON. Sei sicuro di voler continuare?"
+  attachements:
+    title: 'Allegati'
+    no_data_found: 'Nessun allegato inserito'
+    fields:
+      title: 'Titolo'
+      body: 'Descrizione'
+      category: 'Tipologia'
+      file: 'File'
+  attachement:
+    categories:
+      attachment: 'Allegato'
+      documentation: 'Documentazione'
+      image: 'Foto'
+      manual: 'Manuale'
+      form: 'Modulo'
+      template: 'Template'
+    create:
+      title: 'Allega'
+      notice: 'Allegato aggiunto correttamente!'
+      error: "C'è stato un errore durante il caricamento del file!"
+  topbar:
+    help:
+      title: 'Manuale'
+      books: 'Manuale'
+      versions: 'Versioni'
+      bug: 'Segnala un errore'
+    administration:
+      title: 'Amministrazione'
+    units:
+      title: 'Gestione unità'
+    users:
+      title: 'Gestione utenti'
+      profile: 'Modifica profilo'
+    logs:
+      title: 'Gestione log'
+    notify:
+      info: 'News'
+      warning: 'Avvisi'
+      alert: 'Problemi'
+      noinfo: 'Nessuna notifica'
+    jobs:
+      title: 'Procedimenti e attività'
+      your_jobs: 'I tuoi procedimenti/attività'
+      list_of_jobs: 'Tutti i procedimenti/attività'
+      new_job: 'Nuovo proc/att'
+    samples:
+      title: 'Lista campioni'
+    analisies:
+      title: 'Lista analisi'
+    reports:
+      title: 'Rapporti di prova'
+      all: 'Tutti'
+      issued: 'Rapporti emessi'
+      notissued: 'Rapporti da emettere'
+      cancelled: 'Rapporti annullati'
+    analisytypes:
+      title: 'Gestione tipologia analisi'
+      table: 'In tabella'
+    nuclides:
+      title: 'Gestione nuclidi'
+    matrix_types:
+      title: 'Gestione matrici'
+    instructions:
+      title: 'Gestione istruzioni operative'
+    admin:
+      title: 'Pannello di amministrazione'
+    logout: 'Sei sicuro di voler uscire?'
+  logs:
+    historicizes:
+      action: 'Storicizzazione logs'
+  analisytypes:
+    title: 'Tipologia di analisi'
+    no_data_found: 'Nessuna tipologia di analisi inserita'
+    fields:
+      id: Codice
+      title: 'Titolo'
+      body: 'Descrizione/Note'
+      nuclide: 'Nuclide'
+      nuclides: 'Nuclidi associati'
+      radon: "E' Radon?"
+      active: 'Attivo?'
+      analisy: 'Titolo analisi'
+      instruction: 'Istruzioni operative'
+      instruction_id: 'Istruzione operativa'
+    show:
+      title: 'Visualizza dettaglio tipologia analisi'
+    new:
+      title: 'Nuova tipologia analisi'
+    edit:
+      title: 'Modifica tipologia analisi'
+    create:
+      title: 'Crea tipologia analisi'
+      nuclide: 'Crea nuovo nuclide'
+      notice: 'Tipologia analisi creata correttamente.'
+      action: 'Tipologia analisi creata'
+      confirmation: "Sei sicuro di voler creare questa tipologia di analisi?"
+    update:
+      title: 'Modifica tipologia analisi'
+      notice: 'Tipologia analisi aggiornata correttamente.'
+      error: 'La tipologia analisi non è stata aggiornata a causa di un errore.'
+      action: 'Tipologia analisi modificata'
+      confirmation: "Sei sicuro di voler nodificare questa tipologia di analisi?"
+    destroy:
+      title: 'Cancella tipologia analisi'
+      action: 'Tipologia analisi cancellata'
+      confirmation: "Sei sicuro di voler cancellare questa tipologia di analisi?"
+      notice: 'Tipologia di analisi cancellata correttamente.'
+  units:
+    title: 'Unità'
+    no_data_found: 'Nessuna unità inserita'
+    fields:
+      id: Codice
+      title: 'Titolo'
+      label: 'Etichetta'
+      html: 'Html'
+      body: 'Descrizione/Note'
+      units: 'Unità di misura'
+      unit: 'Unità di misura'
+      active: 'Attivo?'
+    show:
+      title: 'Visualizza dettaglio unità'
+    edit:
+      title: 'Modifica unità'
+    new:
+      title: 'Nuova unità'
+    create:
+      title: 'Crea unità'
+      unit: 'Crea nuovo unità'
+      notice: 'Unità creata correttamente.'
+      action: 'Unità creata'
+      confirmation: "Sei sicuro di voler creare questa unità?"
+    update:
+      title: 'Modifica unità'
+      notice: 'Unità aggiornata correttamente.'
+      error: "L'unità non è stata aggiornata a causa di un errore."
+      action: 'Unità modificata'
+      confirmation: "Sei sicuro di voler modificare questa unità?"
+    destroy:
+      title: 'Cancella unità'
+      action: 'Unità cancellata'
+      confirmation: "Sei sicuro di voler cancellare questa unità?"
+      notice: 'Unità cancellata correttamente.'
+  matrixtypes:
+    title: 'Tipologia matrici'
+    no_data_found: 'Nessuna matrice inserita'
+    fields:
+      id: Codice
+      title: 'Titolo'
+      category: 'Categoria'
+      body: 'Descrizione/Note'
+      matrices: 'Matrici'
+      matrix: 'Matrice'
+      radia: 'Radia'
+      active: 'Attivo?'
+    show:
+      title: 'Visualizza dettaglio matrice'
+    edit:
+      title: 'Modifica matrice'
+      category: 'Modifica categoria matrice'
+    new:
+      title: 'Nuova matrice'
+      category: 'Nuova categoria'
+      matrix: 'Nuova matrice'
+    create:
+      title: 'Crea matrice'
+      unit: 'Crea nuova matrice'
+      notice: 'Matrice creata correttamente.'
+      action: 'Matrice creata'
+      confirmation: "Sei sicuro di voler creare questa matrice?"
+    update:
+      title: 'Modifica matrice'
+      notice: 'Matrice aggiornata correttamente.'
+      error: "La matrice non è stata aggiornata a causa di un errore."
+      action: 'Matrice modificata'
+      confirmation: "Sei sicuro di voler modificare questa matrice?"
+    destroy:
+      title: 'Cancella matrice'
+      action: 'Matrice cancellata'
+      confirmation: "Sei sicuro di voler cancellare questa matrice?"
+      notice: 'Matrice cancellata correttamente.'
+  instructions:
+    title: 'Istruzioni operative'
+    no_data_found: 'Nessuna istruzione operativa inserita'
+    fields:
+      id: Codice
+      title: 'Titolo'
+      body: 'Descrizione/Note'
+      active: 'Attivo?'
+      file_file_name: 'Nome file'
+      file_file_size: 'Dimensione file'
+      file_updated_at: 'Data aggiornamento file'
+      file_content_type: 'Tipologia file'
+    show:
+      title: 'Visualizza dettaglio istruzione operativa'
+    edit:
+      title: 'Modifica istruzione operativa'
+    new:
+      title: 'Nuova istruzione operativa'
+    create:
+      title: 'Crea istruzione operativa'
+      unit: 'Crea nuova istruzione operativa'
+      notice: 'Istruzione operativa creata correttamente.'
+      action: 'Istruzione operativa creata'
+      confirmation: "Sei sicuro di voler creare questa istruzione operativa?"
+    update:
+      title: 'Modifica istruzione operativa'
+      notice: 'Istruzione operativa aggiornata correttamente.'
+      error: "L'istruzione operativa non è stata aggiornata a causa di un errore."
+      action: 'Istruzione operativa modificata'
+      confirmation: "Sei sicuro di voler modificare questa istruzione operativa?"
+    destroy:
+      title: 'Cancella istruzione operativa'
+      action: 'Istruzione operativa cancellata'
+      confirmation: "Sei sicuro di voler cancellare questa istruzione operativa?"
+      notice: 'Istruzione operativa cancellata correttamente.'
+  nuclides:
+    title: 'Nuclidi'
+    no_data_found: 'Nessun nuclide inserita'
+    fields:
+      id: Codice
+      title: 'Titolo'
+      body: 'Descrizione/Note'
+      nuclide: 'Nuclide'
+      nuclides: 'Nuclidi'
+      unit: 'Unità di misura'
+      active: 'Attivo?'
+      body: 'Note/Descrizione'
+    show:
+      title: 'Visualizza dettaglio nuclide'
+    new:
+      title: 'Nuovo nuclide'
+    edit:
+      title: 'Modifica nuclide'
+    create:
+      title: 'Crea nuclide'
+      nuclide: 'Crea nuovo nuclide'
+      notice: 'Nuclide creata correttamente.'
+      action: 'nuclide creata'
+      confirmation: "Sei sicuro di voler creare questo nuclide?"
+    update:
+      title: 'Modifica nuclide'
+      notice: 'Nuclide aggiornata correttamente.'
+      error: 'Il nuclide non è stato aggiornato a causa di un errore.'
+      action: 'Nuclide modificato'
+      confirmation: "Sei sicuro di voler modificare questo nuclide?"
+    destroy:
+      title: 'Cancella nuclide'
+      action: 'Nuclide cancellato'
+      confirmation: "Sei sicuro di voler cancellare questo nuclide?"
+      notice: 'Nuclide cancellato correttamente.'
+  analisytypenuclides:
+    create:
+      title: 'Associa tipo di analisi con un nuclide'
+      notice: 'Associazione tipo di analisi e nuclide creata correttamente.'
+      action: 'Associazione tipo di analisi e nuclide creata'
+    update:
+      title: 'Modifica associazione tipo di analisi e nuclide'
+      notice: 'Associazione tipo di analisi e nuclide aggiornata correttamente.'
+      error: 'La associazione tipo di analisi e nuclide non è stata aggiornato a causa di un errore.'
+      action: 'Associazione tipo di analisi e nuclide modificata'
+    destroy:
+      title: 'Cancella associazione tipo di analisi e nuclide'
+      action: 'Associazione tipo di analisi e nuclide cancellata'
+      notice: 'Tipologia di analisi cancellata correttamente.'
+  jobs:
+    title: 'Proc/Att'
+    registry: 'Anagrafica'
+    summary: 'Sommario'
+    details: 'Dettagli'
+    design: 'Progettazione'
+    contacts: 'Contatti'
+    roles: 'Autorizzazioni'
+    export_to_pdf: 'Stampa in PDF'
+    inserted_previewed: 'Campioni inseriti/previsti'
+    show:
+      title: 'Dettaglio proc/att'
+    new:
+      title: 'Nuovo procedimento/attività'
+    edit:
+      title: 'Modifica proc/att'
+    create:
+      title: 'Crea proc/att'
+      notice: 'Proc/Att creato correttamente.'
+      action: 'Proc/Att creato'
+    update:
+      title: 'Modifica proc/att'
+      notice: 'Proc/Att aggiornato correttamente.'
+      error: 'Il proc/att non è stato aggiornato a causa di un errore.'
+      action: 'Proc/Att modificato'
+      submit: 'Salva modifiche'
+    closed:
+      title: 'Chiusura proc/att'
+      notice: 'Proc/Att chiuso correttamente.'
+      error: 'Il proc/att non è stato chiuso a causa di un errore.'
+      action: 'Proc/Att chiuso'
+      submit: 'Chiudi proc/att'
+    destroy:
+      title: 'Cancella proc/att'
+      notice: 'Proc/Att cancellato correttamente.'
+      error: 'Il proc/att non è stato cancellato a causa di un errore.'
+      action: 'Proc/Att cancellato'
+    reopen:
+      title: 'Riapri proc/att'
+      action: 'Proc/Att riaperto'
+    lock_validation:
+      title: 'Blocca programmazione'
+      action: 'Programmazione bloccata'
+    unlock_validation:
+      title: 'Sblocca programmazione'
+      action: 'Programmazione sbloccata'
+    deleted:
+      title: 'Proc/Att cancellati'
+    search:
+      title: 'Cerca'
+    filter:
+      status:
+        title: 'Filtra per stato'
+        all: 'Tutti gli stati'
+        opened: 'Aperte'
+        intime: 'In orario'
+        expiring: 'In scadenza'
+        expired: 'Scadute'
+        closed: 'Chiuse'
+        remove: 'Rimuovi filtro'
+      type:
+        title: 'Filtra per tipo'
+        all: 'Tutti tipi'
+        consolidated: 'Consolidate'
+        notconsolidated: 'Non consolidate'
+        remove: 'Rimuovi filtro'
+      role:
+        title: 'Filtra per ruolo'
+        all: 'Tutti i ruoli'
+        chief: 'Responsabile area'
+        chiefs: 'Responsabili area'
+        headtest: 'Responsabile laboratorio'
+        headtests: 'Responsabili laboratorio'
+        manager: 'Responsabile proc/att'
+        managers: 'Responsabili proc/att'
+        technician: 'Personale coinvolto'
+        technicians: 'Personale coinvolto'
+        technic: 'Tecnico di laboratorio'
+        technics: 'Tecnici di laboratorio'
+        remove: 'Rimuovi filtro'
+      roles:
+        chief: 'Responsabile di area'
+        manager: 'Responsabile'
+        technic: 'Tecnico'
+        exist: "%{user} è già presente nella lista dei %{list}"
+      manager:
+        title: 'Filtra per responsabile'
+        remove: 'Rimuovi filtro'
+        manager: 'Responsabile'
+      technician:
+        title: 'Filtra per personale coinvolto'
+        remove: 'Rimuovi filtro'
+        technician: 'Personale coinvolto'
+    print:
+      title: 'Stampa proc/att'
+    errors:
+      title: "La lunghezza deve essere maggiore di %{count} caratteri."
+    fields:
+      title: 'Titolo'
+      code: 'Codice proc/att'
+      revision: 'Revisione'
+      version: 'Versione'
+      open_at: 'Data apertura'
+      close_at: 'Data chiusura'
+      planned_closure_at: 'Data prevista chiusura'
+      job_type: 'Tipo proc/att'
+      consolidated: 'Consolidata'
+      notconsolidated: 'Non consolidata'
+      pa_support: 'Supporto PA'
+      status: 'Stato'
+      create_sample: 'Crea i codici campione'
+      timetable: 'Programmazione'
+      body: 'Note'
+      manager: 'Responsabili'
+      customer: 'Cliente'
+      address: 'Indirizzo'
+      create_analisies: 'Verifica e/o crea codice analisi (per ogni campione)'
+      n_samples: 'Campioni previsti'
+      requirements: 'Requisiti in ingresso'
+      institutions: 'Istituzioni coinvolte'
+      operators: 'Personale coinvolto'
+      other_resources: 'Ulteriori risorse (competenze materiali sperimentazione ecc)'
+      chief_id: 'Responsabile area'
+      chief_ids: 'Responsabili area'
+      manager_id: 'Responsabile proc/att'
+      manager_ids: 'Responsabili proc/att'
+      job_manager_ids: 'Responsabili proc/att'
+      technician_id: 'Personale coinvolto'
+      technician_ids: 'Personale coinvolto'
+      job_technician_ids: 'Referenti proc/att'
+      attachment_ids: 'Allegati'
+      reopen_reason: 'Inserisci la motivazione per riaprire questo proc/att'
+      unlock_validation_reason: 'Inserisci la motivazione per sbloccare la programmazione di questo proc/att'
+      deleted: 'Cancellata'
+      create_samples: 'Verifica e crea il numero di campioni indicato'
+      timetables_validate: 'Valida questa programmazione'
+      timetables_validated: 'Questa programmazione è stata convalidata e pertanto non può più essere modificata!'
+    job_type:
+      consolidated: 'Consolidato'
+      notconsolidated: 'Non consolidato'
+      is_consolidated: 'La sezione Progettazione non è disponibile per i proc/att consolidati.'
+    redirect:
+      confirmation:
+        timetables: "Stai per essere inviato alla pagina di gestione della programmazione. \nConferma per continuare."
+        samples: "Stai per essere inviato alla pagina di gestione dei campioni. \nConferma per continuare."
+        analisies: "Stai per essere inviato alla pagina di gestione delle analisi. \nConferma per continuare."
+  jobcontacts:
+    title: 'Contatti'
+    exist: "E' possibile selezionare un solo contatto principale"
+    fields:
+      label: 'Persona di contatto'
+      tel1: 'Telefono principale'
+      tel2: 'Telefono secondario'
+      fax: 'Fax'
+      cell: 'Cellulare'
+      email: 'E-Mail'
+      priority: 'Contatto principale'
+  timetables:
+    title: 'Programmazione'
+    no_data_found: 'Nessuna programmazione inserita'
+    validated: 'La programmazione è stata validata'
+    fields:
+      title: 'Titolo'
+      start_at: 'Data inizio prevista'
+      stop_at: 'Data fine prevista'
+      period: 'Data inizio/fine'
+      execute_at: 'Data fine esecuzione'
+      days: 'Tempistica durata (gg)'
+      body: 'Note'
+      progress: 'Stato avanzamento'
+      color: 'Colore'
+      closed: 'Chiuso?'
+      restrict: 'Vincolante?'
+      sortorder: 'N° fase'
+      products: 'Prodotti'
+      parent: 'Collegato a'
+    index:
+      title: 'Elenco programmazione'
+    create:
+      title: 'Crea programmazione'
+      action: 'Creata programmazione'
+      notice: 'Programmazione creata correttamente.'
+      error: 'La programmazione non è stata creata a causa di un errore.'
+      error_because: 'La programmazione non è stata creata a causa dei seguenti errori: '
+    update:
+      title: 'Modifica programmazione'
+      action: 'Modificata programmazione'
+      notice: 'Programmazione aggiornata correttamente.'
+      error: 'La programmazione non è stata aggiornata a causa di un errore.'
+    destroy:
+      title: 'Cancella programmazione'
+      action: 'Cancellata programmazione'
+      notice: 'Attività cancellata correttamente.'
+      error: 'La programmazione non è stata cancellata a causa di un errore.'
+    closed:
+      label: 'Proc/Att chiuso'
+      description: 'Il proc/att è stata chiusa!'
+    intime:
+      label: 'In orario'
+      description: 'Tutti gli step, indicati nella programmazione, sono in orario'
+    required:
+      title: 'Assente'
+      label: 'Programmazione assente'
+      description: "Inserire almeno una fase di programmazione per questo tipo di proc/att. Purtroppo al momento nessuna programmazione è stato programmata!"
+    norequired:
+      title: 'Assente'
+      label: 'Programmazione assente'
+      description: 'Inserire almeno una fase di programmazione per questo tipo di proc/att. Purtroppo al momento nessuna programmazione è stato programmata!'
+    expiring:
+      title: 'In scadenza'
+      label: 'In scadenza'
+      description: 'Uno o più step sono in scadenza tra 5 o meno giorni!'
+    expired:
+      title: 'Scaduta'
+      label: 'Scaduta'
+      description: 'Uno o più step sono scaduti!'
+    errors:
+      start_at:
+        greater: 'deve essere superiore alle date iniziali delle programmazioni già immesse!'
+      execute_at:
+        least: 'non può essere inferiore alla data di inizio!'
+        greater: 'non può essere superiore alla data di fine!'
+  samples:
+    title: 'Campioni'
+    sample: 'Campione'
+    reload: 'Ricarica campione'
+    no_data_found: 'Nessun campione inserito'
+    fields:
+      code: 'Codice campione'
+      device: 'Chiave dati-programma'
+      client_code: 'Cod.Cliente'
+      lab_code: 'Cod.Laboratorio'
+      measure_type: 'Analisi previste per il campione'
+      type_matrix_id: 'Matrice II livello'
+      type_matrix: 'Matrice II livello'
+      category_id: 'Matrice I livello'
+      category: 'Matrice I livello'
+      cod_sample_client: 'Codice cliente'
+      start_at: 'Data inizio campionamento'
+      stop_at: 'Data fine campionamento'
+      reference_at: 'Data di riferimento'
+      accepted_at: 'Data accettazione'
+      conservation: 'Conservazione'
+      report: 'Verbale cliente'
+      timetable: 'Programma di riferimento'
+      body: 'Note'
+      author: 'Autore'
+      analisies: 'Analisi Inserite/Previste'
+      latitude: 'Latitudine'
+      lat_d: 'Latitudine gradi'
+      lat_m: 'Latitudine minuti'
+      lat_s: 'Latitudine secondi'
+      longitude: 'Longitudine'
+      long_d: 'Longitudine gradi'
+      long_m: 'Longitudine minuti'
+      long_s: 'Longitudine secondi'
+      created_by: Creato da
+      created_at: Creato il
+      updated_by: Modificato da
+      updated_at: Modificato il
+
+    index:
+      title: 'Elenco Campioni'
+    show:
+      title: 'Dettaglio campione'
+    new:
+      title: 'Aggiungi campione'
+      titles: 'Aggiungi campioni'
+    create:
+      title: 'Crea campione'
+      action: 'Creato campione'
+      save_and_close: 'Crea e chiudi'
+      confirmation: "Sei sicuro di voler creare questo campione?"
+      notice: 'Il campione è stato creato correttamente.'
+      error: 'Il campione non è stato creato a causa di un errore.'
+    edit:
+      title: 'Modifica campione'
+    update:
+      title: 'Salva modifiche'
+      action: 'Modificato campione'
+      save_and_close: 'Salva e chiudi'
+      confirmation: "Sei sicuro di voler modificare questo campione?"
+      notice: 'Campione aggiornato correttamente.'
+      error: 'Il campione non è stato aggiornato a causa di un errore.'
+    destroy:
+      title: 'Cancella campione'
+      action: 'Cancellato campione'
+      notice: 'Campione cancellato correttamente.'
+      error: 'Il campione non è stata cancellato a causa di un errore.'
+    errors:
+      start_at:
+        greater: 'non può essere superiore alla data di fine!'
+      accepted_at:
+        least-start: 'non può essere inferiore alla data di inizio!'
+        least-stop: 'non può essere inferiore o uguale alla data di fine!'
+        greater: 'non può essere superiore della data di accettazione!'
+      stop_at:
+        least-start: 'non può essere inferiore alla data di inizio!'
+        least-stop: 'non può essere inferiore o uguale alla data di fine!'
+        greater: 'non può essere superiore alla data di fine!'
+    upload:
+      title: 'Importa file campioni'
+      measure_type: 'Inserisci il tipo di analisi effettuate sui campioni che stai per inserire se questa tipologia non è inserita nel file per ciascun campione'
+  analisies:
+    title: 'Analisi'
+    no_data_found: 'Nessuna analisi inserita'
+    fields:
+      sample_id: 'Id campione'
+      sample_code: 'Codice campione'
+      code: 'Codice analisi'
+      revision: 'Revisione'
+      analisy_type: 'Tipo analisi'
+      start_on: 'Data inizio'
+      stop_on: 'Data fine'
+      date_on: 'Data'
+      date_at: 'Data'
+      reference_at: 'Data analisi'
+      reference_on: 'Data analisi'
+      method: 'Metodo'
+      results: 'Risultati'
+      body: 'Descrizione'
+      created_at: 'Data creazione'
+      updated_at: 'Data modifica'
+      analisy_type_id: 'Tipologia analisi'
+      analisy_headtest_user_ids: 'Responsabile di prova'
+      analisy_technic_user_ids: 'Tecnici di laboratorio'
+      chief: 'Responsabile di area'
+      headtests: 'Responsabile di prova'
+      technics: 'Tecnici di laboratorio'
+    index:
+      title: 'Elenco analisi'
+    show:
+      title: 'Dettaglio analisi'
+    new:
+      title: 'Aggiungi singola analisi'
+    create:
+      title: 'Creazione analisi'
+      action: 'Creata analisi'
+      notice: 'Creazione analisi effettuata con successo'
+      error: "Si è verificato un errore durante la creazione dell'analisi"
+    edit:
+      title: 'Modifica analisi'
+    update:
+      title: 'Aggiornamento analisi'
+      action: 'Aggiornata analisi'
+      notice: 'Aggiornamento analisi effettuato con successo'
+      error: "Si è verificato un errore durante l'aggiornamento dell'analisi"
+    destroy:
+      title: 'Cancella analisi'
+      action: 'Cancellata analisi'
+      notice: 'Cancellazione analisi effettuata con successo'
+      error: "Si è verificato un errore durante la cancellazione dell'analisi"
+    upload:
+      title: 'Importa file analisi'
+      template_import_analisies: 'Scarica il file di esempio'
+    import:
+      notice: 'Le analisi sono state importate'
+    report:
+      notice:
+        code: 'Il codice viene generato con la creazione del rapporto di prova corrispondente. Per procedere a tale creazione, fare clic sul pulsante stampa.'
+        print: 'ATTENZIONE: Confermare se si desidera creare il rapporto di prova. Una volta generato questo rapporto non è possibile cambiare alcun dato su questa analisi previo annullamento del rapporto stesso e generazione di una nuova revisione. Sei sicuro?'
+  analisyresults:
+    title: 'Risultati di analisi'
+    titles: 'Risultati di analisi'
+    no_data_found: 'Nessun risultato trovato'
+    fields:
+      results: 'Risultati'
+      nuclide: 'Nuclide'
+      result: 'Misura'
+      result_unit: 'Unità di misura'
+      result_unit_id: 'Unità di misura'
+      body: 'Descrizione'
+      symbol: 'Simbolo'
+      indecision: 'Incertezza'
+      indecision_unit: 'Unità di misura'
+      indecision_unit_id: 'Unità di misura'
+      mcr: 'MCR'
+      absent: 'Mancata analisi'
+      absence_analysis: 'Causa mancata analisi'
+      full_result: 'Risultato'
+      full_result_with_nuclide: 'Risultato per rapporto '
+      analisy:
+        analisy_type_id: 'Tipologia di analisi'
+        analisy_chief_user_ids: 'Responsabile del proc/att'
+        analisy_headtest_user_ids: 'Responsabile di prova'
+        analisy_technic_user_ids: 'Tecnici di laboratorio'
+    new:
+      title: 'Aggiungi risultato'
+    create:
+      title: 'Creazione risultato analisi'
+      action: 'Creato risultato analisi'
+      notice: 'Creazione risultato analisi effettuato con successo'
+      error: "Si è verificato un errore durante la creazione del risultato dell'analisi"
+    edit:
+      title: 'Modifica risultato analisi'
+    update:
+      title: 'Aggiornamento risultato analisi'
+      action: 'Aggiornato risultato analisi'
+      notice: 'Aggiornamento risultato analisi effettuato con successo'
+      error: "Si è verificato un errore durante l'aggiornamento del risultato dell'analisi"
+    destroy:
+      title: 'Cancella risultato analisi'
+      action: 'Cancellato risultato analisi'
+      notice: 'Cancellazione risultato analisi effettuata con successo'
+      error: "Si è verificato un errore durante la cancellazione del risultato dell'analisi"
+  reports:
+    short: 'Rapporti'
+    title: 'Rapporto di prova'
+    titles: 'Rapporti di prova'
+    issued: 'Rapporti di prova emessi'
+    no_data_found: 'Nessun rapporto di prova trovato'
+    single:
+      no_data_found: 'Nessun rapporto di prova singolo trovato'
+    multiple:
+      no_data_found: 'Nessun rapporto di prova multiplo trovato'
+    no_edit_permitted: "La modifica di questa analisi non è permessa poichè è stato emesso il rapporto di prova. E' necessario annullare il rapporto per poter effettaure nuovamente la modifica."
+    history: 'Rapporti annullati'
+    report_types:
+      single: Rapporto singolo
+      multiple: Rapporto multiplo
+    fields:
+      code: 'Codice rapporto'
+      object: 'Oggetto'
+      customer: 'Cliente'
+      status: 'Stato rapporto singolo'
+      issued_at: 'Data emissione'
+      not_issued: 'Non emesso'
+      report_type: 'Tipologia rapporto'
+      issued: 'Emesso'
+      start_at: 'Inizio prelievo/esposizione'
+      stop_at: 'Fine prelievo/esposizione'
+      reference_at: 'Data di riferimento'
+      not_inserted: 'Non inserito'
+      job: 'Titolo proc/att'
+      sample: 'Codice campione'
+      device: 'Chiave dati-programma'
+      analisy_type: 'Tipologia di analisi'
+      results: 'Risultati'
+      body: 'Note'
+      attachments: 'Allegati'
+      technician: 'Tecnico di laboratorio'
+      technicians: 'Tecnici di laboratorio'
+      responsible_for_testing: 'Responsabile di prova'
+      chief: 'Responsabile di area'
+      not_found: 'Non trovato'
+      cancellation_reason: 'Motivo della cancellazione'
+      revision: 'Revisione'
+      start_stop_at: 'Inizio/fine campionamento'
+      client_code: 'Codice campione cliente'
+      lab_code: 'Codice laboratorio'
+      lat: Latitudine
+      long: Longitudine
+    index:
+      roles: 'Ruoli'
+    create:
+      title: 'Creazione rapporto analisi'
+      action: 'Creato rapporto di prova'
+      notice: 'Creazione del rapporto di prova effettuato con successo'
+      error: 'Si è verificato un errore durante la creazione del report'
+      report_types:
+        single: Crea rapporti singoli
+        multiple: Crea rapporti multipli
+    update:
+      title: 'Validazione rapporto analisi'
+      action: 'Validato rapporto di prova'
+      notice: 'Validazione del rapporto di prova effettuato con successo'
+      error: 'Si è verificato un errore durante la modifica del report'
+    destroy:
+      title: 'Annulla rapporto di prova'
+      action: 'Annullamento rapporto di prova'
+      notice: 'Annullamento rapporto di prova effettuata con successo'
+      error: "Si è verificato un errore durante l'annullamento del rapporto di prova"
+  histories:
+    title: 'Storico modifiche'
+    index:
+      title: 'Lista modifiche'
+    fields:
+      created_at: 'Data'
+      action: 'Evento'
+      body: 'Descrizione'
+      author: 'Autore'
+  attachments:
+    title: 'Allegati'
+    fields:
+      title: 'Titolo'
+      body: 'Descrizione'
+      category: 'Categoria'
+    categories:
+      attachment: 'Allegato'
+      documentation: 'Documentazione'
+      form: 'Modulistica'
+      image: 'Immagine'
+      manual: 'Manuale'
+      template: 'Template di stampa'
+    create:
+      title: 'Crea allegato'
+      action: 'Creato allegato'
+    update:
+      title: 'Modifica allegato'
+      action: 'Modificato allegato'
+    destroy:
+      title: 'Cancella allegato'
+      action: 'Cancellato allegato'
+  users:
+    title: 'Utenti'
+    fields:
+      label: 'Nominativo'
+      username: 'Nominativo'
+      email: 'E-mail'
+      manager: 'Responsabile proc/att'
+      reference: 'Referente proc/att'
+      technician: 'Tecnico di laboratorio'
+      headtest: 'Responsabile di prova'
+      supervisor: 'Referente qualità'
+      chief: 'Responsabile area'
+      admin: 'Amministratore'
+      lock: 'Blocca accesso'
+      unlock: 'Autorizza accesso'
+    new:
+      title: 'Autorizza nuovo utente'
+      action: 'Utente autorizzato'
+    edit:
+      title: 'Modifica autorizzazioni utente'
+      action: 'Utente modificato'
+    create:
+      title: 'Autorizza utente'
+      action: 'Utente autorizzato'
+    update:
+      title: 'Modifica utente'
+      action: 'Modificato utente'
+    destroy:
+      title: 'Cancella utente'
+      action: 'Cancellato utente'
+  import:
+      title: 'Importa file multiplo'
+      list: 'Lista campioni'
+      analisys: 'Lista analisi'
+      notice: 'I campioni sono stati importati'
+      file: 'importazione_multi_campioni'
+      radon:
+        title: 'Importa risultati radon'
+        import: 'Importa risultati radon'
+        concentration: 'Concentrazione'
+        exposure: 'Esposizione'
+        nothing: 'Non è RADON'
+        fields:
+          device: 'Chiave dati-programma'
+          analisy_type: 'Tipologia di analisi'
+          nuclide: 'Nuclide'
+          result: 'Risultato'
+          result_unit: 'Unità risultato'
+          symbol: 'Simbolo'
+          indecision: 'Incertezza'
+          indecision_unit: 'Unità incertezza'
+          author: "Autore dell'import"

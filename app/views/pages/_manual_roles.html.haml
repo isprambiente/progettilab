@@ -1,0 +1,266 @@
+%span.title.liv1-title
+  I ruoli
+.content
+  %p 
+    Un proc/att, all'interno del programma, può essere gestita da diversi membri di un team che inseriscono dati differenti, a seconda del proprio ambito lavorativo. Per semplificare e ottimizzare il coordinamento del processo di creazione, progettazione e gestione del proc/att sono stati creati dei ruoli. A ciascun ruolo, come vedremo nel dettaglio in seguito, è stata fornita una diversa autorizzazione.
+  %p
+    I ruoli presenti nel programma sono:
+    %ul
+      %li= link_to 'Responsabile di area', '#chief'
+      %li= link_to 'Responsabile della qualità', '#quality'
+      %li= link_to 'Responsabile del proc/att', '#manager'
+      %li= link_to 'Responsabile di prova', '#headtest'
+      %li= link_to 'Tecnico di laboratorio', '#laboratory'
+      %li= link_to 'Referente tecnico', '#technic'
+  %p#chief.grid-x
+    .titleize Responsabile di area
+    .content L'utenza associata a questo ruolo può sovraintendere a tutte le fasi del proc/att, crearne di nuove e modificare in qualsiasi momento le autorizzazioni definite.
+    .content Inoltre può accedere al pannello amministrativo per la gestione degli utenti del programma, delle tipologie di analisi, delle istruzioni operative, dei nuclidi, delle unità di misura, delle matrici e visualizzare i log del programma.
+  %p#quality
+    .titleize Responsabile della qualità
+    .content L'utenza associata a questo ruolo ha i medesimi diritti del Responsabile di area ma non può creare e cancellare i proc/att.
+  %p#manager
+    .titleize Responsabile del proc/att
+    .content Il ruolo di Responsabile di proc/att è definito dal Responsabile di area alla creazione di una nuovo proc/att.
+    .content Il responsabile di proc/att ha la piena gestione di tutte le fasi del proc/att.
+  %p#headtest
+    .titleize Responsabile di prova
+    .content Non è un vero ruolo ma piuttosto un'assegnazione che permette all'utente di essere selezionato, all'interno della gestione delle analisi, come <i>responsabile di prova</i> appunto.
+  %p#laboratory
+    .titleize Tecnico di laboratorio
+    .content Non è un vero ruolo ma piuttosto un'assegnazione che permette all'utente di essere selezionato, all'interno della gestione delle analisi, come <i>tecnico di laboratorio</i> appunto.
+  %p#technic
+    .titleize Referente tecnico
+    .content Ogni utente, associato al proc/att, assume il ruolo di <i>tecnico base</i>.
+    .content Un tecnico base può modificare i dati all'interno del proc/att fatta eccesione per la sezione anagrafica e di programmazione.
+  %p#schema.grid-x.alwaysbreak
+    .titleize Schema riassuntivo autorizzazioni
+    .content
+      %table
+        %thead
+          %tr
+            %th.text-center
+            %th.text-center Referente tecnico
+            %th.text-center Tecnico di laboratorio
+            %th.text-center Responsabile di prova
+            %th.text-center Responsabile del proc/att
+            %th.text-center Responsabile della qualità
+            %th.text-center Responsabile di area
+        %tbody
+          %tr
+            %td.titleize{ colspan: 7 } Gestione proc/att
+          %tr
+            %td Nuova proc/att
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Cancella proc/att
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Modifica proc/att
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td.titleize{ colspan: 7 } Ruoli proc/att
+          %tr
+            %td Modifica ruoli proc/att
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td.titleize{ colspan: 7 } Programmazione
+          %tr
+            %td Aggiungi attività
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Cancella attività
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Modifica attività
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td.titleize{ colspan: 7 } Campioni
+          %tr
+            %td Aggiungi campione
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Cancella campione
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Modifica campione
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td.titleize{ colspan: 7 } Analisi e risultati
+          %tr
+            %td Aggiungi analisi e risultati
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Cancella analisi
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Modifica analisi
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td.titleize{ colspan: 7 } Rapporti di prova
+          %tr
+            %td Visualizzazione rapporti emessi
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Emissione rapporti
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Annullamento rapporti emessi
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td.titleize{ colspan: 7 } Altre funzionalità condivise
+          %tr
+            %td Storico modifiche
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Stampa proc/att
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td.titleize{ colspan: 7 } Amministrazione
+          %tr
+            %td Gestione utenti
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Gestione tipologie analisi
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Gestione istruzioni operative
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Gestione nuclidi
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Gestione unità di misura
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Gestione matrici
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          %tr
+            %td Storico modifiche completo
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'invalid.png', alt: t('no').upcase, title: t('no').upcase
+            %td.text-center= image_tag 'valid.png', alt: t('yes').upcase, title: t('yes').upcase
+          

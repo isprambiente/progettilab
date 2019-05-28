@@ -1,0 +1,5 @@
+$('#<%= @section %>').html("<%= escape_javascript(render 'edit_'+@section, job: @job, section: @section)%>");
+reload_js( $('#<%= @section %>') );
+<% if @job.errors.blank? %>
+  $('#alert').html("<div class='callout success radius' data-closable ><%= I18n.t('notice', scope: 'jobs.update', default: 'Job was successfully updated.') %><button class='close-button' aria-label='Dismiss alert' data-close ><span aria-hidden >&times;</span></button></div>");
+<% end %>

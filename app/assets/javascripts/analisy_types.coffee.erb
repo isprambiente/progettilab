@@ -1,0 +1,70 @@
+@analisy_types_table = () ->
+  if $('table#analisy_types_table').length
+    search = window.location.search
+    lang = $('html').attr( 'lang' )
+    url = $('table#analisy_types_table').data('url')
+    dom = if $('table#analisy_types_table').data('button') == false then 'lfrtip' else '<"text-center"B>lfrtip'
+    $('table#analisy_types_table').DataTable
+      'destroy': true
+      'cache': true
+      'processing': true
+      'serverSide': true
+      'searching': true
+      'pageLength': 10
+      'lengthMenu': [ [10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "Tutti"] ]
+      'dom': dom
+      'buttons': [
+        { extend: 'excel', className: 'button transparent', exportOptions: { columns: ':visible' } }
+        { extend: 'pdf', className: 'button transparent', exportOptions: { columns: ':visible' },  orientation: 'landscape' }
+      ]
+      'ajax': { 'url': url, 'dataType': 'json' }
+      'columns': [
+        { 'data': 'title', 'name': 'analisy_types.title' }
+        { 'data': 'instruction.title', 'name': 'instructions.title' }
+        { 'class': 'text-center', 'name': 'analisy_types.radon' }
+        { 'class': 'text-center', 'name': 'analisy_types.active' }
+        { 'class': 'grid-container full text-right' }
+      ]
+      'columnDefs': [
+        {
+          'targets': 2
+          'render': ( data, type, full ) ->
+            v = ''
+            if full['radon']
+              v = "<i class='fa fa-check'></i>"
+            return v
+        }
+        {
+          'targets': 3
+          'render': ( data, type, full ) ->
+            v = ''
+            if full['active']
+              v = "<i class='fa fa-check'></i>"
+            return v
+        }
+        {
+          'targets': 4
+          'render': ( data, type, full ) ->
+            v = ''
+            if !$('body').hasClass('is-reveal-open')
+              v = "<div class='grid-x grid-margin-x medium-margin-collapse'>"
+              if full['editable']
+                v += "<a class='auto cell button transparent reveal-modal-mini' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' data-url='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>?modal=1'><i class='fa fa-edit'></i></a>"
+              else
+                v += "<a class='auto cell button transparent disabled' disabled='disabled' title='Modifica non consentita'><i class='fa fa-edit'></i></a>"
+              if full['deletable']
+                v += "<a class='auto cell button transparent' href='#{ full['url'] }' data-method='delete' data-remote='false' data-confirm='<%= I18n.t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) %>'><i class='fa fa-trash'></i></a>"
+              else
+                v += "<a class='auto cell button transparent disabled' disabled='disabled' title='Cancellazione non consentita'><i class='fa fa-trash'></i></a>"
+              v += '</div>'
+            return v
+        }
+      ]
+      'fnDrawCallback': (oSettings) ->
+        link_to_modal( $('table#analisy_types_table') )
+        $('table#analisy_types_table').find('.disabled').unbind('click').on 'click', ->
+          return false
+        return
+      'order': [ [ 0, 'asc' ] ]
+      'language': { "url": "<%= asset_path( ( I18n.locale || I18n.default_locale ).to_s + '.json') %>" }
+    return

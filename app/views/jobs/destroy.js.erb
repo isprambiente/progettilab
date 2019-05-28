@@ -1,0 +1,3 @@
+$('table#home-table').DataTable().ajax.reload( null, false );
+$('table#jobs-table').DataTable().ajax.reload( null, false );
+$('#alert').html("<div class='callout success radius' data-closable ><%= I18n.t( 'action', scope: 'jobs.destroy', default: 'Job deleted' ) %><button class='close-button' aria-label='Dismiss alert' data-close ><span aria-hidden >&times;</span></button></div>");

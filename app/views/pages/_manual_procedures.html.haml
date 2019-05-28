@@ -1,0 +1,212 @@
+%span.title.liv1-title
+  Gestione proc/att
+.content In questa sezione sono illustrate le procedure per la creazione, gestione e cancellazione di un proc/att, sulla base dei ruoli definiti sopra indicati, la programmazione delle attività, la gestione dei campioni e delle analisi.
+%ol
+  %li#jobs.liv-2
+    %span.title.liv2-title I proc/att
+    .content
+      Ogni proc/att è suddivisa in 7 macro-aree(anagrafica, programmazione, campioni, analisi, rapporti di analisi, storico modifiche e stampa proc/att). Alcune di queste aree sono a loro volta suddivise in sotto sezioni al fine di gestire in maniera più puntuale ogni proc/att.
+    %ol
+      %li#new_job.liv-3
+        %span.title.liv2-title Nuovo proc/att
+        .content
+          Di seguito le procedure per la creazione di una nuovo proc/att:
+          %ol.restart
+            %li Collegarsi al sistema con un utenza con diritti amministrativi;
+            %li Cliccare sul link denominato "<i>Tutti i proc/att</i>";
+            %li Se abilitati, cliccare sul bottone "<i>Nuovo proc/att</i>";
+            %li Riempire i campi obbligatori contrassegnati con l'asterisco. E' possibile visualizzare una breve descrizione del campo posizionando il mouse sopra l'icona che riporta il simbolo #{ image_tag 'question-circle.png', alt: '?' };
+            %li Una volta completata la compilazione del form, cliccare sul bottone in basso, "<i>Crea proc/att</i>";
+            %li Qualora il form non dovesse risultare corretto, restituirà un errore su ciascun campo compilato in maniera inesatta;
+            %li Se la compilazione dovesse risultare corretta, sarà inviata una e-mail a ciascun utente indicato come Responsabile di proc/att;
+            %li Alla fine della procedura di creazione del proc/att, il sistema visualizzarà il dettaglio del proc/att appena creata per poter aggiungere o modificare le informazioni appena inserite.
+      %li#edit_job.liv-3
+        %span.title.liv2-title L'anagrafica
+        .content L'anagrafica è suddivisa in diverse sezioni logiche per migliorare la gestione delle informazioni. 
+        .content 
+          Di seguito un elenco delle sezioni disponibili:
+          %ul
+            %li Dettagli;
+            %li Contatti;
+            %li Progettazione;
+            %li Autorizzazioni;
+            %li Allegati.
+          %p
+            .titleize Dettagli:
+            .content In questa sezione è possibile gestire una anagrafica di base. Come si può notare, parte dei campi risulta già stata riempita in fase di creazione del proc/att e i campi rimanenti, non ancora compilati, sono per lo più descrittivi. In questa sezione è possibile impostare la data di chiusura del proc/att. Un proc/att chiuso non può più essere modificato in nessuna sua parte o area o sezione. 
+            .content Solo il Responsabile di area può riaprire un proc/att chiuso.
+          %p
+            .titleize Contatti
+            .content La sezione contatti raggruppa i dati del cliente: Nominativo cliente, indirizzo, referente o persona di contatto, recapiti telefonici ed e-mail.
+          %p
+            .titleize Progettazione
+            .content Questa sezione raggruppa i dati relativi alla progettazione
+          %p
+            .titleize Autorizzazioni
+            .content In questa sezione è possibile gestire le autorizzazioni del proc/att. Le autorizzazioni sono gestite dal Responsabile di area il quale definisce il/i Responsabili di proc/att. A loro volta quest'ultimi possono definire i loro collaboratori o referenti. A parte alcune sezioni, già indicate nella sezione del manuale che spiega i ruoli, un Responsabile del proc/att e un referente hanno le medesime autorizzazioni.
+          %p
+            .titleize Allegati
+            .content 
+              Nella sezione allegati è possibile aggiunge uno o più file inerenti il proc/att purchè siano rispettate alcune semplici regole:
+              %ul
+                %li E' possibile caricare solo file in formato documento(pdf, word, excel, powerpoint, ecc...), immagine(jpg, jpeg, tiff, png, ecc...), compressi(zip)
+                %li La dimensione massima per ciascun file non deve superare i 20mbit
+                %li Questo sistema non è un gestore documentale pertanto devono essere caricati solo file strettamente necessari e comunque inerenti il proc/att.
+                %li In fase di storicizzazione del proc/att, i file fino a quel momento allegati, vengono cancellati.
+      %li#destroy_job.liv-3
+        %span.title.liv2-title Cancella un proc/att
+        .content La cancellazione di un proc/att è una procedura piuttosto complessa e definitiva. 
+        .content  
+          %i Una volta cancellata il proc/att, i dati e tutto quello a essa connesso(anagrafica, programmazione, campioni, analisi, rapporti di analisi, storico modifiche e allegati), saranno irrimediabilmente cancellati senza alcuna possibilità di recupero. Utilizzare questa procedura con attenzione e a proprio rischio.
+
+  %li#timetables.liv-2
+    %span.title.liv2-title La programmazione
+    .content La programmazione delle attività è una procedura necessaria per il corretto svolgimento di tutte le fasi del proc/att.
+    %ol
+      %li#new_timetable.liv-3
+        %span.title.liv2-title Nuova attività
+        .content Come anticipato, è possibile creare una singola attività oppure generarne più d'una sulla base del template utilizzato per il Radon.
+        .content 
+          Di seguito la procedura per la creazione singola:
+          %ol.restart
+            %li Cliccare sulla area "Programmazione";
+            %li Cliccare sulla sezione "Crea attività"(raggiungibile anche da tabella);
+            %li Si aprirà un form da compilare;
+            %li Riempire i campi obbligatori contrassegnati con l'asterisco. E' possibile visualizzare una breve descrizione del campo posizionando il mouse sopra il l'icona che riporta il simbolo #{ image_tag 'question-circle.png', alt: '?' };
+            %li Una volta completata la compilazione del form, cliccare sul bottone in basso, "<i>Crea programmazione</i>";
+            %li Qualora il form non dovesse risultare corretto, restituirà un errore su ciascun campo compilato in maniera inesatta;
+            %li Se la compilazione dovesse risultare corretta, il sistema provvederà all'inserimento dell'attività;
+            %li Alla fine della procedura, il sistema visualizzarà la nuova attività nell'elenco della programmazione.
+
+
+      %li#edit_timetable.liv-3
+        %span.title.liv2-title Modifica una attività
+        .content 
+          Nel caso si ritenesse necessario modificare una attività già inserita, seguire i seguenti passaggi:
+          %ol.restart
+            %li Cliccare sulla area "Programmazione";
+            %li Cliccare sulla sezione "Tabella";
+            %li Individuare la riga della attività da modificare;
+            %li Cliccare sull'icona #{ image_tag 'edit.png', alt: '' };
+            %li Modificare i campi necessari facendo attenzione a riempire i campi obbligatori contrassegnati con l'asterisco. E' possibile visualizzare una breve descrizione del campo posizionando il mouse sopra il l'icona che riporta il simbolo #{ image_tag 'question-circle.png', alt: '?' };
+            %li Una volta completata la compilazione del form, cliccare sul bottone in basso, "<i>Modifica programmazione</i>";
+            %li Qualora il form non dovesse risultare corretto, restituirà un errore su ciascun campo compilato in maniera inesatta;
+            %li Se la compilazione dovesse risultare corretta, il sistema provvederà all'inserimento dell'attività;
+            %li Alla fine della procedura, il sistema visualizzarà la nuova attività nell'elenco della programmazione.
+      %li#destroy_timetable.liv-3
+        %span.title.liv2-title Cancella una attività
+        .content
+          Nel caso si ritenesse necessario eliminare una attività già inserita, seguire i seguenti passaggi:
+          %ol.restart
+            %li Cliccare sulla area "Programmazione";
+            %li Cliccare sulla sezione "Tabella";
+            %li Individuare la riga da cancellare;
+            %li Cliccare sull'icona #{ image_tag 'trash.png', alt: '' };
+            %li Rispondere affermativamente a un eventuale messaggio di conferma;
+            %li Alla fine della procedura, il sistema rimuoverà la attività dall'elenco della programmazione.
+
+  %li#samples.liv-2
+    %span.title.liv2-title I campioni
+    .content I campioni rappresentano la parte tecnica del proc/att. Il mancato inserimento dei campioni e delle analisi da effettuare, pregiudica l'inserimento delle corrispettive analisi. I Referenti del proc/att possono aggiungere campioni, modificarne di già esistenti e aggiungere, a ciascun campione, le analisi che si è programmato di effettuare.
+    %ol
+      %li#new_sample.liv-3
+        %span.title.liv2-title Aggiungi un campione
+        .content
+          Per aggiungere un campione, seguire la seguente procedura:
+          %ol.restart
+            %li Cliccare sulla area "Campioni";
+            %li Cliccare sulla sezione "Aggiungi campione";
+            %li Si aprirà un form da compilare;
+            %li Riempire i campi obbligatori contrassegnati con l'asterisco. Il codice campione è generato automaticamente dal sistema dopo l'inserimento. E' possibile visualizzare una breve descrizione del campo posizionando il mouse sopra il l'icona che riporta il simbolo #{ image_tag 'question-circle.png', alt: '?' };
+            %li In fondo al form, <u>prima della creazione del campione</u>, è possibile aggiungere le analisi previste per questo campione.
+            %li Cliccare sul bottone "Aggiungi analisi" tutte le volte che si necessita di inserire una nuova analisi;
+            %li A ogni "Tipologia di analisi", è possibile collegare uno o più nuclidi da analizzare;
+            %li Una volta completata la compilazione del form, ricordarsi di cliccare sul bottone in basso, "<i>Crea campioni</i>".;
+            %li Qualora il form non dovesse risultare corretto, restituirà un errore su ciascun campo compilato in maniera inesatta;
+            %li Se la compilazione dovesse risultare corretta, il sistema provvederà all'inserimento del campione;
+            %li Alla fine della procedura, il sistema visualizzarà il nuovo campione nell'elenco dei campioni con il dettaglio delle analisi previste per il campione.
+
+      %li#edit_sample.liv-3
+        %span.title.liv2-title Modifica un campione
+        .content Un campione inserito può essere in qualsiasi momento modificato sia nel numero di parametri da aggiungere o rimuovere, sia per le analisi a esso collegate. Un'analisi, a cui è stato già inserito un risultato, non può essere rimossa.
+        .content
+          Per modificare un campione, seguire la seguente procedura:
+          %ol.restart
+            %li Cliccare sulla area "Campioni";
+            %li Individuare la riga della attività da modificare;
+            %li Cliccare sull'icona #{ image_tag 'edit.png', alt: '' };
+            %li Modificare i campi necessari facendo attenzione a riempire i campi obbligatori contrassegnati con l'asterisco. Il codice campione è ora modificabile. E' possibile visualizzare una breve descrizione del campo posizionando il mouse sopra il l'icona che riporta il simbolo #{ image_tag 'question-circle.png', alt: '?' };
+            %li In fondo al form, <u>prima del salvataggio del campione</u>, è possibile aggiungere eventuali altre analisi o modificarne di esistenti;
+            %li Cliccare sul bottone "Aggiungi analisi" tutte le volte che si necessita di inserire una nuova analisi;
+            %li A ogni "Tipologia di analisi", è possibile collegare uno o più nuclidi da analizzare;
+            %li Una volta completata la compilazione del form, ricordarsi di cliccare sul bottone in basso, "<i>Modifica campioni</i>".;
+            %li Qualora il form non dovesse risultare corretto, restituirà un errore su ciascun campo compilato in maniera inesatta;
+            %li Se la compilazione dovesse risultare corretta, il sistema provvederà all'inserimento del campione;
+            %li Alla fine della procedura, il sistema visualizzarà il campione modificato nell'elenco dei campioni con il dettaglio delle analisi previste per il campione.
+
+      %li#destroy_sample.liv-3
+        %span.title.liv2-title Cancella un campione
+        .content
+          Nel caso si ritenesse necessario eliminare un campione già inserito, seguire i seguenti passaggi:
+          %ol.restart
+            %li Cliccare sulla area "Campioni";
+            %li Cliccare sulla sezione "Elenco campioni";
+            %li Individuare la riga da cancellare;
+            %li Cliccare sull'icona #{ image_tag 'trash.png', alt: '' }, se presente;
+            %li Rispondere affermativamente a un eventuale messaggio di conferma;
+            %li
+              Alla fine della procedura, il sistema rimuoverà il campione dall'elenco dei campioni.
+              %b La cancellazione del campione cancellerà anche tutte le analisi e i risultati correlati. Utilizzare questa procedura con attenzione.
+
+
+  %li#analisies.liv-2
+    %span.title.liv2-title Le analisi
+    .content Una volta inseriti i campioni e le corrispettive analisi da effettuare, si può passare all'inserimento dei risultati secondo le modalità di seguito esposte.
+    %ol
+      %li#import_analisies.liv-3
+        %span.title.liv2-title Importazione multipla
+        .content Per il solo RADON è stata prevista una procedura di importazione multipla che permette un'importazione massiva dei risultati effettuando il caricamento di un file excel formattato come concordato.
+        .content 
+          Di seguito i passaggi necessari per effettuare l'upload del file. La procedura è la stessa sia per la concentrazione che per l'esposizione:
+          %ol.restart
+            %li Cliccare sulla area "Analisi";
+            %li Cliccare su concentrazione o esposizione;
+            %li Cliccare sul bottone "Sfoglia" e selezionare il file correttamente formattato;
+            %li Cliccare sul bottone "Importa file RADON";
+            %li Attendere il refresh della pagina senza uscire o effettuare altra operazione;
+            %li Il programma verificherà la corretezza dei dati inseriti, qualora i dati non dovessero risultare corretti, il sistema restituirà un errore su ciascun campo compilato in maniera inesatta;
+            %li Se il campione indicato nel file non dovesse essere ancora stato inserito, è data facoltà all'operatore di inserire il nuovo campione. In una seconda fase sarà però necessario che l'operatore o il responsabile, completino la compilazione dei parametri necessari per il nuovo campione inserito;
+            %li Se la compilazione dovesse risultare corretta, cliccare su "Prosegui" per completare la procedura;
+
+      %li#edit_analisy.liv-3
+        %span.title.liv2-title Analisi e risultati
+        .content In questa sezione vengono illustrate le procedure per gestire un'analisi e inserire i relativi risultati. Nell'elenco delle analisi sono pre-caricate tutte le analisi indicate durante l'inserimento dei campioni ordinate per codice campione ascendente e per codice analisi.
+        .content In questa fase non è possibile aggiungere nuove analisi. Per farlo è necessario modificare il campione nella sezione apposita.
+        .content
+          Di seguito i passaggi necessari per inserire i risultati delle analisi:
+          %ol.restart
+            %li Cliccare sulla area "Analisi";
+            %li Individuare la riga della attività da modificare;
+            %li Cliccare sull'icona #{ image_tag 'edit.png', alt: '' };
+            %li Si aprirà un form da compilare;
+            %li Riempire i campi obbligatori contrassegnati con l'asterisco. E' possibile visualizzare una breve descrizione del campo posizionando il mouse sopra il l'icona che riporta il simbolo #{ image_tag 'question-circle.png', alt: '?' };
+            %li In fondo al form, <u>prima del salvataggio</u>, è possibile inserire i risultati delle analisi.
+            %li In caso di mancata analisi di uno o più compoenti, indicare nel campo "Causa mancata analisi" le motivazioni del mancato inserimento;
+            %li Una volta completata la compilazione del form, ricordarsi di cliccare sul bottone in basso, "<i>Modifica analisi</i>".;
+            %li Qualora il form non dovesse risultare corretto, restituirà un errore su ciascun campo compilato in maniera inesatta;
+            %li Se la compilazione dovesse risultare corretta, il sistema provvederà al salvataggio della analisi;
+            %li Alla fine della procedura, il sistema visualizzarà la analisi modificata nell'elenco analisi col dettaglio dei risultati inseriti.
+
+      %li#destroy_analisy.liv-3
+        %span.title.liv2-title Cancella una analisi
+        .content
+          Nel caso si ritenesse necessario eliminare un'analisi già inserita, seguire i seguenti passaggi:
+          %ol.restart
+            %li Cliccare sulla area "Analisi";
+            %li Cliccare sulla sezione "Elenco analisi";
+            %li Individuare la riga da cancellare;
+            %li Cliccare sull'icona #{ image_tag 'trash.png', alt: '' }, se presente;
+            %li Rispondere affermativamente a un eventuale messaggio di conferma;
+            %li
+              Alla fine della procedura, il sistema rimuoverà la analisi anche dall'elenco delle analisi nel campione associato.
+              %b La cancellazione dell'analisi comporterà la cancellazione di tutti i risultati correlati. Utilizzare questa procedura con attenzione.

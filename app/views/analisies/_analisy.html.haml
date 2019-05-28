@@ -1,0 +1,16 @@
+%tr{ id: analisy.grid-x }
+  %td= analisy.type.title
+  %td= analisy.method
+  %td.text-center= analisy.date_on
+  %td
+    %ul= analisy.results.map{ |r| "<li>#{r.full_result_with_nuclide}</li>" }.join('').html_safe
+  %td.text-right.button-group
+    - if can? :update, analisy
+      = link_to fa_icon('edit'), edit_job_sample_analisy_path(job_id: analisy.job.id, sample_id: analisy.sample.id, id: analisy.id, method: @method), class: 'button transparent'
+    - if can? :print, analisy
+      - if analisy.report.blank?
+        = link_to fa_icon('print'), preview_job_sample_analisy_path(job_id: analisy.job.id, sample_id: analisy.sample.id, id: analisy.id, method: @method), class: 'button transparent'
+      - else
+        = link_to fa_icon('print'), report_job_sample_analisy_path(job_id: analisy.job.id, sample_id: analisy.sample.id, id: analisy.id, method: @method, format: :pdf), class: 'button transparent'
+    - if can? :delete, analisy
+      = link_to fa_icon('trash'), job_sample_analisy_path(job_id: analisy.job.id, sample_id: analisy.sample.id, id: analisy.id, method: @method), method: :delete, class: 'button transparent', data: { confirm: t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) }

@@ -1,0 +1,109 @@
+@samples_table = () ->
+  if $('table#samples-table').length
+    search = window.location.search
+    lang = $('html').attr( 'lang' )
+    url = $('table#samples-table').data('url')
+    dom = if $('table#samples-table').data('button') == "true" then '<"text-center"B>lfrtip' else 'lfrtip'
+    $('table#samples-table').DataTable
+      'destroy': true
+      'cache': true
+      'processing': true
+      'serverSide': true
+      'searching': true
+      'pageLength': 10
+      'lengthMenu': [ [10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "Tutti"] ]
+      'dom': dom
+      'buttons': [
+        { extend: 'excel', className: 'button transparent', exportOptions: { columns: [1,2,3,4,5,6,7] } }
+        { extend: 'pdf', className: 'button transparent', exportOptions: { columns: [1,2,3,4,5,6,7] },  orientation: 'landscape' }
+      ]
+      'ajax': { 'url': url, 'dataType': 'json' }
+      'columns': [
+        { 'class': 'text-center', 'name': '' }
+        { 'data': 'lab_code', 'class': 'text-center', 'name': 'samples.lab_code' }
+        { 'class': 'small-3 text-left', 'name': 'analisies.title' }
+        { 'data': 'type_matrix.title', 'class': 'text-center', 'name': 'matrix_types.title' }
+        { 'data': 'device', 'class': 'text-center', 'name': 'samples.device'  }
+        { 'data': 'client_code', 'class': 'text-center', 'name': 'samples.client_code'  }
+        { 'data': 'accepted_on', 'class': 'text-center', 'name': 'samples.accepted_at' }
+        { 'class': 'grid-container full text-right' }
+      ]
+      'columnDefs': [
+        {
+          'aTargets': [ 0 ]
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if full['valid?']
+              v = "<i data-tooltip aria-haspopup='true' class='fa fa-check-circle text-success has-tip right' data-disable-hover='false' title='Questo campione è valido'></i>"              
+            else
+              v = "<i data-tooltip aria-haspopup='true' class='fa fa-exclamation-circle text-alert has-tip right' data-disable-hover='false' title='Questo campione presenta valori mancanti o errati.'></i>"
+            return v
+        }
+        {
+          'aTargets': [ 2 ]
+          'mRender': ( data, type, full ) ->
+            confirm =  "data-confirm='<%= I18n.t('analisies', scope: 'jobs.redirect.confirmation', default: 'Are you sure?') %>'"
+            v = "<ul>"
+            if full['analisies'].length > 0
+              for key, val of full['analisies']
+                v += "<li>#{ val.type.title }</li>"
+            v += '</ul>'
+            return v
+        }
+        {
+          'aTargets': [ 7 ]
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if ( !$('body').hasClass('is-reveal-open') )
+              v = "<div class='grid-x grid-margin-x medium-margin-collapse'>"
+              if full['readable']
+                v += "<a class='button transparent' href='#{ full['url'] }'><i class='fa fa-eye'></i></a>"
+              else
+                if full['editable']
+                  v += "<a class='auto cell button transparent reveal-modal' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' data-url='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>?modal=1'><i class='fa fa-edit'></i></a>"
+                if full['deletable']
+                  v += "<a class='auto cell button transparent' href='#{ full['url'] }' data-method='delete' data-remote='true' data-confirm='<%= I18n.t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) %>'><i class='fa fa-trash'></i></a>"
+              v += '</div>'
+            else
+              v = "<div class='grid-x grid-margin-x medium-margin-collapse'>"
+              if full['readable'] || $('body').hasClass('is-reveal-open')
+                v += "<a class='auto cell button transparent' href='#{ full['url'] }?modal=1' data-url='#{ full['url'] }?modal=1' data-remote='true'><i class='fa fa-eye' title='Visualizza dettaglio campione'></i></a>"
+              v += '</div>'
+            return v
+        }
+      ]
+      'fnDrawCallback': (oSettings) ->
+        link_to_modal( $('table#samples-table') )
+        $('table#samples-table').find('.disabled').unbind('click').on 'click', ->
+          return false
+        return
+      'order': [ [ 1, 'asc' ] ]
+      'language': { "url": "<%= asset_path( ( I18n.locale || I18n.default_locale ).to_s + '.json') %>" }
+    return
+
+
+@create_sample = ( tr ) ->
+  device = tr.attr 'id'
+  table = job_id = tr.closest('table')
+  job_id = table.attr 'id'
+  author = table.attr 'author'
+  start_at = table.attr 'start_at'
+  stop_at = table.attr 'stop_at'
+  if device != '' && job_id != ''
+    $.post("/jobs/#{job_id}/samples.js", 
+      sample: { device: device, start_at: start_at, stop_at: stop_at, author: author, skip_presence: 'true' }
+    ).done (data) ->
+      td_check = tr.find("input[type='checkbox']#results__create_device").closest('td')
+      td_check.find("input[type='checkbox']#results__create_device").remove()
+      if data
+        td_device = tr.find('div.device').closest('td')
+        td_device.find('div.device').remove()
+        td_device.append(device)
+        td_check.append('<i title="Nessun errore riscontrato." data-tooltip="true" class="fa fa-check-circle text-success has-tip" aria-describedby="g4j4na-tooltip" data-yeti-box="g4j4na-tooltip" data-toggle="g4j4na-tooltip" data-resize="g4j4na-tooltip"></i>');
+        tr.removeClass('invalid').addClass('valid')
+      else
+        td_check.append('<i title="Correggi gli errori indicati." data-tooltip="true" class="fa fa-times-circle text-alert has-tip" aria-describedby="vsrtux-tooltip" data-yeti-box="vsrtux-tooltip" data-toggle="vsrtux-tooltip" data-resize="vsrtux-tooltip"></i>');
+        tr.removeClass('valid').addClass('invalid')
+      return
+    return
+  return

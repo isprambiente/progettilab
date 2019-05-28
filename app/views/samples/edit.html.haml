@@ -1,0 +1,4 @@
+= render 'edit', job: @job, sample: @sample, analisies: @analisies, section: @section
+- unless @modal == '1'
+  - content_for :left do
+    = render 'left_bar'

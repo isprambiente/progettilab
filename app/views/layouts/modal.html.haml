@@ -1,0 +1,18 @@
+!!! 5
+%html{lang: "#{I18n.locale || I18n.default_locale}"}
+  %head{data: {turbolinks_permanent: true}}= csrf_meta_tags
+  %body
+    - if @title.present? || @menu.present?
+      #top-bar-modal.top-bar.modal.hidden-print
+        .top-bar-title= "#{ @icon } #{ truncate(@title, length: 50, separator: ' ', omissis: '...') unless @title.blank? } #{ @other }".html_safe
+        .top-bar-right
+          %ul.menu
+            - unless @menu.blank?
+              - @menu.compact.each do |menu|
+                %li.divider
+                %li= link_to( fa_icon(menu[:fa], text: menu[:text], title: menu[:title]), menu[:to], remote: menu[:remote], class: menu[:class], target: menu[:target])
+            %li
+              %button.close-button{ data: { close: true }, aria: {label: 'Close modal' }, type: 'button' }
+                %span{ aria: {hidden: true } } &times;
+    
+    #modal-body= yield

@@ -1,0 +1,29 @@
+.grid-x.grid-padding-x
+	.small-12.large-2.cell= link_to fa_icon('plus', text: t('category', scope: 'matrixtypes.new', default: 'New category' ) ), new_category_matrix_types_path, class: 'button expanded reveal-modal-mini', data: { url: new_category_matrix_types_path(modal: 1) }
+	.small-12.large-2.cell= link_to fa_icon('plus', text: t('matrix', scope: 'matrixtypes.new', default: 'New matrix' ) ), new_matrix_type_path, class: 'button expanded reveal-modal-mini', data: { url: new_matrix_type_path(modal: 1) }
+	.small-12.large-auto.cell
+		.grid-x.text-middle
+			.large-3.cell
+				= radio_button("matrix_types", "categories", "all", checked:"checked", onclick: "javascript: $('#matrix_types-table').DataTable().ajax.url('#{ matrix_types_url( format: :json ) }').load();" )
+				%label{ for: "matrix_types_categories_all" } Visualizza categorie e matrici(#{ MatrixType.unscoped.count })
+			.large-3.cell
+				= radio_button("matrix_types", "categories", "matrix", onclick: "javascript: $('#matrix_types-table').DataTable().ajax.url('#{ matrix_types_url(matrix_type:{ categories: 'matrix' }, format: :json) }').load();" )
+				%label{ for: "matrix_types_categories_matrix" } Visualizza solo le matrici(#{ MatrixType.unscoped.matrices.count })
+			.large-3.cell
+				= radio_button("matrix_types", "categories", "category", onclick: "javascript: $('#matrix_types-table').DataTable().ajax.url('#{ matrix_types_url(matrix_type:{ categories: 'category' }, format: :json) }').load();" )
+				%label{ for: "matrix_types_categories_category" } Visualizza solo le categorie(#{ MatrixType.unscoped.categories.count })
+%table#matrix_types-table.display.responsive{ data: { url: matrix_types_url( format: :json ), button: 'false' } }
+	%thead
+		%tr
+			%th.small-2= t('category', scope: 'matrixtypes.fields', default: 'Category' )
+			%th.small-3= t('title', scope: 'matrixtypes.fields', default: 'Label' )
+			%th{ data: { orderable: "false" } }= t('body', scope: 'matrixtypes.fields', default: 'Body' )
+			%th.text-center.small-1= t('radia', scope: 'matrixtypes.fields', default: 'Radia' )
+			%th.text-center.small-1= t('active', scope: 'matrixtypes.fields', default: 'Active?' )
+			%th.small-1{ data: { orderable: "false", searchable: "false"} }
+	%tbody
+
+
+
+
+

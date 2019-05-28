@@ -1,0 +1,323 @@
+@removeLeftMenu = ->
+  if $( '#left' ).hasClass('hide')
+    $( '#left' ).attr('width','20px')
+    $( '#content' ).removeClass('large-12')
+    $( '#content' ).addClass('large-9')
+    $( '#removeLeftMenu' ).html('<i class="fa fa-backward"></i> Chiudi colonna menu')
+  else
+    $( '#left' ).addClass('hide')
+    $( '#content' ).removeClass('large-9')
+    $( '#content' ).addClass('large-12')
+    $( '#removeLeftMenu' ).html('<i class="fa fa-forward"></i> Apri colonna menu')
+  return
+
+@link_to_modal = (parent_obj = $(document) ) ->
+  parent_obj.find('a.reveal-modal').unbind('click').on 'click', (e) ->
+    open_modal($('#myModal'), $(this).data('url'))
+    return false
+  parent_obj.find('a.reveal-modal-mini').unbind('click').on 'click', (e) ->
+    open_modal($('#miniModal'), $(this).data('url'))
+    return false
+  return
+
+@open_modal = ($modal, url) ->
+  $.ajax
+    url: url
+    beforeSend: (xhr)->
+      $('#spinner').foundation 'open'
+      return
+    success: (resp) ->
+      $modal.html(resp).foundation 'open'
+      return
+    complete: (xhr,status) ->
+      $('#spinner').foundation 'close'
+      return
+  return
+
+@change_tr_order = (parent_obj = $(document) ) ->
+  parent_obj.find('.up,.down').unbind('click').click ->
+    element = $(this)
+    row = element.parents('tr:first')
+    if element.is('.up')
+      id = $(row.prev()).prop('id')
+    else
+      id = $(row.next()).prop('id')
+    $.ajax
+      url: row.data('url')
+      type: 'PUT'
+      data: "timetable[sortorder_from]=#{row.prop('id')}&timetable[sortorder_to]=#{id}"
+    return
+  return
+
+@set_tab = (parent_obj = $(document) ) ->
+  if parent_obj.find('ul.tabs').length
+    idx = parent_obj.find('ul.tabs').data('selected')
+    if idx == ''
+      idx = document.URL.indexOf('#')
+    if idx != -1
+      firstelem = parent_obj.find('#'+idx)[0].firstChild
+    else
+      firstelem = parent_obj.find('.tabs').children('li')[0].firstChild
+    parent_obj.find('.tabs').foundation('selectTab', parent_obj.find(firstelem).attr('href') )
+  return
+
+@getNuclide = (id) ->
+  $.ajax(url: '/nuclides/' + id + '.json').done (resp) ->
+    $('#nuclide_id').val resp.id
+    $('#nuclide_nuclide').val resp.nuclide
+    $('#nuclide_unit').val resp.unit
+    return
+  return
+
+@save_by_json = ( url, data = {}, dataType= 'json', type = 'POST' ) ->
+  $.ajax
+    url: url
+    type: type
+    data: data
+    dataType: dataType
+    success: (result) ->
+      return result
+    error: (xhr, ajaxOptions, thrownError) ->
+      alert xhr.status
+      alert thrownError
+      return
+
+@validate_input = ( text, type = 'text' ) ->
+  returnValue = true
+  regex = /[\w\W]/
+  if type == 'number'
+    regex = /[0-9]|\./
+    return
+  if !regex.test( text )
+    returnValue = false
+    if theEvent.preventDefault
+      theEvent.preventDefault()
+      return
+    return
+  return returnValue
+
+create_html_element = ( parent, obj_id='', obj_value='', obj_array=[], obj_type='text', obj_name='', obj_class=''  ) ->
+  input = ''
+  if obj_id == '' then obj_id = 'textbox'
+  if obj_name == '' then obj_name = obj_id
+  if obj_type in ['text', 'number', 'password', 'date', 'email', 'url', 'color']
+    input = "<input type='#{obj_type}' name='#{obj_name}' id='#{obj_id}' class='input-group-field' value='#{obj_value}' onkeyup=\'javascript:validate_input(this.value, '#{obj_type}');\'>"
+  else if obj_type == 'textarea'
+    input = "<textarea name='#{obj_name}' id='#{obj_id}' class='input-group-field'>#{obj_value}</textarea>"
+  else if obj_type == 'radiobutton'
+    for key, val of obj_array
+      input += "<input type='checkbox' name='#{obj_name}' value='#{val[0]}' /> #{val[1]}"
+  else if obj_type == 'checkbox'
+    for key, val of obj_array
+      input += "<input type='radio' name='#{obj_name}' value='#{val[0]}' /> #{val[1]}"
+  else if obj_type == 'select'
+    input = "<select name='#{obj_name}' id='#{obj_id}' class='input-group-field select2' >"
+    for key, val of obj_array
+      input += "<option value='#{val[0]}'>#{val[1]}</option>"
+    input += "</select>"
+
+  input += "<div class='input-group-button'><button type='submit' class='button success' ><i class='fa fa-save' /></button><button type='reset' class='button alert' ><i class='fa fa-trash' /></button></div>"
+  newTextBoxDiv = $(document.createElement('div')).attr('id', 'TextEditor').addClass( 'input-group small' )
+  newTextBoxDiv.after().html input
+  newTextBoxDiv.appendTo parent
+  return newTextBoxDiv
+
+@reload_tables = ->
+  jobs_table()
+  timetables_table()
+  samples_table()
+  analisies_table()
+  reports_table()
+  users_table()
+  nuclides_table()
+  units_table()
+  matrix_types_table()
+  analisy_types_table()
+  instructions_table()
+  logs_table()
+  return
+
+@reload_js = (parent_obj = $(document) ) ->
+  lang = $('html').attr( 'lang' )
+  parent_obj.find('.select2').select2({ language: lang, width:'resolve', allowClear: true, placeholder: placeholder: { id: '-1', text: "<%= I18n.t('select_one_from_list', default: 'Select one or more from this list') %>" } })
+  parent_obj.find('.date_time_field').datetimepicker({ closeOnDateSelect:true, yearStart: 2015, yearEnd: new Date().getFullYear()+1, format:'d-m-Y H:i' })
+  parent_obj.find('.date_field').datetimepicker({ closeOnDateSelect:true, yearStart: new Date().getFullYear()-3, yearEnd: new Date().getFullYear()+1, format:'d-m-Y', timepicker: false })
+  parent_obj.find('.time_field').datetimepicker({ closeOnDateSelect:true, format:'HH:MM', datepicker: false })
+  parent_obj.find('.sticky').sticky( { topSpacing: 190 } )
+  parent_obj.find('[data-disable-with="false"]').removeAttr('data-disable-with')
+  parent_obj.find('.disabled *').unbind('click').on 'click', ->
+    return false
+  parent_obj.find('#import-form input:file').unbind('click').on 'click', (e) ->
+    if $('#import-form #preimport').length && $('#import-form #preimport').text !=''
+      if confirm( "Attenzione: Proseguendo annullerai eventuali importazioni già iniziate. Confermi?" ) == true
+        $('#import-form #preimport').remove()
+        $('#import-form #report').html('').text('')
+        return
+      else
+        e.preventDefault()
+        e.stopPropagation()
+      return
+  parent_obj.find('#import-form').find("input[type='checkbox']#results__create_device").unbind('click').on 'click', (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    if $(this).prop('checked') == true
+      $(this).prop 'checked', false
+      if confirm( "Attenzione: Stai per creare un campione con questa lastrina. Confermi?" ) == true
+        create_sample $(this).closest('tr')
+      else
+        $(this).prop 'checked', false
+      return
+    return
+
+  parent_obj.find('#import-form').find("input[type='checkbox']#results__create_device_all").unbind('click').on 'click', (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    if $(this).prop('checked') == true
+      $(this).prop 'checked', false
+      if confirm( "Attenzione: Stai per creare tutti campioni mancanti. La procedura non può essere bloccata. Confermi?" ) == true
+        parent = $(this)
+        checkboxes = parent.closest('table').find('tbody').find("input:checkbox").not('#results__create_device_all')
+        checkboxes.each ->
+          create_sample $(this).closest('tr')
+        if parent.closest('table').find('tbody').find("input:checkbox").not('#results__create_device_all').length == 0
+          parent_obj.find('#import-form').find("input[type='checkbox']#results__create_device_all").remove()
+      else
+        $(this).prop 'checked', false
+      return
+    return
+
+  parent_obj.find("input[type='checkbox']#select_all").on 'change', (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+    obj = $(this)
+    parent = $(this).closest('form')
+    parent.find("input:checkbox").not("input[type='checkbox']#select_all").not("input[type='checkbox'].disabled").each ->
+      $(this).prop( 'checked', obj.prop('checked') )
+    return
+
+  $('#sample .category_id').on 'select2:unselect', (e) ->
+    select = $('#sample .matrices')
+    select.empty().attr 'disabled', 'disabled'
+  $('#sample .category_id').on 'select2:select', (e) ->
+    select = $('#sample .matrices')
+    select.empty().attr 'disabled', 'disabled'
+    if $('#sample .category_id').data('reloading') == '' || $('#sample .category_id').data('reloading') == 'false'
+      $('#sample .category_id').data('reloading', 'true')
+      $.getJSON("#{ if lang == 'it' then '/amministrazione/matrici.json' else '/admin/matrix_types.json' }", pid: $(this).val()).done((data) ->
+        data = data.data
+        if data.length > 0
+          $.each data, (key, val) ->
+            select.append $('<option></option>').val(val.id).html(val.title)
+            return
+          select.show().attr 'disabled', false
+        return
+      )
+      return
+    return
+  $('#all_reports').change ->
+    checkboxes = $(this).closest('table').find('tbody').find("input[type=checkbox]")
+    checkboxes.each ->
+      if $('#all_reports').prop('checked')
+        $(this).prop 'checked', true
+      else
+        $(this).prop 'checked', false
+
+
+  parent_obj.find('select.symbol').change ->
+    if $(this).val() == '±'
+      $(this).closest('tr').find('input.indecision').attr 'required', 'true'
+      $(this).closest('tr').find('select.indecision_unit').attr 'required', 'true'
+    else
+      $(this).closest('tr').find('input.indecision').removeAttr 'required'
+      $(this).closest('tr').find('select.indecision_unit').removeAttr 'required'
+    return
+  change_tr_order( parent_obj )
+
+  $('a.accordion-nested').unbind('click').click (event) ->
+    event.preventDefault()
+    $(this).parent().find('ol.nested').toggle()
+
+  $('label.editable').unbind('click').click ->
+    label = $(this)
+    type = if !label.data( 'type' ) then 'text' else label.data( 'type' )
+    values = if !label.data( 'values' ) then [] else label.data( 'values' )
+    parent = label.parent()
+    hiddenText = parent.find( 'input:hidden' )
+    if parent.find( '#TextEditor' ).length > 0
+      parent.find( '#TextEditor' ).remove()
+    newTextBoxDiv = create_html_element( parent, type, $(this).html(), label.data( 'values' ), type )
+    label.hide()
+    $(document).ready ->
+      newTextBoxDiv.unbind('click').on 'click', 'button:submit', ->
+        text = if type in ['text', 'number', 'password', 'date', 'email', 'url', 'color'] then $('#'+type).val() else $("##{type}").find(":selected").text()
+        value = $('#'+type).val()
+        hiddenText.val( value )
+        label.html( text ).show()
+        newTextBoxDiv.remove()
+        return
+      newTextBoxDiv.unbind('click').on 'click', 'button:reset', ->
+        label.show()
+        newTextBoxDiv.remove()
+        return
+      return
+  parent_obj.find('select.select2.invalid').closest('div.input-group').addClass('invalid')
+  
+  return
+
+@reinit_zurb_js = (parent_obj = $(document) ) ->
+  parent_obj.find('[data-toggle]').foundation
+  return
+
+document.addEventListener "turbolinks:load", ->
+  reload_tables()
+  menubar_reload()
+  $(document).foundation()
+  $(document).ready ->
+    link_to_modal( $(document) )
+    reload_js( $(document) )
+    return
+  return
+
+document.addEventListener 'turbolinks:request-start', ->
+  $('#spinner').foundation 'open'
+  return
+
+$(document).on 'ajaxComplete', (event, xhr, settings) ->
+  $(this).foundation()
+  reload_js( $(this) )
+  reinit_zurb_js( $(this) )
+  $('.dataTables_processing').attr("style", "display:none")
+  $('#sample .category_id').data('reloading', 'false')
+  return
+
+$(document).on 'cocoon:after-insert', (e, insertedItem) ->
+  reload_js( $(insertedItem) )
+  $(insertedItem).foundation()
+  return
+
+$(document).on 'closed.zf.reveal', '#myModal', ->
+  $(this).html('')
+  if $('#content').find( '.dataTable[data-url]' ).length > 0
+    $('.dataTable[data-url]').DataTable().ajax.reload( null, false )
+    return
+  return
+
+$(document).on 'closed.zf.reveal', '#miniModal', ->
+  $(this).html('')
+  if $('#content').find( '.dataTable[data-url]' ).length > 0
+    $('.dataTable[data-url]').DataTable().ajax.reload( null, false )
+    return
+  return
+
+$(document).on 'opened.zf.offcanvas', '#offCanvasLeft1', ->
+  $('button.button.canvas-menu').attr('title', 'Chiudi menù').removeClass('open-menu').addClass('close-menu')
+  return
+
+$(document).on 'closed.zf.offcanvas', '#offCanvasLeft1', ->
+  $('button.button.canvas-menu').attr('title', 'Apri menù').removeClass('close-menu').addClass('open-menu')
+  return
+
+$(document).ready ->
+  $(document).foundation()
+  $('#spinner').hide()
+  return

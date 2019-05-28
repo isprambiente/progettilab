@@ -1,0 +1,45 @@
+= Gestione progetti e attività di un laboratorio
+Il programma, interamente sviluppato all'interno del settore Sviluppo di AGP-INF, nasce da una specifica necessità di ISPRA nel gestire i progetti e le attività di un laboratorio.
+Il programma è stato appositamente sviluppato su piattaforma web per consentire l'accesso alle risorse interne tramite l'utilizzo di un comune browser web.
+All'interno dell'applicazione è possibile gestire le attività di laboratorio. Per ciascuna attività creata è possibile gestire l'anagrafica del progetto e dei contatti, i ruoli e le autorizzazioni dei collaboratori, gli allegati, la programmazione delle attività, i campioni e le analisi di laboratorio e i certificati di analisi.
+
+== Licenza
+Il codice sorgente del sito progetto è rilasciato sotto licenza GNU GENERAL PUBLIC LICENSE 3.0 (codice SPDX: GPL-3.0-or-later). La licenza è visibile nel file LICENSE.
+
+== Repository
+Questo repository contiene il codice sorgente del programma per la gestione dei progetti di laboratorio.
+Il sito è sviluppato in linguaggio Ruby 2.6 e framework Rails 5.2 .
+
+=== Specifiche tecniche progetto
+* Ruby 2.6
+* Ruby on Rais 5.2
+* PostgreSQL
+* HTML5 + CSS3
+* jQuery3
+* Zurb Foundation 6.5
+* CAS Server
+
+=== Requisiti tecnici per ambiente server
+* Sistema operativo: Linux
+* Gestore pacchetto ruby: RVM
+* Linguaggio di programmazione: Ruby 2.6
+* Framework: Rais 5.2
+* Database: PostgreSQL >= 11
+* Deploy applicazione: Accesso ssh per deploy applicazione via Capistrano
+* Webserver: Nginx + Puma
+* Autenticazione utenti: CAS Server
+
+=== Requisiti minimi per i client
+* Mozilla Firefox 53, Chrome 58, Microsoft Edge, Internet Explorer 11, Safari 9.0 o altro browser compatibile con HTML 5, CSS 3 e jQuery3;
+* Per Internet Explorer 11 la modalità di compatibilità deve essere disattivata;
+* Javascript abilitato;
+* Cookie abilitati;
+* Supporto ai certificati SSL;
+* Risoluzione schermo 1024x768.
+
+=== Configurazione consigliata per i client
+* Mozilla Firefox >= 53, Chrome >= 58, Microsoft Edge, Safari 9.0 o altro browser compatibile con HTML 5 e CSS 3 e jQuery3;
+* Javascript abilitato;
+* Cookie abilitati;
+* Supporto ai certificati SSL;
+* Risoluzione schermo >= 1280x1024.

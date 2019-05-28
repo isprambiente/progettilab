@@ -1,0 +1,17 @@
+<% if @report.errors.blank? %>
+  if( $('body').hasClass('is-reveal-open') ) {
+    $('#miniModal').foundation('close');
+  }
+  $('#menubar').html("<%= escape_javascript( render 'menubar' ) %>");
+  <% if @report.job.reports.blank? %>
+    $('#reports').html("<%= escape_javascript(render 'issued')%>");
+    reports_table();
+  <% else %>
+    $('table#reports-table').DataTable().clear().draw().ajax.reload( null, false );
+  <% end %>
+  $( document ).ready(function() {
+    alert('Rapporto annullato!');
+  });
+<% else %>
+  $('#modal-body').html("<%= escape_javascript( render 'delete' ) %>");
+<% end %>

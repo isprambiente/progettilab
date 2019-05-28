@@ -1,0 +1,13 @@
+- if can?(:read, @job)
+  #roles.section
+    %fieldset
+      %legend= t('roles', scope: 'jobs', default: 'Roles')
+      .grid-x
+        %label.small-4.cell= t('chief_id', scope: 'jobs.fields', default: 'Chief')
+        %span.small-8.cell= @job.chief.label
+      .grid-x
+        %label.small-4.cell= t('job_manager_ids', scope: 'jobs.fields', default: 'Managers')
+        %span.small-8.cell= @job.job_managers.pluck(:label).join(', ')
+      .grid-x
+        %label.small-4.cell= t('job_technician_ids', scope: 'jobs.fields', default: 'Technicians')
+        %span.small-8.cell= @job.job_technicians.pluck(:label).join(', ')

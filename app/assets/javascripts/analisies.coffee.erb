@@ -1,0 +1,83 @@
+@analisies_table = () ->
+  if $('table#analisies-table').length
+    search = window.location.search
+    lang = $('html').attr( 'lang' )
+    url = $('table#analisies-table').data('url')
+    dom = if $('table#analisies-table').data('button') == "true" then '<"text-center"B>lfrtip' else 'lfrtip'
+    $('table#analisies-table').DataTable
+      'destroy': true
+      'cache': true
+      'processing': true
+      'serverSide': true
+      'searching': true
+      'pageLength': 10
+      'lengthMenu': [ [10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "Tutti"] ]
+      'dom': dom
+      'buttons': [
+        { extend: 'excel', className: 'button transparent', exportOptions: { columns: [1,2,3,4,5,6,7] } }
+        { extend: 'pdf', className: 'button transparent', exportOptions: { columns: [1,2,3,4,5,6,7] },  orientation: 'landscape' }
+      ]
+      'ajax': { 'url': url, 'dataType': 'json' }
+      'columns': [
+        { 'class': 'text-center', 'name': '' }
+        { 'data': 'sample.lab_code', 'class': 'text-center', 'name': 'samples.lab_code' }
+        { 'data': 'code', 'class': 'text-center', 'type': 'num', 'name': 'analisies.code' }
+        { 'data': 'revision', 'class': 'text-center', 'name': 'analisies.revision' }
+        { 'data': 'type.title', 'class': 'text-left', 'name': 'analisy_types.title' }
+        { 'data': 'method', 'class': 'text-center', 'name': 'analisies.method' }
+        { 'class': 'text-left', 'name': '' }
+        { 'name': '' }
+      ]
+      'columnDefs': [
+        {
+          'aTargets': [ 0 ]
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if full['valid?']
+              v = "<i data-tooltip aria-haspopup='true' class='fa fa-check-circle text-success has-tip right' data-disable-hover='false' title='Questa analisi è valida'></i>"              
+            else
+              v = "<i data-tooltip aria-haspopup='true' class='fa fa-exclamation-circle text-alert has-tip right' data-disable-hover='false' title='Questa analisi presenta valori mancanti o errati.'></i>"
+            return v
+        }
+        {
+          'aTargets': [ 6 ]
+          'mRender': ( data, type, full ) ->
+            results = full['results']
+            i = 0
+            v = "<ul class='nop' style='font-size: 0.8rem'>"
+            while i < results.length
+              v += "<li>#{ results[i]['full_result_with_nuclide'] }</li>"
+              i++
+            v += "</ul>"
+            return v
+        }
+        {
+          'aTargets': [ 7 ]
+          'class': 'grid-container full text-right'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if !$('body').hasClass('is-reveal-open')
+              if full['editable']
+                v += "<a class='button transparent reveal-modal' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' data-url='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>?modal=1'><i class='fa fa-edit' title='Modifica record'></i></a>"
+              else
+                v += "<a class='button transparent reveal-modal' href='#{ full['url'] }' data-url='#{ full['url'] }?modal=1'><i class='fa fa-eye' title='Visualizza record'></i></a>"
+              if full['download']
+                v += "<a class='button transparent' href='#{ full['report_url'] }/<%= I18n.t('download', scope: 'routes', default: 'download') %>' target='_blank'><i class='fa fa-download' title='Scarica rapporto di prova emesso'></i></a>"
+              if full['deletable']
+                v += "<a class='button transparent' href='#{ full['url'] }' data-method='delete' data-remote='true' data-confirm='<%= I18n.t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) %>'><i class='fa fa-trash' title='Cancella analisi e risultati inseriti'></i></a>"
+            else
+              if full['readable']
+                v += "<a class='button transparent' href='#{ full['url'] }?modal=1' data-url='#{ full['url'] }?modal=1' data-remote='true'><i class='fa fa-eye' title='Visualizza record'></i></a>"
+              if full['download']
+                v += "<a class='button transparent' href='#{ full['report_url'] }/<%= I18n.t('download', scope: 'routes', default: 'download') %>' target='_blank'><i class='fa fa-download' title='Scarica rapporto di prova emesso'></i></a>"
+            return v
+        }
+      ]
+      'fnDrawCallback': (oSettings) ->
+        link_to_modal( $('table#analisies-table') )
+        $('table#analisies-table').find('.disabled').unbind('click').on 'click', ->
+          return false
+        return
+      'order': [ [ 1, 'asc' ], [ 2, 'asc' ] ]
+      'language': { "url": "<%= asset_path( ( I18n.locale || I18n.default_locale ).to_s + '.json') %>" }
+    return

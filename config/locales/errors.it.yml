@@ -1,0 +1,31 @@
+it:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Validazione fallita: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Il record non può essere cancellato perchè esiste un %{record} dipendente
+          has_many: Il record non può essere cancellato perchè esistono %{record} dipendenti
+  errors:
+    format: "%{attribute} %{message}"
+    too_short: 'la lunghezza deve essere almeno di %{count} caratteri'
+    blank: 'questo campo non può essere vuoto!'
+    record_not_found: 'il dato richiesto non è stato trovato!'
+
+    timetable:
+      greater_than_or_equal_to: "la data di fine deve essere superiore o uguale alla data di inizio"
+
+    sample:
+      too_long: "sono permessi massimo %{count} caratteri"
+
+    analisyreports:
+      not_downloadable: Rapporto di prova non scaricabile o non ancora emesso
+
+    attachment:
+      less_than: "Il file deve avere una dimensione massima di #{ size }."
+
+
+    report:
+      analisy: "Dati dell'analisi non sono corretti!"
+      job: "Dati del proc/att non sono corretti!"
+      sample: "Dati del campione non sono corretti!"

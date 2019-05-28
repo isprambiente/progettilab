@@ -1,0 +1,95 @@
+%fieldset.container.small-12.large-10
+  .grid-x.small-12.cell
+    .small-4.large-6.cell
+      %legend.text-upcase= t('title', scope: 'reports', default: 'Analisy report - preview')
+    - if @analisy.report.blank?
+      .small-4.large-3.cell= link_to fa_icon('edit', text: 'Modifica analisi'), edit_job_sample_analisy_path(job_id: @analisy.job.id, sample_id: @analisy.sample.id, id: @analisy.id, method: @method), class: 'button small expanded' if can? :update, @analisy
+      .small-4.large-3.cell= link_to fa_icon('print', text: 'Emetti rapporto di analisi'), report_job_sample_analisy_path(job_id: @analisy.job.id, sample_id: @analisy.sample.id, id: @analisy.id, method: @method), class: 'button alert small expanded', data: { confirm: t('create_report', scope: 'confirmations', default: 'Are you sure?'), turbolink: 'false' } if can? :print, @analisy
+    - else
+      .small-4.large-3.cell= link_to fa_icon('download', text: 'Scarica rapporto di analisi'), download_job_sample_analisy_path(job_id: @analisy.job.id, sample_id: @analisy.sample.id, id: @analisy.id, method: @method), class: 'button small expanded', target: '_blank' if can? :download, @analisy
+      .small-4.large-3.cell= link_to fa_icon('trash', text: 'Annulla rapporto di analisi'), report_destroy_job_sample_analisy_path(job_id: @analisy.job.id, sample_id: @analisy.sample.id, id: @analisy.id, method: @method), class: 'button alert small expanded reveal-modal-mini', data: { url: report_destroy_job_sample_analisy_path( job_id: @analisy.job.id, sample_id: @analisy.sample.id, id: @analisy.id, modal: 1 ) } if can? :deletereport, @analisy
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('code', scope: 'analisyreports.fields', default: 'Id report of analisy')
+    .small-12.large-2.cell.text-box= @analisy.code
+    .small-12.large-1.cell.text-right
+      %label.text-bold.text-upcase= t('revision', scope: 'analisyreports.fields', default: 'Revision')
+    .small-12.large-1.cell.end.text-box= @analisy.revision
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('issued_at', scope: 'analisyreports.fields', default: 'Issued at')
+    .small-12.large-8.cell.text-box= @analisy.report.blank? ? t('not_issued', scope: 'analisyreports.fields', default: 'Not issued').upcase : @analisy.report.issued_on
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('job', scope: 'analisyreports.fields', default: 'Job')
+    .small-12.large-8.cell.text-box= @analisy.job.code
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('customer', scope: 'analisyreports.fields', default: 'Customer')
+    .small-12.large-8.cell.text-box= @analisy.job.customer
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('object', scope: 'analisyreports.fields', default: 'Job object')
+    .small-12.large-8.cell.text-area= @analisy.job.title
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('device', scope: 'analisyreports.fields', default: 'Device')
+    .small-12.large-8.cell.text-box= @analisy.sample.device
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('start_at', scope: 'analisyreports.fields', default: 'Start at')
+    .small-12.large-8.cell.text-box= @analisy.sample.start_on
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('stop_at', scope: 'analisyreports.fields', default: 'Stop at')
+    .small-12.large-8.cell.text-box= @analisy.sample.stop_on
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('reference_at', scope: 'analisyreports.fields', default: 'Reference at')
+    .small-12.large-8.cell.text-box= @analisy.reference_on.blank? ? t('not_inserted', scope: 'analisyreports.fields', default: 'Not inserted').upcase : @analisy.reference_on
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('sample', scope: 'analisyreports.fields', default: 'Sample')
+    .small-12.large-8.cell.text-box= @analisy.sample.code
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('analisytype', scope: 'analisyreports.fields', default: 'Analisy type')
+    .small-12.large-8.cell.text-box= @analisy.type.title
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('results', scope: 'analisyreports.fields', default: 'Results')
+  .grid-x.small-12.cell
+    .text-area-big
+      %ul.nop
+        - @analisy.results.each do | result |
+          %li= result.full_result_with_nuclide
+  .grid-x.small-12.cell
+    .text-area-big
+      %ul.nop
+        - @analisy.results.each do | result |
+          %li= result.body
+  .grid-x.small-12.cell
+    .text-area-big
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('body', scope: 'analisyreports.fields', default: 'Note')
+    .small-12.large-8.cell.text-area= @analisy.body
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('attachments', scope: 'analisyreports.fields', default: 'Attachments')
+    .small-12.large-8.cell.text-area
+      %ul.nop
+        - @analisy.job.attachments.each do | attach |
+          %li= attach.file_file_name
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('technician', scope: 'analisyreports.fields', default: "Laboratory technician")
+    .small-12.large-8.cell.text-box= @analisy.analisy_technic_users.blank? ? t('not_found', scope: 'analisyreports.fields', default: 'Not found').upcase : @analisy.analisy_technic_users.pluck(:label).join(', ')
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('responsible_for_testing', scope: 'analisyreports.fields', default: "responsible for testing")
+    .small-12.large-8.cell.text-box= @analisy.analisy_headtest_users.blank? ? t('not_found', scope: 'analisyreports.fields', default: 'Not found').upcase : @analisy.analisy_headtest_users.pluck(:label).join(', ')
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      %label.text-bold.text-upcase= t('chief', scope: 'analisyreports.fields', default: "Manager")
+    .small-12.large-8.cell.text-box= @analisy.analisy_chief_users.blank? ? t('not_found', scope: 'analisyreports.fields', default: 'Not found').upcase : @analisy.analisy_chief_users.pluck(:label).join(', ')

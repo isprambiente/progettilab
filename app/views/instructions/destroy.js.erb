@@ -1,0 +1,3 @@
+if ( $('#content').find( '.dataTable' ).length > 0 ) {
+  $('table#instructions-table').DataTable().row( $('#<%= @row %>') ).remove().draw();
+}

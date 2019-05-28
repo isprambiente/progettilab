@@ -1,0 +1,7 @@
+- if @sample.blank?
+	%ul.menu.nav-menu.vertical.border-radius
+		%li.title= fa_icon('cubes', text: t( 'titles', scope: 'samples.new', default: 'Add samples' ) )
+		- if can?(:create, @job => Sample)
+			%li= link_to fa_icon('plus', text: t('title', scope: 'samples.new', default: 'Create new sample') ), new_job_sample_path( job_id: @job.id ), class: 'reveal-modal', data: { url: new_job_sample_path(job_id: @job, modal: 1) }
+- if @sample.present? && can?(:destroy, @sample)
+	= link_to fa_icon( 'trash', text: t('title', scope: 'samples.destroy', default: 'Delete sample' ) ), job_sample_path(@sample), method: :delete, data: {confirm: t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) }, class: 'button alert expanded'

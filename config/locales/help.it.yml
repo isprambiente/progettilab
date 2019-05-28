@@ -1,0 +1,76 @@
+it:
+  help:
+    jobs:
+      fields:
+        code:               Codice univoco del proc/att
+        title:              Il titolo del proc/att
+        body:               Descrizione facoltativa del proc/att
+        open_at:            La data di apertura del proc/att
+        planned_closure_at: La data prevista per la chiusura del proc/att
+        close_at:           La data effettiva di chiusura del proc/att
+        pa_support:         Indica se il proc/att ha il supporto PA
+        consolidated:       Indica se il proc/att è consolidata
+        requirements:       Requisiti in ingresso
+        chief_id:           Nominativo del responsabile di area e/o di struttura
+        job_manager_ids:    Elenco di nominativi dei responsabili che gestiranno il proc/att
+        job_technician_ids: Elenco di nominativi dei tecnici coinvolti nella gestione del proc/att
+        customer:           Il nome del cliente del proc/att
+        address:            L'indirizzo del cliente del proc/att
+        contact:            Il nominativo di riferimento del cliente del proc/att
+        tel1:               Il recapito telefonico principale del cliente del proc/att
+        tel2:               Ulteriore recapito telefonico del cliente del proc/att
+        cell:               Il recapito di cellulare del cliente del proc/att
+        fax:                Il recapito fax del cliente del proc/att
+        email:              Un indirizzo e-mail del cliente del proc/att
+        institutions:       Istituzioni coinvolte
+        other_resources:    Ulteriori risorse
+
+        
+    timetables:
+      fields:
+        sortorder:          Numero ordine dell'attività
+        title:              Il titolo dell'attività
+        body:               Descrizione facoltativa dell'attività
+        start_at:           La data di inizio prevista per l'attività
+        execute_at:         La data di fine esecuzione dell'attività
+        stop_at:            La data di chiusura prevista per l'attività
+        progress:           Barra di avanzamento dell'attività
+        color:              Colore dell'attività
+        products:           Descrizione sui prodotti relativi all'attività
+        restrict:           Indica se l'attività è vincolante per la prosecuzione delle successive attività
+        closed:             Indica se l'attività è chiusa e si può passare all'attività successiva
+    attachments:
+    samples:
+      fields:
+        category_id:        Elenco matrici I livello
+        type_matrix_id:     Elenco matrici II livello
+        report:             Verbale cliente
+    analisies:
+    users:
+    matrix_types:
+      fields:
+        title:              Nome univoco della matrice
+        body:               Descrizione facoltativa della matrice
+        radia:              Codice identificativo nel programma RADIA
+        category_id:        Insieme di primo livello in cui è inserita la matrice
+    instructions:
+      fields:
+        title:              Nome univoco della istruzione operativa
+        body:               Descrizione facoltativa della istruzione operativa
+        file:               Upload di un file contenente il dettaglio della istruzione operativa
+    analisy_types:
+      fields:
+        title:              Nome univoco della tipologia di analisi
+        instruction_id:     Selezionare l'istruzione operativa di riferimento
+        radon_type:         Categoria di radon di cui fa parte la tipologia di analisi. In fase di import massivo dei risultati Radon, il sistema verificherà che la tipologia di analisi indicata sia definita come radon. Qualora il sistema non dovesse identificare la tipologia di analisi, verrà generato un errore.
+    nuclides:
+      fields:
+        title:              Nome univoco del nuclide
+        body:               Descrizione facoltativa del nuclide
+    units:
+      fields:
+        title:              Nome univoco della unità
+        html:               "Per elevare un numero a potenza aggiungere <sup>numero</sup>. es: m<sup>3</sup> oppure m<sup>-3</sup>"
+        body:               Descrizione facoltativa dell'unità
+        radon_type:         Categoria di radon di cui fa parte l'unità. In fase di import massivo dei risultati Radon, il sistema verificherà che l'unità di misura indicata sia definita come radon. Qualora il sistema non dovesse identificare l'unità, verrà generato un errore.
+

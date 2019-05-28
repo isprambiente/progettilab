@@ -1,0 +1,8 @@
+en:
+  date:
+    formats:
+      default: "%Y-%m-%d"
+  time:
+    formats:
+      default: "%Y-%m-%d %H:%M"
+      only_time: "%H:%M"

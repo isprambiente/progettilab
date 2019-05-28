@@ -1,0 +1,30 @@
+{
+  "sEmptyTable":     "Nessun dato presente nella tabella",
+  "sInfo":           "Vista da _START_ a _END_ di _TOTAL_ elementi",
+  "sInfoEmpty":      "Vista da 0 a 0 di 0 elementi",
+  "sInfoFiltered":   "(filtrati da _MAX_ elementi totali)",
+  "sInfoPostFix":    "",
+  "sInfoThousands":  ",",
+  "sLengthMenu":     "Visualizza _MENU_ elementi",
+  "sLoadingRecords": "Caricamento...",
+  "sProcessing":     "<i class='fa fa-cog fa-spin'></i> Caricamento in corso... attendere prego!",
+  "sSearch":         "Ricerca rapida:",
+  "sZeroRecords":    "La ricerca non ha portato alcun risultato.",
+  "oPaginate": {
+    "sFirst":      "Inizio",
+    "sPrevious":   "Precedente",
+    "sNext":       "Successivo",
+    "sLast":       "Fine"
+  },
+  "oAria": {
+    "sSortAscending":  ": attiva per ordinare la colonna in ordine crescente",
+    "sSortDescending": ": attiva per ordinare la colonna in ordine decrescente"
+  },
+  "buttons": {
+    "copy": "<i class='fa fa-clipboard'></i> <u>C</u>opia",
+    "excel": "<i class='fa fa-file-excel-o'></i> <u>E</u>xcel",
+    "pdf": "<i class='fa fa-file-pdf-o'></i> <u>P</u>DF",
+    "print": "<i class='fa fa-print'></i> <u>S</u>tampa",
+    "colvis": "<i class='fa fa-eye-slash'></i> <u>N</u>ascondi colonne"
+  }
+}

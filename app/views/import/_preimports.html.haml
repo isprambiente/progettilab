@@ -1,0 +1,35 @@
+.grid-xy
+	= form_with( url: job_import_index_path(section: @section), method: :put, :builder => ExtraFormWith ) do
+		.cell
+			.grid-x
+				.callout.secondary.small-12
+					.grid-y
+						%b.cell Legenda per errori generali di importazione
+						.cell= fa_icon( 'square', text: "La verifica pre-importazione andata a buon fine.", class: 'text-success' )
+						.cell= fa_icon( 'square', text: "Ci sono errori che impediranno l'importazione.", class: 'text-alert' )
+						%b.cell Legenda per errori sui dati
+						.cell= fa_icon( 'check-circle', text: "Il record corrispondente non presenta errori e può essere creato.", class: 'text-success' )
+						.cell= fa_icon( 'warning', text: "Il recond corrispondente è già stato inserito in precedenza e le informazioni contenute saranno sovrascritte con quelle presenti nel file che si sta per importare.", class: 'text-warning' )
+						.cell= fa_icon( 'ban', text: "Il record non può essere importanto poichè per il record, che presenta questo simbolo, è stato emesso un rapporto di prova che ne blocca la sovrascrittura. Annullare i rapporti di prova correlati per poter proseguire.", class: 'text-alert' )
+		.cell
+			- @has_check = false
+			%table{ id: @job.id, author: current_user.label }
+				%tbody
+					- unless @preimports.blank?
+						- @preimports.each do | row |
+							- nrand = (0..10).map{rand(0..9)}.join
+							= fields_for "results[_#{nrand}]", row do | f |
+								= render 'result', f: f, row: row
+				%thead
+					%tr
+						%th.text-center{ style: 'width:20%;' } CODICE UNIVOCO CAMPIONE
+						%th.text-center{ style: 'width:20%;' } CAMPIONE
+						%th.text-center{ style: 'width:20%;' } ANALISI
+						%th.text-center{ style: 'width:40%;' } RISULTATI
+		.cell.text-center
+			- if @errors == false
+				= submit_tag 'IMPORTA I RECORD SOPRA ELENCATI', class: "button expanded", input_html: { name: 'import', id: 'import' }, data: { confirm: 'Stai per inserire i dati indicati in questa tabella. Confermi?' }
+			- else
+				%b L'importazione del file non può proseguire poichè sono stati riscontrati errori nel file. 
+				%br/
+				%b Correggere gli errori indicati e importare nuovamente il file.

@@ -1,0 +1,3 @@
+= render 'summary', job: @job, sample: @sample, analisy: '' unless @modal == '1'
+#analisy
+	#form= render 'form', analisy: @analisy, render_button: :nil

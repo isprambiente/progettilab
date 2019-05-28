@@ -1,0 +1,18 @@
+<% if @timetable.errors.blank? %>
+  $('#timetable-form').html('');
+  if ( $('table#timetables-table').length ) {
+    $('table#timetables-table').DataTable().ajax.reload();
+  }
+  
+  if( $('body').hasClass('is-reveal-open') ) {
+    $('#myModal').foundation('close');
+  }
+<% else %>
+  // alert( "<%= @timetable.errors.map{ |k,v| "#{t(k, scope: 'timetables.fields', default: k)}: #{v}" }.join(', ') %>" );
+  if( $('body').hasClass('is-reveal-open') ) {
+    $('#modal-body').html("<%= escape_javascript(render 'new')%>");
+  } else {
+    $('#timetable-form').html("<%= escape_javascript(render 'new')%>");
+  }
+  // $('#alert').html("<div class='callout alert radius' data-closable ><%= I18n.t('error_because', scope: 'timetables.create', default: 'Timeline not was updated.') %> <%= @timetable.errors.map{ |k,v| "#{t(k, scope: 'timetables.fields', default: k)}: #{v}" }.join(', ') %><button class='close-button' aria-label='Dismiss alert' data-close ><span aria-hidden >&times;</span></button></div>");
+<% end %>

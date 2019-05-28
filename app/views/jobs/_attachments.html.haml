@@ -1,0 +1,21 @@
+#contacts.section
+  %fieldset
+    %legend= t('title', scope: 'attachments', default: 'Attachments')
+    %table
+      %thead
+        %tr
+          %td.text-left= t('title', scope: 'attachments.fields', default: 'Title')
+          %td.text-left= t('body', scope: 'attachments.fields', default: 'Note')
+          %td.text-center= t('category', scope: 'attachments.fields', default: 'Category')
+          %td.text-left
+      %tbody
+        - if @job.attachments.present?
+          - @job.attachments.each do | attachment |
+            %tr{ id: attachment.row }
+              %td.text-left= attachment.title
+              %td.text-justify= attachment.body
+              %td.text-center= t( attachment.category, scope: 'attachement.categories', default: "#{attachment.category}".capitalize )
+              %td.text-left= link_to fa_icon('download', title: attachment.file_file_name), attachment_download_job_path( id: @job.id, file_id: attachment.id ) , target: '_blank'
+        - else
+          %tr
+            %td.text-center{ colspan: 4 } Nessun allegato inserito

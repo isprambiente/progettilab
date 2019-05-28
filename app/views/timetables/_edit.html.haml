@@ -1,0 +1,5 @@
+%fieldset
+  %legend= "#{t('title', scope: 'timetables.update', default: 'Update timetable')}".html_safe
+  .text-right= link_to fa_icon('remove', text: 'Annulla operazione'), '#', class: 'button small alert', onclick: "javascript:$('#timetable-form').html('');return false;"
+  = form_with model: @timetable, url: job_timetable_path(job_id: @job.id, id: @timetable.id, modal: @modal, section: @section ), method: :put, :builder => ExtraFormWith do |f|
+    = render 'form', job: @job, timetable: @timetable, f: f

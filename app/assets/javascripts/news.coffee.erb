@@ -1,0 +1,107 @@
+DateTimeOptions = {
+  year: 'numeric', month: 'numeric', day: 'numeric',
+  hour: 'numeric', minute: 'numeric', second: 'numeric',
+  hour12: false
+}
+load_news = ( container ) ->
+  url = container.data('url')
+  limit = container.data('limit')
+  fromDate = container.data('fromdate')
+  title = container.data('title')
+  confirm = container.data('confirm') || 'false'
+  source_link = container.data('source-link')
+  target_link = container.data('target-link') || '_blank'
+  key_articles = container.data('items-key-articles') || 'items'
+  key_title = container.data('items-field-title') || 'title'
+  key_link = container.data('items-field-link') || 'link'
+  key_pubDate = container.data('items-field-pubDate') || 'pubDate'
+  reload_ms = container.data( 'reload-ms' ) || ''
+  if url.length > 0
+    $.ajax
+      url: url
+      data: { from: fromDate, limit: limit }
+      async: false
+      success: (resp) ->
+        if resp[key_articles] != undefined
+          articles = resp[key_articles]
+          if articles.length > 0
+            content = "<h5>#{ title }</h5>"
+            i = 0
+            content += "<table>"
+            content += "<tbody>"
+            $.each articles, ( key, value ) ->
+              content += "<tr>"
+              content += "<td class='text-justify title' style='width:80%'><a href='" + value["#{key_link}"] + "' target='#{ target_link }' data-confirm='#{ confirm }'>" + value["#{key_title}"] + "</a></td>"
+              if value["#{key_pubDate}"]
+                convDate = value["#{key_pubDate}"]
+                convDate = moment(convDate, "YYYY-MM-DD HH:mm").format("DD/MM/YYYY HH:mm")                
+              else
+                convDate = ''
+              content += "<td class='text-right'><span class='clock'>#{convDate}<span></td>"
+              content += "</tr>"
+              i++
+              if i == limit
+                return false
+            content += "</tbody>"
+            content += '</table>'
+
+            content += "<small class='float-left counter'>Ultimo aggiornamento #{ new Intl.DateTimeFormat($('html').attr( 'lang' ), DateTimeOptions).format(new Date) }</small>"
+            content += "<div class='hide rows'>#{ i }</div>"
+            if source_link != ''
+              content += "<small class='float-right'>fonte: <a href='#{ source_link }' target='_blank'>#{ source_link }</a></small>"
+            container.html(content)
+            if i == 0
+              container.addClass('hide')
+            return
+          else
+            container.addClass('hide')
+        else
+          container.addClass('hide')
+      error: ->
+        container.addClass('hide')
+    if reload_ms != ''
+      create_timer( container )    
+  else
+    container.addClass('hide')
+  return
+
+escapeRegExp = (str) ->
+  return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1")
+
+replaceAll = (str, find, replace) ->
+  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace)
+
+news = ()->
+  $('#NewsCounter').text('')
+  if $(".news-wrap").length > 0
+    rows = 0
+    $(".news-wrap").each ->
+      container = $(this)
+      load_news( container )
+      rows += if container.find('.rows').length > 0 then parseInt( container.find('.rows').text() ) else 0
+      reset_counter( rows )
+  return
+
+reset_counter = ( rows = 0 ) ->
+  if rows > 0
+    $('#NewsCounter').html('<i class="fa fa-newspaper-o"></i> n.'+ rows + ' notizie che potrebbero interessarti.')
+  else
+    $('#NewsCounter').html('')
+
+create_timer = (container) ->
+  setTimeout ( ->
+      load_news( container )
+      rows = 0
+      $(".news-wrap").each ->
+        rows += if $(this).find('.rows').length > 0 then parseInt( $(this).find('.rows').text() ) else 0
+      reset_counter( rows )
+      container.find( '.counter' ).html( 'Ultimo aggiornamento '+ new Intl.DateTimeFormat($('html').attr( 'lang' ), DateTimeOptions).format(new Date) )
+   ), container.data( 'reload-ms' )
+
+$(document).ready ->
+  if (Turbolinks.supported)
+    document.addEventListener "turbolinks:load", ->
+      news()
+      return
+  news()
+  return

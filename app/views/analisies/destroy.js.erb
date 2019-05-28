@@ -1,0 +1,13 @@
+if ( $('#content').find( '.dataTable' ).length > 0 ) {
+  <% if @analisies.present? %>
+    if ( $('#content').find( '.dataTable' ).length > 0 ) {
+      $('.dataTable').DataTable().ajax.reload( null, false );
+    }
+  <% else %>
+    $('#analisies').replaceWith("<%= escape_javascript( render 'analisies', sample: @sample, job: @job, analisies: @analisies ) %>");
+    analisies_table();
+  <% end %>
+} else {
+  $('#analisies').replaceWith("<%= escape_javascript( render 'analisies', sample: @sample, job: @job, analisies: @analisies ) %>");
+  analisies_table();
+}

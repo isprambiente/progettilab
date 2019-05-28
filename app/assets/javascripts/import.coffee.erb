@@ -1,0 +1,20 @@
+@import_table = () ->
+  if $('#report table').length
+    search = window.location.search
+    lang = $('html').attr( 'lang' )
+    dom = '<"text-center"B>lfrtip'
+    $('#report table').DataTable
+      'destroy': true
+      'processing': true
+      'searching': true
+      'pageLength': 30
+      'lengthMenu': [ [10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "Tutti"] ]
+      'dom': dom
+      'buttons': [
+        { extend: 'excel', className: 'button transparent', exportOptions: { columns: ':visible' } }
+        { extend: 'pdfHtml5', className: 'button transparent', exportOptions: { columns: ':visible' },  orientation: 'landscape' }
+      ]
+      'order': [ [ 0, 'asc' ] ]
+      'language': { "url": "<%= asset_path( ( I18n.locale || I18n.default_locale ).to_s + '.json') %>" }
+
+    return

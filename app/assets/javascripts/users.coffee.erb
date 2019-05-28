@@ -1,0 +1,98 @@
+@users_table = () ->
+  if $('table#users-table').length
+    search = window.location.search
+    lang = $('html').attr( 'lang' )
+    url = $('table#users-table').data('url')
+    dom = if $('table#users-table').data('button') == false then 'lfrtip' else '<"text-center"B>lfrtip'
+    $('table#users-table').DataTable
+      'destroy': true
+      'cache': true
+      'processing': true
+      'serverSide': true
+      'searching': true
+      'pageLength': 20
+      'lengthMenu': [ [10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "Tutti"] ]
+      'dom': dom
+      'buttons': [
+        { extend: 'excel', className: 'button transparent', exportOptions: { columns: ':visible' } }
+        { extend: 'pdf', className: 'button transparent', exportOptions: { columns: ':visible' },  orientation: 'landscape' }
+      ]
+      'ajax': { 'url': url, 'dataType': 'json' }
+      'columns': [
+        { 'data': 'label', 'name': 'users.label' }
+        { 'data': 'email', 'name': 'users.email' }
+        { 'name': 'users.technic' }
+        { 'name': 'users.headtest' }
+        { 'name': 'users.chief' }
+        { 'name': 'users.supervisor' }
+        { 'name': 'users.admin' }
+        { 'class': 'grid-container full text-right' }
+      ]
+      'columnDefs': [
+        {
+          'aTargets': [ 2 ]
+          'class': 'text-center'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if full['technic']
+              v = "<i class='fa fa-check'></i>"
+            return v
+        }
+        {
+          'aTargets': [ 3 ]
+          'class': 'text-center'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if full['headtest']
+              v = "<i class='fa fa-check'></i>"
+            return v
+        }
+        {
+          'aTargets': [ 4 ]
+          'class': 'text-center'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if full['chief']
+              v = "<i class='fa fa-check'></i>"
+            return v
+        }
+        {
+          'aTargets': [ 5 ]
+          'class': 'text-center'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if full['supervisor']
+              v = "<i class='fa fa-check'></i>"
+            return v
+        }
+        {
+          'aTargets': [ 6 ]
+          'class': 'text-center'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if full['admin']
+              v = "<i class='fa fa-check'></i>"
+            return v
+        }
+        {
+          'aTargets': [ 7 ]
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if !$('body').hasClass('is-reveal-open')
+              v = "<div class='grid-x grid-margin-x medium-margin-collapse'>"
+              if full['editable']
+                v += "<a class='auto cell button transparent reveal-modal-mini' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' data-url='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>?modal=1' ><i class='fa fa-edit'></i></a>"
+              if full['deletable']
+                v +="<a class='auto cell button transparent' href='#{ full['url'] }' data-method='delete' data-remote='false' data-confirm='<%= I18n.t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) %>'><i class='fa fa-trash'></i></a>"
+              v += '</div>'
+            return v
+        }
+      ]
+      'fnDrawCallback': (oSettings) ->
+        link_to_modal( $('table#users-table') )
+        $('table#users-table').find('.disabled').unbind('click').on 'click', ->
+          return false
+        return
+      'order': [ [ 0, 'asc' ] ]
+      'language': { "url": "<%= asset_path( ( I18n.locale || I18n.default_locale ).to_s + '.json') %>" }
+    return

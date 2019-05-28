@@ -1,0 +1,7 @@
+#report
+  = form_with( model: @analisy.report, url: report_destroy_job_sample_analisy_path( job_id: @analisy.job.id, sample_id: @analisy.sample.id, id: @analisy.id ), :builder => ExtraFormWith ) do |f|
+    .container
+      .grid-y
+        .cell.callout.alert Stai per annullare questo rapporto di analisi emesso il #{ @analisy.report.issued_on }.<br>Inserisci una motivazione valida che resterà legata al documento annullato.
+        .cell= f.textarea :cancellation_reason
+        .cell= f.submit_button

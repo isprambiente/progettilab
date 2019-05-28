@@ -1,0 +1,13 @@
+= form_with model: @user, :builder => ExtraFormWith do |f|
+  .grid-y.grid-margin-y
+    .cell
+      - if @user.new_record?
+        = f.select_field :username, [['Seleziona uno dei seguenti utenti', '']] + @users.map{ |u| [ u[:nominativo], u[:login] ] }, { icon: 'users', include_blank: false, label: 'Nominativo', inline: true }, { class: 'input-group-field select2 username' }
+      - else
+        = f.label_field :username, options: { required: true, placeholder: @user.label, icon: 'user', label: 'Nominativo', inline: true }
+    .cell= f.switch_field :technic, class: 'switch-input input-group-field', inline: true, help: false, label: t('technician', scope: 'users.fields', default: 'Technic')
+    .cell= f.switch_field :headtest, class: 'switch-input input-group-field', inline: true, help: false, label: t('headtest', scope: 'users.fields', default: 'Headtest')
+    .cell= f.switch_field :chief, class: 'switch-input input-group-field', inline: true, help: false, label: t('chief', scope: 'users.fields', default: 'Service Manager')
+    .cell= f.switch_field :supervisor, class: 'switch-input input-group-field', inline: true, help: false, label: t('supervisor', scope: 'users.fields', default: 'Supervisor')
+    .cell= f.switch_field :admin, class: "switch-input input-group-field #{ 'disabled' if @user == current_user }", disabled: @user == current_user, inline: true, warning_text: @user == current_user ? 'Non puoi disattivare te stesso' : false, label: t('admin', scope: 'users.fields', default: 'Administrator')
+    .cell= f.submit_button

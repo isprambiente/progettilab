@@ -1,0 +1,78 @@
+@jobs_table = () ->
+  if $('table#jobs-table').length
+    search = window.location.search
+    lang = $('html').attr( 'lang' )
+    url = $('table#jobs-table').data('url')+'?'+search
+    dom = if $('table#jobs-table').data('button') == false then 'lfrtip' else '<"text-center"B>lfrtip'
+    $('table#jobs-table').DataTable
+      'destroy': true
+      'cache': true
+      'processing': true
+      'serverSide': true
+      'searching': true
+      'pageLength': 10
+      'lengthMenu': [ [10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "Tutti"] ]
+      'dom': dom
+      'buttons': [
+        { extend: 'excel', className: 'button transparent', exportOptions: { columns: ':visible' } }
+        { extend: 'pdfHtml5', className: 'button transparent', exportOptions: { columns: ':visible' },  orientation: 'landscape' }
+      ]
+      'ajax': { 'url': url, 'dataType': 'json' }
+      'columns': [
+        { 'class': 'text-center', 'name': 'jobs.code', 'width': '7%' }
+        { 'data': 'title', 'name': 'jobs.title' }
+        { 'data': 'customer', 'class': 'text-left', 'name': '', 'width': '15%' }
+        { 'data': 'managers', 'class': 'text-center', 'name': '', 'width': '15%' }
+        { 'data': 'open_on', 'class': 'text-center', 'order': 'open_at', 'name': 'jobs.open_at', 'width': '10%' }
+        { 'data': 'planned_closure_on', 'class': 'text-center', 'name': 'jobs.planned_closure_at', 'width': '10%' }
+        { 'data': 'close_on', 'class': 'text-center', 'order': 'close_at', 'name': 'jobs.close_at', 'width': '10%' }
+        { 'class': 'grid-container full text-right', 'name': '', 'width': '8%' }
+      ]
+      'columnDefs': [
+        {
+          'aTargets': [ 0 ]
+          'mRender': ( data, type, full ) ->
+            if full['status'] != ''
+              title = ''
+              if full['status'] == 'intime'
+                title = 'La data prevista di chiusura è ancora lontana.'
+              else if full['status'] == 'expiring'
+                title = 'La data prevista di chiusura si avvicina perchè inferiore a 5 giorni.'
+              else if full['status'] == 'expired'
+                title = 'La data prevista di chiusura è stata superata!'
+              else if full['status'] == 'closed'
+                title = "Il proc/att è stata chiusa il #{ full['close_on'] }"
+
+              v = "<i class='fa fa-circle help has-tip right text-#{full['status']}' data-tooltip aria-haspopup='true' data-disable-hover='false' title='#{title}'></i> <a class='reveal-modal' href='#{ full['url'] }' data-url='#{ full['url'] }?modal=1'>#{ full['code'] }</a>"
+            else
+              v = "<i class='fa fa-circle text-secondary'></i> #{ full['code'] }"
+            return v
+        }
+        {
+          'aTargets': [ 7 ]
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if !$('body').hasClass('is-reveal-open')
+              v = "<div class='tools grid-x grid-margin-x medium-margin-collapse'>"
+              if full['editable']
+                v = v + "<a class='auto cell button transparent' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' title='<%= I18n.t('title', scope: 'jobs.update', default: 'Edit job') %>'><i class='fa fa-edit'></i></a>"
+              else if full['readable']
+                v = v + "<a class='button transparent' href='#{ full['url'] }'><i class='fa fa-eye'></i></a>"
+              if full['openable']
+                v = v + "<a class='auto cell button transparent reveal-modal-mini' href='#{ full['url'] }/<%= I18n.t('reopen', scope: 'routes', default: 'reopen') %>?url=#{window.location.href}' data-url='#{ full['url'] }/<%= I18n.t('reopen', scope: 'routes', default: 'reopen') %>?modal=1&url=#{window.location.href}' title='<%= I18n.t('title', scope: 'jobs.reopen', default: 'Reopen job') %>'><i class='fa fa-unlock'></i></a>"
+              if full['printable']
+                v = v + "<a class='auto cell button transparent reveal-modal-mini' href='#{ full['url'] }/<%= I18n.t('print', scope: 'routes', default: 'print') %>' data-url='#{ full['url'] }/<%= I18n.t('print', scope: 'routes', default: 'print') %>?modal=1' title='<%= I18n.t('title', scope: 'jobs.print', default: 'Print job') %>'><i class='fa fa-print'></i></a>"
+              if full['deletable']
+                v = v + "<a class='auto cell button transparent' href='#{ full['url'] }' data-method='delete' data-confirm='<%= I18n.t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) %>'><i class='fa fa-trash'></i></a>"
+              v = v + '</div>'
+            return v
+        }
+      ]
+      'fnDrawCallback': (oSettings) ->
+        link_to_modal( $('table#jobs-table') )
+        $('table#jobs-table').find('.disabled').on 'click', ->
+          return false
+        return
+      'order': [ [ 0, 'asc' ] ]
+      'language': { "url": "<%= asset_path( ( I18n.locale || I18n.default_locale ).to_s + '.json') %>" }
+    return

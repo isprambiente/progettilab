@@ -1,0 +1,18 @@
+- if can?( :destroy, @report )
+  = form_with model: @report, url: job_report_path(job_id: @job.id, id: @report.id), method: :delete, :builder => ExtraFormWith do |f|
+    #report.container
+      .grid-y
+        %small.cell.callout.alert 
+          %b Un rapporto annullato non può essere ripristinato.
+          %br/
+          Sui rapporti annullati è applicato un watermark, non rimovibile, riportante su tutte le pagine la data dell'annullamento e nell'ultima pagina la motivazione dell'annullamento. 
+          %br/
+          Indicare nel campo note sottostante la motivazione dell'annullamento.
+        .cell= f.textarea :cancellation_reason, autocomplete: "off", label: "Motivo dell' annullamento", class: 'text-left', required_tag: 'required', required_class: 'required'
+        .grid-x.grid-padding-x.cell
+          .small-6.cell= f.submit_button icon: 'trash', value: 'ANNULLA RAPPORTO', confirm: "Confermi cancellazione del report #{ @report.code }?"
+          .small-6.cell
+            %button.alert{ data: { close: true }, aria: {label: 'Close modal' }, type: 'button', style: 'font-size: 0.9rem;' }
+              %span{ aria: {hidden: true } } ESCI
+- else
+  .callout.alert.text-center.text-upcase Non sei autorizzato ad annullare i rapporti di prova

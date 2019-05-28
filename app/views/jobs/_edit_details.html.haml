@@ -1,0 +1,20 @@
+= form_with model: job, url: job_path(id: job.id, section: 'details'), :builder => ExtraFormWith do |f|
+  %h4.text-center= "#{ t('details', scope: 'jobs', default: 'Details') } #{ t('title', scope: 'jobs', default: 'Details').downcase }"
+  .grid-x.grid-padding-x.grid-margin-y
+    .medium-4.large-2.cell= f.label_field :code, options: { icon: 'hashtag', placeholder: job.code }
+    .medium-8.large-8.cell= f.text_field :title, icon: 'pencil'
+    .medium-12.large-2.cell
+      .medium-6.large-12.cell= f.boolean_field :pa_support
+      .medium-6.large-12.cell= f.boolean_field :consolidated
+  .grid-x.grid-padding-x.grid-margin-y
+    .medium-4.large-2.cell= f.date_field :open_at, icon: 'calendar', autocomplete: 'false'
+    .medium-4.large-2.cell= f.date_field :planned_closure_at, icon: 'calendar', autocomplete: 'false'
+    .medium-4.large-2.cell
+      - if can? :close, job
+        = f.date_field :close_at, icon: 'calendar', autocomplete: 'false', placeholder: job.close_on
+      - else
+        = f.label_field :close_at, options: { icon: 'calendar', placeholder: 'Non sei autorizzato' }
+  .grid-x.grid-padding-x.grid-margin-y
+    .medium-6.cell= f.textarea :requirements
+    .medium-6.cell= f.textarea :body
+  .grid-x.grid-padding-x.grid-margin-y= f.submit_button icon: 'save', value: t( 'submit', scope: 'jobs.update', default: 'Save' )

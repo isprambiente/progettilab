@@ -1,0 +1,12 @@
+%fieldset.nested-fields
+  %legend= f.object.new_record? ? 'Nuovo contatto' : ( f.object.priority? ? 'Contatto principale' : 'Contratto alternativo' )
+  .grid-x.grid-padding-x.grid-margin-y.text-middle
+    .small-12.large-10.cell= f.text_field :label, icon: 'user', label: t( 'label', scope: 'jobcontacts.fields', default: 'Label' )
+    .small-12.large-2.cell= f.boolean_field :priority, icon: false, label: t( 'priority', scope: 'jobcontacts.fields', default: 'Label' ), checked: f.object.job.contacts.blank? && f.object.new_record? ? true : f.object.priority
+  .grid-x.grid-padding-x.grid-margin-y
+    .field.small-12.large-3.cell= f.text_field :tel1, icon: 'phone', label: t( 'tel1', scope: 'jobcontacts.fields', default: 'Tel1' )
+    .field.field.small-12.large-3.cell= f.text_field :tel2, icon: 'phone', label: t( 'tel2', scope: 'jobcontacts.fields', default: 'tel2' )
+    .field.small-12.large-3.cell= f.text_field :cell, icon: 'mobile', label: t( 'cell', scope: 'jobcontacts.fields', default: 'cell' )
+    .field.small-12.large-3.cell= f.text_field :fax, icon: 'fax', label: t( 'fax', scope: 'jobcontacts.fields', default: 'fax' )
+  .field.small-12.cell= f.text_field :email, icon: 'at', label: t( 'email', scope: 'jobcontacts.fields', default: 'email' )
+  = link_to_remove_association "Rimuovi questo contatto", f, class: 'button small alert radius'

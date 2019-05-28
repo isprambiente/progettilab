@@ -1,0 +1,156 @@
+.basic-menu
+  @extend .nop
+  @extend .small-12
+  @extend .cell
+  border-radius: 2px 2px 0px 0px
+  border: 1px solid $secondary-color
+  .title
+    @extend .text-center
+    border-radius: 2px 2px 0px 0px
+    border-bottom: 1px solid $secondary-color
+    background-color: $warning-color
+    color: $white
+    font-size: 1em
+    margin: 0px
+    padding: 0.5em 0px
+    text-transform: uppercase
+    font-weight: bold
+  ol
+    counter-reset: item
+    &.accordion-content
+      padding: 0
+      border: 0
+      &:last-child
+        border: 0px !important
+    li
+      display: block
+    li:before
+      content: counters(item, ".") ". "
+      counter-increment: item
+
+#content
+  &.with-closed-bar
+    padding-left: 4rem
+  &.with-opened-bar
+    padding-left: 17rem
+
+#menubar
+  left: 0
+  border: 0
+  height: 100% !important
+  z-index: 100
+  background-color: #eaeaea
+  .is-active
+    a.title, a.title:visited, a.title:hover, a.title:link
+      background-color: scale-color($secondary-color, $lightness: 70%)
+      font-size: 1rem
+  li.simple:hover
+    background-color: scale-color($secondary-color, $lightness: 70%)
+  &.close, &.open
+    position: fixed
+    @extend .nop
+    border-right: 1px solid scale-color($secondary-color, $lightness: 70%)
+    background-color: scale-color($secondary-color, $lightness: 85%)
+    a, a:visited, a:hover, a:link
+      color: $secondary-color
+    .is-dropdown-submenu
+      @extend .nop
+      margin-left: 0  !important
+      li
+        padding-left: 1.25rem !important
+        &:hover:not(.title)
+          background-color: scale-color($warning-color, $lightness: 75%)
+          border-left: 2px solid scale-color($warning-color, $lightness: 40%)
+        &.current
+          background-color: scale-color($secondary-color, $lightness: 75%)
+          border-left: 2px solid scale-color($secondary-color, $lightness: 40%)
+    .menu-button
+      position: fixed
+      bottom: 20px
+      left: 0
+      height: 30px
+      border: 0px
+      border-top: 1px solid scale-color($secondary-color, $lightness: 70%)
+      border-right: 1px solid scale-color($secondary-color, $lightness: 70%)
+      background-color: scale-color($secondary-color, $lightness: 85%)
+
+      a, a:visited, a:hover, a:link
+        background-color: scale-color($secondary-color, $lightness: 85%)
+
+  &.close
+    width: 3.1rem
+    ul
+      margin-left: 0 !important
+      &.is-dropdown-submenu
+        font-size: 0.85rem
+        background-color: white !important
+        li
+          padding-left: 0 !important
+          &.title
+            @extend .text-upcase
+            cursor: default
+            padding-left: 1rem !important
+            font-size: 0.85rem
+            color: white
+            background-color: scale-color($secondary-color, $lightness: 5%)
+            line-height: 1.8rem
+      li
+        a.title
+          color: transparent
+          i
+            color: $secondary-color
+          span
+            display: none
+        &.is-dropdown-submenu-parent
+          border-left: 2px solid transparent
+          &:hover, &.is-active, &.selected
+            background-color: white
+            border-left: 2px solid #48489D
+          a::after
+            margin-top: -6px
+            right: 2px
+            border-color: transparent transparent transparent $secondary-color
+        &.opened-button
+          display: none
+      li.simple
+        a:after
+          border: 0px
+      .menu-button
+        width: 3.1rem
+
+  &.open
+    overflow-y: auto
+    overflow-x: hidden
+    width: 16rem
+    height: -moz-calc(100% - (24.5%))
+    height: -webkit-calc(100% - (24.5%))
+    height: calc(100% - (24.5%))
+    ul
+      &.sub-menu
+        @extend .nop
+        a, a:visited, a:hover, a:link
+          font-size: 0.85rem
+      &.sub-menu.is-dropdown-submenu
+        position: static
+        display: block
+        background: none
+        border: 0
+        li
+          &.title
+            display: none
+          &.current
+            background: url(image_path('arrow-right.png'))
+            background-repeat: no-repeat
+            background-size: 16px 16px
+            background-position: left center
+            padding-left: 0.8rem
+      li.is-dropdown-submenu-parent
+        background-color: white
+        a.title
+          background-color: #5e5e5e
+          color: #fefefe
+    li
+      &.closed-button
+        display: none
+      &.opened-button
+        width: 15.9rem

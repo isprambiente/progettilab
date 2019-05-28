@@ -1,0 +1,16 @@
+- if current_user.admin?
+  %table#jobs-deleted
+    %thead
+      %tr
+        %th.text-center= t('code', scope: 'jobs.fields', default: 'Code')
+        %th= t('title', scope: 'jobs.fields', default: 'Title')
+        %th.text-center= t('open_at', scope: 'jobs.fields', default: 'Open at')
+        %th.text-center= t('close_at', scope: 'jobs.fields', default: 'Close at')
+        %th.text-center= t('job_type', scope: 'jobs.fields', default: 'Job type')
+        %th.text-center= t('pa_support', scope: 'jobs.fields', default: 'Pa support')
+        %th.small-1.text-center= t('timetable', scope: 'jobs.fields', default: 'Timetable')
+        %th.small-1.text-center Campioni Inseriti/Previsti
+        %th.small-2.text-right
+    %tbody
+      = render @jobs
+    %tfooter

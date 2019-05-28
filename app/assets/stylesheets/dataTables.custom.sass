@@ -1,0 +1,62 @@
+div.button-group.stacked.dropdown-pane 
+  a.button:last-child
+    margin-bottom: 0
+    &:before
+      content: "Bottoni"
+div.dataTables_info
+  width: 50%
+div.dataTables_wrapper
+  z-index: 1
+  div.dataTables_processing
+    @extend .border-radius
+    @extend .shadow
+    border: 2px solid $warning-color !important
+    border-color: $warning-color !important
+    background-color: white
+    color: black
+    z-index: 1000 !important
+  div.dataTables_length select
+    margin-bottom: 1rem
+  div.dataTables_filter input
+    margin-bottom: 1rem
+  div.dt-buttons
+    // margin-top: 3rem
+  
+
+  .dt-button-collection.dropdown-pane
+    background: scale-color($primary-color, $lightness: 50%)
+
+  div.dt-button-collection
+    .buttons-columnVisibility
+      background-color: #C6C6C6
+    .active
+      background-color: $primary-color
+  table
+    width: 100% !important
+
+.dt-buttons
+  @extend .float-center
+  a
+    color: #004080
+    &:hover
+      background-color: #eee
+      color: black
+
+.dt-buttons.button-group:before
+  @include breakpoint(medium)
+    content: 'Esporta in'
+    font-size: 1rem
+    display: inline
+    vertical-align: middle
+    order: 0
+
+.dataTables_filter
+  @include breakpoint(small only)
+    clear: left
+    float: left
+
+.dataTables_empty
+  padding: 0.5rem 0 !important
+
+.grid-container
+  min-width: 100px !important

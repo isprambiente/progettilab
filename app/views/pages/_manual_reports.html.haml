@@ -1,0 +1,64 @@
+%span.title.liv1-title
+  I rapporti di prova
+.content Il rapporto di prova è un certificato che contiene tutte le informazioni relative al proc/att, al campione e ai risultati di ciascuna analisi. 
+.content A completamento della procedura di immissione dei risultati di analisi può essere emesso un rapporto di prova. 
+.content Dopo l'emissione del certificato, l'analisi e le informazioni correlate, anagrafica proc/att e campione, non sono più modificabili. Per effettuare modifiche, il rapporto deve essere annullato.
+.content Ogni certificato emesso ha un codice identificativo univoco composto dal codice dell'analisi, a cui è riferito, e un numero progressivo relativo alla versione del certificato. La versione cambia ogni volta che il certificato viene annullato ed emesso nuovamente.
+.content A chiusura di un proc/att è auspicabile che per tutte le analisi inserite sia stato generato anche il corrispettivo rapporto di prova. Qualora non dovesse essere così, il sistema visualizza un avviso che comunque non pregiudica la chiusura del proc/att.
+.content Di seguito le istruzioni per visualizzare i rapporti emessi, per emetterne di nuovi e per annlullare quelli già emessi.
+
+%ol
+  %li#reports.liv-2
+    %span.title.liv2-title Rapporti emessi
+    .content
+      Per visualizzare la lista dei rapporti emessi, seguire i seguenti passaggi:
+      %ol.restart
+        %li Cliccare sulla area "Rapporti di prova";
+        %li Cliccare sulla sezione "Rapporti emessi";
+        %li Si aprirà una tabella in cui sono visualizzati i rapporti emessi;
+        %li 
+          Per ciascun rapporto sono indicate alcune informazioni di base: 
+          %ul
+            %li il codice rapporto comprensivo della versione;
+            %li la data di emissione;
+            %li il codice del campione;
+            %li la tipologia di analisi;
+            %li la data di inizio campionamento;
+            %li la data di fine campionamento;
+            %li i risultati dell'analisi.
+        %li Cliccando sull'icona #{ image_tag 'print.png', alt: '' }, è possibile scaricare il rapporto di prova emesso.
+      %p In alto sono presenti anche una serie di bottoni che permettono di copiare, stampare, esportare, se autorizzati, il contenuto della tabella.
+      %p Inoltre è possibile selezionare uno o più rapporti di prova emessi per procedere all'annullamento. La procedura e le implicazioni, sono indicate nel paragrafo di seguito.
+  %li#new_reports.liv-2
+    %span.title.liv2-title Rapporti da emettere
+    .content Quando un'analisi viene inserita nel sistema, il programma predispone la futura generazione del rapporto di prova.
+    .content Nel menù del proc/att è possibile visualizzare il totale dei rapporti di prova in attesa di essere emessi. Un rapporto di prova può essere emesso anche se i dati al suo interno non sono completi.
+    .content 
+      Per emettere un rapporto di prova, seguire la seguente procedura:
+      %ol.restart
+        %li Cliccare sulla area "Rapporti di prova";
+        %li Cliccare sulla sezione "Rapporti da emettere";
+        %li Si aprirà una tabella in cui sono visualizzati i rapporti di prova in attesa di emissione;
+        %li Selezionare, cliccando sul check #{ image_tag 'checked.png', alt: '' }, i rapporti di prova da emettere;
+        %li Se si desidera emettere tutti i rapporti di prova contemporaneamente, cliccare sul check #{ image_tag 'checked.png', alt: '' } in alto e automaticamente tutti i check delle righe elencate si selezioneranno.
+        %li Terminata la procedura di selezione, cliccare sul bottone in alto "Emetti rapporti di prova"
+
+  %li#destroy_reports.liv-2
+    %span.title.liv2-title Annullare un rapporto di prova
+    .content La procedura di annullamento di un rapporto di prova emesso è una procedura delicata che va utilizzata con estrema cautela. Un rapporto di prova annullato non può essere ripristinato. Il file pdf del rapporto emesso viene annullato apponendo una filigrana su ciascuna pagina riportando la data dell'annullamento. L'analisi torna a essere modificabile e un nuovo rapporto di prova può essere emesso. Il nuovo rapporto, pur mantenendo il codice uguale al rapporto annullato, riporterà il valore di versione incrementato di una unità.
+    .content 
+      Ogni rapporto annullato sarà comunque scaricabile nella tabella dei "Rapporti annullati".
+      %p
+        Di seguito le istruzioni per annullare un rapporto di analisi emesso:
+        %ol.restart
+          %li Cliccare sulla area "Rapporti di prova";
+          %li Cliccare sulla sezione "Rapporti emessi";
+          %li Si aprirà una tabella in cui sono visualizzati i rapporti di prova emessi;
+          %li Selezionare, cliccando sul check #{ image_tag 'checked.png', alt: '' }, i rapporti di prova da annullare;
+          %li Se si desidera annullare tutti i rapporti di prova contemporaneamente, cliccare sul check #{ image_tag 'checked.png', alt: '' } in alto e automaticamente tutti i check delle righe elencate si selezioneranno.
+          %li Terminata la procedura di selezione, cliccare sul bottone in alto "Annulla rapporti di prova".
+          %li Attendere il completamento della procedura senza effettuare altra operazione.
+          %li A termine della procedura, tutti i rapporti che si è deciso da annullare dovranno essere scomparsi dalla lista dei rapporti emessi.
+
+
+

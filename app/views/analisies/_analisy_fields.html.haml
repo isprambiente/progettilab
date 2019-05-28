@@ -1,0 +1,25 @@
+.nested-fields
+  .grid-x.small-12.cell
+    = f.error_notification
+    .small-12.medium-2.large-5.cell= f.input :analisy_type_id, as: :select, collection: f.object.sample.analysis_available, label_method: :title, value_method: :id, label: t('analisy_type', scope: 'analisies.fields', default: 'Analisy type'), input_html: { class: 'select2' }, required: true
+    .small-12.medium-3.large-7.end.cell= f.input :method, as: :string, input_html: { class: 'textbox' }, label: t('method', scope: 'analisies.fields', default: 'Method')
+  .grid-x.small-12.cell
+    .small-12.medium-4.large-2.cell= f.input :start_at, as: :datepicker, input_html: { value: f.object.start_on || '' }, label: t('start_on', scope: 'analisies.fields', default: 'Start at'), required: true
+    .small-12.medium-4.large-2.cell= f.input :stop_at, as: :datepicker, input_html: { class: 'datepicker textbox text-center', value: f.object.stop_on || '' }, label: t('stop_on', scope: 'analisies.fields', default: 'Stop at'), required: true
+    .small-12.medium-4.large-2.end.cell= f.input :reference_at, as: :datepicker, input_html: { class: 'datepicker textbox text-center', value: f.object.reference_on || '' }, label: t('reference_on', scope: 'analisies.fields', default: 'Reference at'), required: true
+  .grid-x.small-12.cell
+    .small-12.cell= f.input :body, as: :text, input_html: { class: 'textarea' }, label: t('body', scope: 'analisies.fields', default: 'Body')
+  .grid-x.small-12.cell
+    .small-12.large-4.cell
+      - f.object.analisy_chiefs.build
+      = f.fields_for :analisy_chiefs do |c|
+        = c.select_field :user_id, User.chiefs.select(:id, :label).pluck(:label, :id), { icon: 'list', include_blank: false, inline: true, help:false, label: t('chief', scope: 'analisies.fields', default: 'Chief') }, { class: 'input-group-field select2' }
+    .small-12.large-4.cell
+      - f.object.analisy_headtests.build
+      = f.fields_for :analisy_headtests do |c|
+        .nested-fields= c.select_field :user_id, User.headtests.select(:id, :label).pluck(:label, :id), { icon: 'list', include_blank: false, inline: true, help:false, label: t('headtests', scope: 'analisies.fields', default: 'Headtest') }, { class: 'input-group-field select2' }
+    .small-12.large-4.cell
+      = f.select_field :analisy_technic_user_ids, User.technics.select(:id, :label).pluck(:label, :id), { icon: 'list', include_blank: false, inline: true, help:false, label: t('technics', scope: 'analisies.fields', default: 'Technic') }, { class: 'input-group-field select2', multiple: 'multiple' }
+
+  .grid-x
+    .small-12.large-8.float-center.cell= link_to_remove_association fa_icon('trash', class: 'button alert radius small expanded'), f

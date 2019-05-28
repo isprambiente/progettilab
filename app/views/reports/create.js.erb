@@ -1,0 +1,13 @@
+<% if @error_ids.present? %>
+  <% @error_ids.each do |id| %>
+    $("#tr_<%= id %>").addClass('invalid').children('td:first-child').append("<i class='fa fa-exclamation-circle text-alert help' title='Si è verificato il seguente errore durante la creazione del report!'></i>");
+  <% end %>
+  
+<% else %>
+  $('#reports').html("<%= escape_javascript(render 'notissued')%>");
+  $('#menubar').html("<%= escape_javascript( render 'menubar' ) %>");
+  $( document ).ready(function() {
+    reports_table();
+    alert('Rapporti emessi!');
+  });
+<% end %>

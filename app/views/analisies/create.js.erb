@@ -1,0 +1,11 @@
+<% if @analisy.errors.blank? %>
+  if ( $('#analisies').length ) {
+    $('#analisies').replaceWith("<%= escape_javascript( render 'analisies', sample: @sample, job: @job, analisies: @analisies ) %>");
+  }
+  if ( $('#<%= @sample.grid-x %>').length ) {
+    $('#<%= @sample.grid-x %>').replaceWith("<%= escape_javascript( render 'samples/sample', sample: @sample ) %>");
+  }
+  $('#myModal').foundation('close');
+<% else %>
+  $('#modal-body').html("<%= escape_javascript( render 'new' ) %>");
+<% end %>

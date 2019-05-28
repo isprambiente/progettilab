@@ -1,0 +1,6 @@
+<% if @instruction.errors.blank? %>
+  $('#miniModal').foundation('close');
+  $('#alert').html("<div class='callout success radius' data-closable ><%= I18n.t('notice', scope: 'instructions.create', default: 'Instruction was successfully created.') %><button class='close-button' aria-label='Dismiss alert' data-close ><span aria-hidden >&times;</span></button></div>");
+<% else %>
+	$('#modal-body').html("<%= escape_javascript( render 'form' ) %>");
+<% end %>

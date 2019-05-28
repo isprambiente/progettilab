@@ -1,0 +1,12 @@
+attributes:
+  - primary_keys
+  - foreign_keys
+filename: proc/att-erd
+filetype: pdf
+title: GESTIONE PROC/ATT
+orientation: horizontal
+polymorphism: false
+indirect: false
+notation: bachman
+diagram: refinery
+sort: true

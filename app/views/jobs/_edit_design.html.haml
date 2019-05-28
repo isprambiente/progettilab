@@ -1,0 +1,7 @@
+= form_with model: job, url: job_path(id: job.id, section: 'design'), :builder => ExtraFormWith do |f|
+  %h4.text-center= "#{ t('design', scope: 'jobs', default: 'Design') } #{ t('title', scope: 'jobs', default: 'Details').downcase }"
+  .grid-x.grid-padding-x.grid-margin-y
+    .small-12.cell= f.textarea :institutions
+  .grid-x.grid-padding-x.grid-margin-y
+    .small-12.cell= f.textarea :other_resources
+  .grid-x.grid-padding-x.grid-margin-y= f.submit_button icon: 'save', value: t( 'submit', scope: 'jobs.update', default: 'Save' )

@@ -1,0 +1,11 @@
+.grid-x
+  .small-12.large-2.cell= link_to fa_icon('plus', text: t('title', scope: 'instructions.new', default: 'New instruction' ) ), new_instruction_path, class: 'button expanded reveal-modal-mini', data: { url: new_instruction_path( modal: 1 ) }
+%table#instructions-table.display.responsive{ data: { url: instructions_url(format: :json), button: 'false' } }
+  %thead
+    %tr
+      %th.small-3= t('title', scope: 'instructions.fields', default: 'Title' )
+      %th.small-6= t('body', scope: 'instructions.fields', default: 'Body' )
+      %th.text-center.small-1{ data: { searchable: "false"} }= t('file', scope: 'instructions.fields', default: 'file' )
+      %th.text-center.small-1= t('active', scope: 'instructions.fields', default: 'Active?' )
+      %th.small-1{ data: { orderable: "false", searchable: "false"} }
+  %tbody

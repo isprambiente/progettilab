@@ -1,0 +1,28 @@
+#contacts.section
+  %fieldset
+    %legend= t('contacts', scope: 'jobs', default: 'Contacts')
+    .grid-x
+      %label.small-4.cell= t('customer', scope: 'jobs.fields', default: 'Customer')
+      %span.small-8.cell= @job.customer || 'n.d.'
+    .grid-x
+      %label.small-4.cell= t('address', scope: 'jobs.fields', default: 'Address')
+      %span.small-8.cell= @job.address || 'n.d.'
+    - @job.contacts.each do | contact |
+      .grid-x
+        %label.small-4.cell= t('contact', scope: 'jobs.fields', default: 'Contact')
+        %span.small-8.cell= contact.contact || 'n.d.'
+      .grid-x
+        %label.small-4.cell= t('tel1', scope: 'jobs.fields', default: 'Tel1')
+        %span.small-8.cell= contact.tel1 || 'n.d.'
+      .grid-x
+        %label.small-4.cell= t('tel2', scope: 'jobs.fields', default: 'Tel2')
+        %span.small-8.cell= contact.tel2 || 'n.d.'
+      .grid-x
+        %label.small-4.cell= t('cell', scope: 'jobs.fields', default: 'Cell')
+        %span.small-8.cell= contact.cell || 'n.d.'
+      .grid-x
+        %label.small-4.cell= t('fax', scope: 'jobs.fields', default: 'Fax')
+        %span.small-8.cell= contact.fax || 'n.d.'
+      .grid-x
+        %label.small-4.cell= t('email', scope: 'jobs.fields', default: 'E-mail')
+        %span.small-8.cell= contact.email || 'n.d.'

@@ -1,0 +1,23 @@
+/.bundle
+
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+/config/database.yml
+/config/secrets.yml
+/config/settings.local.yml
+/private/*
+/public/system
+/.project
+/*.sublime-workspace
+/*.sublime-project
+/storage/*
+
+# Ignore Byebug command history file.
+.byebug_history
+
+rails_best_practices_output.html
+# Ignore master key for decrypting credentials and more.
+/config/master.key

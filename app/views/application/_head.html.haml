@@ -1,0 +1,11 @@
+%head
+  %meta{ charset: "utf-8" }
+  %meta{ http_equiv: 'X-UA-Compatible', content: 'IE=edge' }
+  %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+  %meta{ name: 'description', content: 'Procedimenti e attività' }
+  %meta{ name: 'keywords', content: 'Procedimenti attività' }
+  = favicon_link_tag
+  %title= "#{Settings.config.group} | #{Settings.config.title}"
+  = stylesheet_link_tag    'application', data: {turbolinks_track: 'reload'}
+  = javascript_include_tag 'application', data: {turbolinks_track: 'reload'}
+  = csrf_meta_tags

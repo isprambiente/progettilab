@@ -1,0 +1,19 @@
+document.addEventListener 'direct-uploads:start', ->
+  $('#spinner').foundation 'open'
+  return
+
+document.addEventListener 'direct-uploads:end', ->
+  $('#spinner').foundation 'close'
+  return
+
+document.addEventListener 'direct-upload:start', (id, file) ->
+  console.log "Inizio upload #{file}"
+  return
+
+document.addEventListener 'direct-upload:end', (id, file) ->
+  console.log "Fine upload #{file}"
+  return
+
+document.addEventListener 'direct-upload:end', (id, file, progress) ->
+  console.log "Fine upload #{file}: #{progress}"
+  return

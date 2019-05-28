@@ -1,0 +1,6 @@
+<% if @user.errors.blank? %>
+  $('#miniModal').foundation('close');
+  $('table#users-table').DataTable().row.add( $("<%= escape_javascript( render @user ) %>") ).draw();
+<% else %>
+  $('#modal-body').html("<%= escape_javascript( render 'form' ) %>");
+<% end %>

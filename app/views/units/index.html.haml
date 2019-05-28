@@ -1,0 +1,11 @@
+.grid-x
+  .small-12.large-2.cell= link_to fa_icon('plus', text: t('title', scope: 'units.new', default: 'New unit' ) ), new_unit_path, class: 'button expanded reveal-modal-mini', data: { url: new_unit_path( modal: 1 ) }
+%table#units-table.display.responsive{ data: { url: units_url(format: :json), button: 'false' } }
+  %thead
+    %tr
+      %th.small-2= t('label', scope: 'units.fields', default: 'Label' )
+      %th= t('body', scope: 'units.fields', default: 'Body' )
+      %th.small-2{ data: { orderable: "false", searchable: "false"} }= t('html', scope: 'units.fields', default: 'Html' )
+      %th.text-center.small-1= t('active', scope: 'units.fields', default: 'Active?' )
+      %th.small-2{ data: { orderable: "false" } }
+  %tbody

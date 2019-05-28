@@ -1,0 +1,14 @@
+= link_to t('title', scope: 'users.new', default: 'Authorize new user'), new_user_path, class: 'button reveal-modal-mini', data: { url: new_user_path( modal: 1 ) } if can? :create, User
+- if can? :update, User
+	%table#users-table.display.responsive{ data: { url: users_url(format: :json), button: 'false' } }
+		%thead
+			%tr
+				%th= t('label', scope: 'users.fields', default: 'Label')
+				%th.text-center{ data: { orderable: "false", searchable: "false"} }= t('email', scope: 'users.fields', default: 'E-mail')
+				%th.text-center{ data: { searchable: "false"} }= t('technician', scope: 'users.fields', default: 'Laboratory technician')
+				%th.text-center{ data: { searchable: "false"} }= t('headtest', scope: 'users.fields', default: 'Test manager')
+				%th.text-center{ data: { searchable: "false"} }= t('chief', scope: 'users.fields', default: 'Service Manager')
+				%th.text-center{ data: { searchable: "false"} }= t('supervisor', scope: 'users.fields', default: 'Supervisor')
+				%th.text-center{ data: { searchable: "false"} }= t('admin', scope: 'users.fields', default: 'Administrator')
+				%th.text-center{ data: { orderable: "false", searchable: "false"} }
+		%tbody

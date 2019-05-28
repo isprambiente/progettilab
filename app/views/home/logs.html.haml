@@ -1,0 +1,15 @@
+#logs.container
+  .grid-x
+    .small-12.large-2.cell= link_to 'Storicizza logs', historicizes_path, class: 'button radius small expanded', data: { confirm: 'I dati saranno salvati in un file di log sul filesystem del server e la tabella sarà svuotata. Confermi la storicizzazione?' }, remote: true
+    .small-12.large-3.cell.end
+      %small.text-alert Prossima storicizzazione automatica sarà il 01/01/#{Date.today.year+1}
+  %table#logs-table{ data: { url: logs_url(format: :json), button: 'true' } }
+    %thead
+      %tr
+        %th.small-2.text-center= t( 'created_at', scope: 'histories.fields', default: 'Created at' )
+        %th.small-1.text-center= t( 'job_title', default: 'Job' )
+        %th.small-1.text-center= t( 'action', scope: 'histories.fields', default: 'Action' )
+        %th.text-left{ data: { orderable: "false" } }= t( 'body', scope: 'histories.fields', default: 'Description' )
+        %th.small-1.text-center= t( 'author', scope: 'histories.fields', default: 'Author' )
+    %body
+= render 'left_bar' unless @modal == '1' || @nobar == true

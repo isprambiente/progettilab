@@ -1,0 +1,4 @@
+= render 'summary', job: @job, sample: @sample, analisy: @analisy
+- unless @modal == '1'
+  - content_for :left do
+    = render 'left_bar'

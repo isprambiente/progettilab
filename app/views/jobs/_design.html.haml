@@ -1,0 +1,9 @@
+#details.section
+  %fieldset
+    %legend= t('registry', scope: 'jobs', default: 'Details')
+    .grid-x
+      %label.small-4.cell= t('institutions', scope: 'jobs.fields', default: 'Institutions')
+      %span.small-8.cell= @job.institutions
+    .grid-x
+      %label.small-4.cell= t('other_resources', scope: 'jobs.fields', default: 'Other resources')
+      %span.small-8.cell= @job.other_resources

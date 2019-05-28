@@ -1,0 +1,3 @@
+%ul.menu.nav-menu.vertical.border-radius
+	%li.title= fa_icon('copy', text: 'Crea da template')
+	%li= link_to t('radon', scope: 'timetables.template', default: 'Template Radon'), template_job_timetables_path( timetable: { template: 'radon' } )

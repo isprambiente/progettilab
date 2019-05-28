@@ -1,0 +1,21 @@
+#import-form.grid-y.grid-padding-y
+  #template.callout.secondary
+    %b.cell 1) Scarica il template, se necessario, contenente i riferimenti per effettuare un corretto upload del file. 
+    .cell.callout.alert
+      %b Avvertenze:
+      %ul
+        %li Controlla, prima di importare, che il formato del tuo file corrisponda al template scaricabile da qui;
+        %li Le etichette per le matrici II livello, le tipologie di analisi, i nuclidi, gli utenti, le unità di misura devono essere scritte <u>esattamente</u> come indicato nel template. Diversamente non saranno riconoscite dal sistema durante la verifica;
+        %li Importare un file con un formato diverso da quello scaricato produrra errore durante la verifica e bloccherà la possibilità di procedere con l'importazione fino al completamento della correzione/cancellazione dei record con errori;
+        %li I dati importati sovrascrivono i precedenti in maniera irreversibile, <u>prestare la massima attenzione</u>;
+        %li La procedura non può essere annulla e i precedenti dati non sono recuperabili;
+        %li Durante la verifica del file o l'importazione dei dati, attendere il completamento del processo. Non tornare indietro, non chiudere il browser, non cambiare sito e/o pagina. L'importazione/verifica potrebbe bloccarsi compromenttendo irreparabilmente i dati contenuti nel database.
+    .cell= link_to fa_icon('file-excel', text: 'Scarica il template'.upcase), template_job_import_index_path( job_id: @job.id ), target: true, class: "button expanded #{ @preimports.blank? ? 'primary' : 'secondary' }"
+  #file
+    %b.cell 2) Inserisci il file nel formato concordato:
+    .cell.callout.secondary= render 'form'
+  - unless @preimports.blank?
+    #verify
+      %b.cell 3) Verifica e correggi eventuali errori riscontrati prima di procedere alla importazione effettiva!
+      #preimports.cell= render 'preimports'
+  #report

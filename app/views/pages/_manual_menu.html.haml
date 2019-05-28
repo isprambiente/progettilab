@@ -1,0 +1,73 @@
+.basic-menu.button-shadow{ data: { turbolinks_permanent: true, turbolinks: "false" } }
+  .title Indice
+  %ol{ data: { accordion: true, allow_all_closed: 'true', slide_speed: 0 } }
+    %li.accordion-item{ data: { accordion_item: true } }
+      = link_to 'Introduzione', '#introduction'
+      %ol.accordion-content{ data: { tab_content: true } }
+        %li= link_to 'A Chi Si Rivolge', '#destination'
+        %li= link_to 'Requisiti minimi', '#minimal'
+        %li= link_to 'Configurazione consigliata', '#recommended'
+    %li.accordion-item{ data: { accordion_item: true } }
+      = link_to 'I ruoli', '#roles'
+      %ol.accordion-content{ data: { tab_content: true } }
+        %li= link_to 'Responsabile di area', '#chief'
+        %li= link_to 'Responsabile di procedimento/attività', '#manager'
+        %li= link_to 'Responsabile di qualità', '#quality'
+        %li= link_to 'Referente di tecnico', '#technic'
+        %li= link_to 'Schema ruoli', '#shema'
+    %li.accordion-item{ data: { accordion_item: true } }
+      = link_to 'Gestione proc/att', '#procedures'
+      %ol.accordion-content{ data: { tab_content: true } }
+        %li.accordion-item{ data: { accordion_item: true } }
+          = link_to 'I procedimenti e attività', '#jobs', class: 'accordion-nested'
+          %ol.accordion-content.nested{ data: { tab_content: true } }
+            %li= link_to 'Nuovo procedimento', '#new_job'
+            %li= link_to 'Gestisci un procedimento', '#edit_job'
+            %li= link_to 'Cancella un procedimento', '#destroy_job'
+        %li.accordion-item{ data: { accordion_item: true } }
+          = link_to 'La programmazione', '#timetables', class: 'accordion-nested'
+          %ol.accordion-content.nested{ data: { tab_content: true } }
+            %li= link_to 'Nuova programmazione', '#new_timetable'
+            %li= link_to 'Gestisci la programmazione', '#edit_timetable'
+            %li= link_to 'Cancella la programmazione', '#destroy_timetable'
+        %li.accordion-item{ data: { accordion_item: true } }
+          = link_to 'I campioni', '#samples', class: 'accordion-nested'
+          %ol.accordion-content.nested{ data: { tab_content: true } }
+            %li= link_to 'Aggiungi un campione', '#new_samples'
+            %li= link_to 'Gestisci un campione', '#edit_samples'
+            %li= link_to 'Cancella un campione', '#destroy_samples'
+        %li.accordion-item{ data: { accordion_item: true } }
+          = link_to 'Le analisi', '#analisies', class: 'accordion-nested'
+          %ol.accordion-content.nested{ data: { tab_content: true } }
+            %li= link_to 'Importazione multipla', '#import_analisies'
+            %li= link_to 'Analisi e risultati', '#edit_analisy'
+            %li= link_to 'Cancella una analisi', '#destroy_analisy'
+    %li.accordion-item{ data: { accordion_item: true } }
+      = link_to 'I rapporti di prova', '#reports'
+      %ol.accordion-content{ data: { tab_content: true } }
+        %li= link_to 'Rapporti emessi', '#reports'
+        %li= link_to 'Rapporti da emettere', '#new_reports'
+        %li= link_to 'Rapporti da annullare', '#destroy_reports'
+    %li= link_to 'Storico modifiche', '#histories'
+    %li= link_to 'Stampa procedimento', '#print'
+    %li.accordion-item{ data: { accordion_item: true } }
+      = link_to 'Template di stampa', '#templates'
+      %ol.accordion-content{ data: { tab_content: true } }
+        %li= link_to 'Aggiunta di un template', '#templates-add'
+        %li= link_to 'Modifica di un template esistente', '#templates-exist'
+    %li.accordion-item{ data: { accordion_item: true } }
+      = link_to 'Amministrazione programma', '#administration'
+      %ol.accordion-content{ data: { tab_content: true } }
+        %li= link_to 'Gestione utenti', '#users'
+        %li= link_to 'Gestione tipologia analisi', '#analisy_types'
+        %li= link_to 'Gestione istruzioni operative', '#instructions'
+        %li= link_to 'Gestione nuclidi', '#nuclides'
+        %li= link_to 'Gestione unità', '#units'
+        %li= link_to 'Gestione matrici', '#matrices'
+        %li= link_to 'Gestione log', '#logs'
+    -#
+      %li.accordion-item{ data: { accordion_item: true } }
+        = link_to 'Help', '#help'
+        %ol.accordion-content{ data: { tab_content: true } }
+          %li= link_to 'Versioni', '#versions'
+          %li= link_to 'Segnala un errore', '#bug'

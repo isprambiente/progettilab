@@ -1,0 +1,162 @@
+@reports_table = () ->
+  if $('table#reports-table').length
+    search = window.location.search
+    lang = $('html').attr( 'lang' )
+    url = $('table#reports-table').data('url')
+    dom = if $('table#reports-table').data('button') == false then 'lfrtip' else '<"text-center"B>lfrtip'
+    section = $('table#reports-table').data('section')
+    report_type = $('table#reports-table').data('report-type')
+    job = $('table#reports-table').data('job')
+    title = if section == 'issued' then 'Elenco rapporti emessi' else if section == 'notissued' then 'Elenco rapporti da emettere' else 'Elenco rapporti cancellati'
+    title += " proc/att n.#{ job }"
+    $('table#reports-table').DataTable
+      'destroy': true
+      'cache': false
+      'processing': true
+      'serverSide': true
+      'searching': true
+      'pageLength': 30
+      'lengthMenu': [ [10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "Tutti"] ]
+      'dom': dom
+      'buttons': [
+        { extend: 'excel', title: title, key: { key: 'e', altKey: true }, className: 'button transparent', exportOptions: { columns: [1,2,3,4,5] } }
+        { extend: 'pdf',   title: title, key: { key: 'd', altKey: true }, className: 'button transparent', exportOptions: { columns: [1,2,3,4,5] }, orientation: 'landscape' }
+      ]
+      'ajax': { 'url': url, 'dataType': 'json' }
+      'columns': []
+      'columnDefs': [
+        {
+          'aTargets': [ 0 ]
+          'class': if section == 'notissued' then 'text-center' else 'hide'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if section == 'issued' && full['deletable']
+            else if section == 'notissued' && full['creable']
+              console.log "#{full['analisy']['code']} #{full['valid?']}"
+              if full['valid?']
+                if report_type == 'single'
+                  if full['has_reports?']
+                    v = "<i data-tooltip aria-haspopup='true' class='fa fa-ban text-alert has-tip right' data-disable-hover='false' title=\"E' stato già emesso uno o più rapporti contenenti i risultati per questa analisi.\"></i>"
+                  else
+                    v = "<input type='checkbox' name='report[analisy_ids][]' value='#{full['id']}'>"
+                else if report_type == 'multiple'
+                  v = "<input type='checkbox' name='report[result_ids][]' value='#{full['id']}'>"
+              else
+                v = "<i data-tooltip aria-haspopup='true' class='fa fa-ban text-alert has-tip right' data-disable-hover='false' title='Il report non può essere generato a causa di valori mancanti o errati.'></i>"
+            else if section == 'cancelled'
+              v = ""
+            return v
+        }
+        {
+          'aTargets': [ 1 ]
+          'orderData': [ 0, 1 ]
+          'class': 'text-center'
+          'name': if section == 'notissued' then 'samples.code' else 'reports.code'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if section == 'issued'
+              v = full['code']
+            else if section == 'notissued'
+              v = "<a href='#{full['sample']['url']}' data-url='#{full['sample']['url']}?modal=1' class='#{ if !full['sample']['valid?'] then 'with_errors' } reveal-modal' title='#{ if !full['sample']['valid?'] then 'Questo campione ha valori mancanti o errati.' else ''}'>#{full['sample']['lab_code']}</a>"
+            else if section == 'cancelled'
+              v = full['code']
+            return v
+        }
+        {
+          'aTargets': [ 2 ]
+          'class': 'text-center'
+          'name': if section == 'notissued' then 'analisies.code' else 'reports.report_type'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if section == 'issued'
+              v = if full['type'] == 'single' then 'Rapporto singolo' else 'Rapporto mutiplo'
+            else if section == 'notissued'
+              v = "<a href='#{full['analisy']['url']}' data-url='#{full['analisy']['url']}?modal=1' class='#{ if !full['analisy']['valid?'] then 'with_errors' } reveal-modal' title='#{ if !full['analisy']['valid?'] then 'Questa analisi ha valori mancanti o errati.' else ''}'>#{full['analisy']['code']}</a>"
+            else if section == 'cancelled'
+              v = if full['type'] == 'single' then 'Rapporto singolo' else 'Rapporto mutiplo'
+            return v
+        }
+        {
+          'aTargets': [ 3 ]
+          'class': if section == 'notissued' then 'text-left' else 'text-center'
+          'name': if section == 'notissued' then 'analisy_types.title' else 'reports.issued_at'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if section == 'issued'
+              v = full['issued_on']
+            else if section == 'notissued'
+              v = "#{full['analisy']['type']}"
+            else if section == 'cancelled'
+              v = full['issued_on']
+            return v
+        }
+        {
+          'aTargets': [ 4 ]
+          'class': if section == 'notissued' then 'text-left' else if section == 'cancelled' then 'text-center' else 'hide'
+          'name': if section == 'notissued' then 'analisy_results.full_result_with_nuclide' else ''
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if section == 'issued'
+              v = ""
+            else if section == 'notissued'
+              if report_type == 'single'
+                results = []
+                if full['results']
+                  for i in [0...full['results'].length]
+                    if full['results'][i]['report']['code'] != ''
+                      results += "<li>
+                                    <span class='has-tip text-alert' title='Risultato presente nel rapporto #{ if full['results'][i]['report']['type'] == 'single' then 'singolo' else 'mutiplo' } #{ full['results'][i]['report']['code'] }'>#{full['results'][i]['result']}</span>
+                                    <a href='#{full['results'][i]['report']['url']}/download' target='_blank'><i class='fa fa-download'></i></a>
+                                  </li>"
+                    else
+                      results += "<li>#{full['results'][i]['result']}</li> "
+              else
+                results = if full['results'] != '' then full['results'].split(', ').join("</li><li>") else ''
+              content = if results.length > 0 then "<ul class='results'>#{results}</ul>" else 'Risultati mancanti'
+              if full['valid?']
+                v = "#{content}"
+              else
+                v = "<a href='#{full['analisy']['url']}/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' data-url='#{full['analisy']['url']}/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>?modal=1' class='text-alert reveal-modal' title='Questa analisi ha risultati mancanti o errati.'>#{content}</a>"
+              v = "#{content}"
+            else if section == 'cancelled'
+              v = full['cancelled_on']
+            return v
+        }
+        {
+          'aTargets': [ 5 ]
+          'class': if section == 'notissued' then 'text-left' else if section == 'cancelled' then 'text-justify' else 'hide'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if section == 'notissued'
+              v += "<ul class='nop'>"
+              v += "<li><b>Resp. area: </b><span class='#{ if full['analisy']['chiefs'] == '' then 'text-alert' }'>#{ if full['analisy']['chiefs'] != '' then full['analisy']['chiefs'] else 'n.d' }</span></li>"
+              v += "<li><b>Resp. prova: </b><span class='#{ if full['analisy']['headtests'] == '' then 'text-alert' }'>#{ if full['analisy']['headtests'] != '' then full['analisy']['headtests'] else 'n.d' }</span></li>"
+              v += "<li><b>Tecnico laboratorio: </b><span class='#{ if full['analisy']['technics'] == '' then 'text-alert' }'>#{ if full['analisy']['technics'] != '' then full['analisy']['technics'] else 'n.d' }</span></li>"
+              v += "</ul>"
+            else if section == 'cancelled'
+              v = full['cancellation_reason']
+            return v
+        }
+        {
+          'aTargets': [ 6 ]
+          'class': 'grid-container full text-right'
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if section != 'notissued'
+              if full['url'] == ''
+                v += "<a class='button transparent disabled' title='File non disponibile' href='#{ full['url'] }' target='_blank'><i class='fa fa-download'></i></a>"
+              else
+                v += "<a class='button transparent' href='#{ full['url'] }/<%= I18n.t('download', scope: 'routes', default: 'download') %>' target='_blank'><i class='fa fa-download'></i></a>"
+            if section == 'issued' && full['deletable'] && !$('body').hasClass('is-reveal-open')
+              v += "<a class='button transparent reveal-modal-mini' href='#{ full['url'] }/<%= I18n.t('delete', scope: 'routes', default: 'delete') %>' data-remote='false' data-url='#{ full['url'] }/<%= I18n.t('delete', scope: 'routes', default: 'delete') %>?modal=1' title='Cancella report emesso'><i class='fa fa-trash'></i></a>"
+            return v
+        }
+      ]
+      'fnDrawCallback': (oSettings) ->
+        link_to_modal( $('table#reports-table') )
+        $('table#reports-table').find('.disabled').unbind('click').on 'click', ->
+          return false
+        return
+      'order': if section == 'notissued' then [ [1, 'asc'], [2, 'asc'], [3, 'asc'] ] else  [ [ 1, 'asc' ] ]
+      'language': { "url": "<%= asset_path( ( I18n.locale || I18n.default_locale ).to_s + '.json') %>" }
+    return

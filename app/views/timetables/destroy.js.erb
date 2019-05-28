@@ -1,0 +1,13 @@
+<% if @timetable.errors.blank? %>
+  $('#timetable-form').html('');
+  if ( $('table#timetables-table').length ) {
+    $('table#timetables-table').DataTable().ajax.reload();
+  }
+  if( $('body').hasClass('is-reveal-open') ) {
+    $('#myModal').foundation('close');
+  }
+<% else %>
+  alert( '<%= @timetable.errors.full_messages %>' );
+  $('#modal-body').html("<%= escape_javascript(render 'edit')%>");
+  $('#alert').html("<div class='callout alert radius' data-closable ><%= I18n.t('error', scope: 'timetables.destroy', default: 'Timeline not was updated.') %><button class='close-button' aria-label='Dismiss alert' data-close ><span aria-hidden >&times;</span></button></div>");
+<% end %>

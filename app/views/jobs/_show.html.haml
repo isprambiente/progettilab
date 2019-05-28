@@ -1,0 +1,7 @@
+- if can?(:read, @job)
+  %h4.text-center= t("breadcrumbs.jobs.show")
+  .grid-x.grid-padding-x.small-up-1.medium-up-2
+    .cell= render 'details'
+    .cell= render 'contacts'
+    .cell= render 'roles'
+    .cell= render 'attachments'

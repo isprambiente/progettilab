@@ -1,0 +1,51 @@
+.grid-x.grid-padding-x
+  .cell.small-2.hide-on-print
+    .basic-menu.sticky.button-shadow{ data: { turbolinks_permanent: true, turbolinks: "false" } }
+      .title Elenco versioni
+      %li
+        %ol.nop
+          %li= link_to 'Versione 0.0.1', '#0.0.1'
+          %li= link_to 'Versione 0.0.2', '#0.0.2'
+          %li= link_to 'Versione 0.0.3', '#0.0.3'
+          %li= link_to 'Versione 0.0.4', '#0.0.4'
+          %li= link_to 'Versione 0.0.5', '#0.0.5'
+  .cell.auto
+    %h3.text-left #{ t('versions', scope: 'topbar.help', default: 'Versions') }
+    %span.text-justify In questa sezione sono elencati, in ordine cronologico, gli aggiornamenti rilasciati per il programma di #{ Settings.config.title } #{ Settings.config.group }
+    %hr
+    %ul#versions.nop
+      %li
+        In Dev #{link_to 'Versione 0.0.5', '#0.0.5', :name => '#0.0.5'}
+        %ul.nop
+          %li Aggiornate librerie;
+          %li Aggiunta possibilità di inserire l'orario nel campo di inizio/fine campionamento;
+          %li Modificato layout;
+          %li Modificata dimensione campo "Verbale cliente";
+          %li Modificata gestione per la data di accettazione campione. Adesso la data deve essere superiore alla data di fine campionamento;
+          %li Modificato redirect su riapertura proc/att;
+          %li Corrette autorizzazioni;
+          %li Corrette etichette;
+          %li Corretto errore che non permetteva l'aggiunta di ulteriori analisi a un campione già inserito;
+      %li
+        [2017-07-04] #{link_to 'Versione 0.0.4', '#0.0.4', :name => '#0.0.4'}
+        %ul.nop
+          %li Corrette autorizzazioni.
+      %li
+        [2017-06-16] #{link_to 'Versione 0.0.3', '#0.0.3', :name => '#0.0.3'}
+        %ul.nop
+          %li Corretta storicizzazione log;
+          %li Modificata procedura caricamento tabelle;
+          %li Rimosse procedure ridondanti;
+          %li Miglioramento prestazioni;
+          %li Aggiornato manuale.
+      %li
+        [2017-06-14] #{link_to 'Versione 0.0.2', '#0.0.2', :name => '#0.0.2'}
+        %ul.nop
+          %li Corretti bug minori;
+          %li Migliorata fruibilità di alcuni menù;
+          %li Rimossi file non più utili;
+          %li Aggiunto manuale utente;
+      %li
+        [2017-05-17] #{link_to 'Versione 0.0.1', '#0.0.1', :name => '#0.0.1'}
+        %ul.nop
+          %li Rilascio beta pubblica del programma.

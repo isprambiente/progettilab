@@ -1,0 +1,110 @@
+it:
+  breadcrumbs:
+    jobs:
+      home: I tuoi procedimenti/attività
+      all: Tutti i procedimenti/attività
+      index: Elenco procedimenti/attività
+      show: Dettaglio procedimento/attività
+      new: Nuovo procedimento/attività
+      edit: Modifica procedimento/attività
+      delete: Cancella procedimento/attività
+      print: Stampa procedimento/attività
+      return: Ritorna alla lista dei procedimenti
+      logs: Registro eventi
+      reports: Elenco rapporti di prova
+      sections:
+        details: Dettagli
+        contacts: Contatti
+        design: Progettazione
+        roles: Autorizzazioni
+        attachments: Allegati
+        issued: Rapporti emessi
+        notissued: Rapporti da emettere
+        cancelled: Rapporti annullati
+    timetables:
+      title: Programmazione
+      all: Tutte le attività
+      index: Elenco attività
+      show: Dettaglio attività
+      new: Nuova attività
+      edit: Modifica attività
+      delete: Cancella attività
+      print: Stampa attività
+      return: Ritorna alla lista delle attività
+      sections:
+        table: Elenco in tabella
+    samples:
+      all: Tutti i campioni
+      index: Elenco campioni
+      show: Dettaglio campione
+      new: Nuovo campione
+      edit: Modifica campione
+      delete: Cancella campione
+      print: Stampa campione
+      return: Ritorna alla lista dei campioni
+    analisies:
+      all: Tutte le analisi
+      index: Elenco analisi
+      show: Dettaglio analisi
+      new: Nuova analisi
+      edit: Modifica analisi
+      delete: Cancella analisi
+      print: Stampa analisi
+      results: Risultati
+      return: Ritorna alla lista delle analisi
+    import:
+      radon: Import risultati analisi RADON
+    pages:
+      manual: Manuale utente
+      changelog: Elenco versioni del programma
+    admin:
+      index: Pannello Amministrazione
+      return: Ritorna al pannello amministrativo
+      users:
+        index: Elenco utenti
+        show: Dettaglio utente
+        new: Nuovo utente
+        edit: Modifica utente
+        delete: Cancella utente
+        print: Stampa utenti
+        return: Ritorna alla lista degli utenti
+      analisy_types:
+        index: Elenco tipologie di analisi
+        show: Dettaglio tipologia di analisi
+        new: Nuova tipologia di analisi
+        edit: Modifica tipologia di analisi
+        delete: Cancella tipologia di analisi
+        print: Stampa tipologia di analisi
+        return: Ritorna alla lista delle tipologie di analisi
+      instructions:
+        index: Elenco istruzioni operative
+        show: Dettaglio istruzione operativa
+        new: Nuova istruzione operativa
+        edit: Modifica istruzione operativa
+        delete: Cancella istruzione operativa
+        print: Stampa istruzione operativa
+        return: Ritorna alla lista delle istruzioni operative
+      nuclides:
+        index: Elenco nuclidi
+        show: Dettaglio nuclide
+        new: Nuovo nuclide
+        edit: Modifica nuclide
+        delete: Cancella nuclide
+        print: Stampa nuclide
+        return: Ritorna alla lista dei nuclidi
+      units:
+        index: Elenco unità
+        show: Dettaglio unità
+        new: Nuova unità
+        edit: Modifica unità
+        delete: Cancella unità
+        print: Stampa unità
+        return: Ritorna alla lista delle unità
+      matrixtypes:
+        index: Elenco matrici
+        show: Dettaglio matrice
+        new: Nuova matrice
+        edit: Modifica matrice
+        delete: Cancella matrice
+        print: Stampa matrice
+        return: Ritorna alla lista delle matrici

@@ -1,0 +1,6 @@
+if( !$('body').hasClass('is-reveal-open') ) {
+  $('#timetables').html("<%= escape_javascript(render 'index')%>");
+} else {
+  $('#modal-body').html("<%= escape_javascript(render 'table')%>");
+}
+timetables_table()

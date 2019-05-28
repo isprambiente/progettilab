@@ -1,0 +1,6 @@
+= render 'summary', job: @job, sample: '', analisy: ''
+%h4.text-center= t("breadcrumbs.samples.index")
+= render 'samples'
+- unless @modal == '1'
+  - content_for :left do
+    = render 'left_bar'

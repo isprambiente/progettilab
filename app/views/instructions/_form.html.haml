@@ -1,0 +1,8 @@
+= form_with model: @instruction, :html => { :multipart => true }, data: { remote: false }, :builder => ExtraFormWith do |f|
+  .container
+    .grid-y
+      .cell= f.text_field :title, autocomplete: "off", inline: true, icon: 'pencil'
+      .cell= f.textarea :body, inline: true, autocomplete: "off", icon: 'pencil', valign: 'top'
+      .cell= f.file_field :file, options: { inline: true }
+      .cell= f.switch_field :active, class: 'switch-input input-group-field', inline: true, help: false
+      .cell= f.submit_button icon: 'save', value: t( 'save' )

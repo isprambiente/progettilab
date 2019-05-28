@@ -1,0 +1,53 @@
+.some{ id: "#{ daddy.to_s.downcase.pluralize }-import-form" }
+  %h5 Seguenti i seguenti passaggi:
+  %ol#import
+    %li#instructions
+      %b Scarica il file di esempio seguendo queste semplici regole:
+      .callout{ class: "#{ 'warning' if @newjob.blank? }" }
+        %ol
+          %li= "Compila il file excel secondo il formato indicato. Durante la procedura di importazione il sistema verificherà la correttezza dei dati indicati e visualizzerà eventuali errori che potranno essere corretti prima di importarli nel database."
+          %li= "I campi Data inizio e Data fine sono obbligatori."
+          %li= "Se il codice campione inserito fosse già esistente, i dati importati sovrascriveranno quelli esistenti."
+          %li= "Se il codice lastrina/device inserito fosse già esistente, i dati importati sovrascriveranno quelli esistenti."
+          %li= "Nel campo '#{ I18n.t('measure_type', scope: "#{ daddy.to_s.downcase.pluralize }.fields", default: 'measure type') }' indicare le analisi che si prevede di effettuare per il campione. Per ciascun campione è possibile indicare più analisi separando i nomi con la virgola. I nomi delle analisi sono nel foglio chiamato '#{ I18n.t('analisys', scope: "#{ daddy.to_s.downcase.pluralize }.import", default: 'analisys list') }'. Non utilizzare nomi scritti differentemente."
+          %li.nop
+            %br/
+            .grid-x.small-12
+              .small-12.large-2.cell
+                - confirm = ( @newjob.blank? || @daddy.blank? || @newjob.send(@daddy.to_s.downcase.pluralize.to_sym).blank? ) ? '' : ''
+                = link_to fa_icon( 'download', text: t("template_import_#{ daddy.to_s.downcase.pluralize }", scope: "#{ daddy.to_s.downcase.pluralize }.upload", default: 'Download the sample file' ) ), polymorphic_path([ :template, job, daddy ], job_id: job.id), target: '_blank', class: 'expanded button medium', id: 'template-btn', onClick: 'hideIstructions();' #, data: { confirm: confirm }
+              .small-12.large-2.cell.end= link_to fa_icon( 'check', text: t('skip' ) ), '#', class: 'expanded button medium alert hollow', id: 'skip-btn', onClick: 'hideIstructions(); return false;'
+    %li#upload
+      %b Inserisci il file con i campioni nel formato sopra esposto:
+      .callout{ class: "#{ 'warning' if @newjob.blank? }" }
+        = form_with scope: :"#{daddy.to_s.downcase}", url: polymorphic_path([ :preimport, job, daddy ], job_id: job.id ), html: { multipart: true }, data: { remote: 'false' }, :builder => ExtraFormWith do |f|
+          .grid-x
+            .small-6.large-4.cell
+              = f.fields_for :attachments do |file|
+                = file.file_field( :file )
+            .small-3.large-2.cell= f.submit_button icon: 'save', value: t( 'save' )
+            .small-3.large-2.cell.end= button_tag t( 'remove' ), type: :reset
+    %li#preimport
+      - unless @newjob.blank? || @daddy.blank? || @newjob.send(@daddy.to_s.downcase.pluralize.to_sym).blank?
+        = render 'preimports'
+
+:javascript
+  function hideIstructions() {
+    $('li#upload').toggle();
+    $('li#instructions a.button').toggle();
+    $('li#instructions .callout').switchClass('warning', 'transparent');
+  }
+  $('li#upload #reset-btn').click( function(event) {
+    event.preventDefault();
+    hideIstructions();
+    $('li#instructions .callout').switchClass('transparent', 'warning');
+  });
+  $( document ).ready(function() {
+    if(#{@newjob.blank?  ? "true" : "false"}) {
+      $('li#upload').hide();
+      $('li#preimport').hide();
+    }
+    var lang = $('html').attr( 'lang' );
+    $('li#preimport .date').datetimepicker({ lang: lang, yearStart: 2015, yearEnd: new Date().getFullYear()+1, format:'d/m/Y', timepicker: false });
+    $('li#preimport .datetime').datetimepicker({ lang: lang, yearStart: 2015, yearEnd: new Date().getFullYear()+1, format:'d/m/Y', timepicker: true });
+  });

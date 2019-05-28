@@ -1,0 +1,7 @@
+$('#results').replaceWith("<%= escape_javascript( render 'results' ) %>");
+<% if @analisy.errors.blank? %>
+  $('#results').effect('highlight');
+  $('#alert').html("<div class='callout success radius' data-closable ><%= I18n.t('notice', scope: 'analisyresults.update', default: "Analisy's result was successfully updated.") %><button class='close-button' aria-label='Dismiss alert' data-close ><span aria-hidden >&times;</span></button></div>");
+<% else %>
+  $('#alert').html("<div class='callout alert radius' data-closable ><%= I18n.t('error', scope: 'analisyresults.update', default: "Analisy's result not was updated.") %><button class='close-button' aria-label='Dismiss alert' data-close ><span aria-hidden >&times;</span></button></div>");
+<% end %>

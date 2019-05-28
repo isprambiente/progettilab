@@ -1,0 +1,15 @@
+.grid-x.grid-padding-x
+  .medium-3.cell= f.number_field :sortorder, icon: 'sort-numeric-asc'
+  .medium-9.large-6.cell= f.text_field :title, icon: 'pencil'
+  .large-3.cell.end
+    .medium-6.cell= f.boolean_field :restrict
+    .medium-6.cell= f.boolean_field :closed
+.grid-x.grid-padding-x
+  .medium-6.large-2.cell= f.date_field :start_at, icon: 'calendar', autocomplete: 'false'
+  .medium-6.large-2.cell= f.date_field :stop_at, icon: 'calendar', autocomplete: 'false'
+  .medium-6.large-2.cell= f.date_field :execute_at, icon: 'calendar', autocomplete: 'false'
+  .medium-6.large-1.cell.end= f.color_field :color, icon: 'paint-brush'
+.grid-x.grid-padding-x
+  .large-6.cell= f.textarea :products, icon: 'pencil', valign: 'top'
+  .large-6.cell= f.textarea :body, icon: 'pencil', valign: 'top'
+.grid-x.grid-padding-x= f.submit_button icon: 'save'

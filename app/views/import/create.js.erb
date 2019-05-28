@@ -1,0 +1,17 @@
+$('#report').html("<%= escape_javascript( render 'report' ) %>");
+<% @results.each do | result | %>
+  <% if result[2].blank? %>
+    $("#verify table #<%= result[0] %>").removeClass('invalid').addClass('valid');
+  <% else %>
+    $("#verify table #<%= result[0] %>").removeClass('valid').addClass('invalid');
+  <% end %>
+
+<% end %>
+<% if @errors.present? %>
+  alert("Inserimento terminato con <%= @errors.count %> errori");
+<% else %>
+  $('#menubar').html("<%= escape_javascript( render 'menubar' ) %>");
+  $("input[name=commit]").attr('title', "L'Inserimento è andato a buon fine.").addClass('disabled').attr('disabled', 'disabled');
+  $("input[name=commit]").on('click', function(e) { e.preventDefault(); e.stopPropagation(); });
+  $("#import-form #verify").addClass('hide');
+<% end %>

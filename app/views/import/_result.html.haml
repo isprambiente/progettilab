@@ -1,0 +1,46 @@
+- sample = row[:sample] unless row[:sample].blank?
+- analisy = row[:analisy].present? ? row[:analisy] : {new: true, editable: true, valid: true, not_imported: true, errors: ''}
+- result = row[:result].present? ? row[:result] : {new: true, editable: true, valid: true, errors: '', not_imported: true}
+
+%tr.nested-fields{ id: row[:device], class: ( sample[:editable] && analisy[:editable] && result[:editable] && result[:errors].blank?) ? 'valid' : 'invalid' }
+  - if sample[:editable]
+    = f.hidden_field :sample, value: sample.except( :new, :editable, :valid, :errors, :not_imported ).to_json
+  - if row[:analisy].present? && analisy[:editable]
+    = f.hidden_field :analisy, value: analisy.except( :new, :editable, :valid, :errors, :not_imported ).to_json
+  - if row[:result].present? && result[:editable]
+    = f.hidden_field :result, value: result.except( :new, :editable, :valid, :errors, :not_imported ).to_json
+  %td.text-center= sample['device']
+  %td.text-center{ class: sample[:editable] && sample[:errors].blank? ? 'valid' : 'invalid' }
+    - if sample[:errors].blank?
+      - if sample[:new]
+        = fa_icon 'check-circle', class: 'text-success has-tip', title: 'Nuovo campione'
+      - elsif sample[:new] == false && sample[:editable]
+        = fa_icon 'warning', class: 'text-warning has-tip', title: 'Campione già esistente. Verrà sovrascritto!'
+      - elsif sample[:new] == false && sample[:editable] == false
+        = fa_icon 'ban', class: 'text-alert has-tip', title: 'Questo campione non può essere sovrascritto!'
+    - else
+      %span.text-alert= sample[:errors]
+  %td.text-center{ class: analisy[:editable] && analisy[:errors].blank? ? 'valid' : 'invalid' }
+    - if analisy[:errors].blank?
+      - if analisy[:not_imported].present? && analisy[:not_imported]
+        = 'Dato non presente nel file'
+      - elsif analisy[:new]
+        = fa_icon 'check-circle', class: 'text-success has-tip', title: 'Nuova analisi'
+      - elsif analisy[:new] == false && analisy[:editable]
+        = fa_icon 'warning', class: 'text-warning has-tip', title: 'Analisi già esistente. Verrà sovrascritta!'
+      - elsif analisy[:new] == false && analisy[:editable] == false
+        = fa_icon 'ban', class: 'text-alert has-tip', title: 'Quasta analisi non può essere sovrascritta!'
+    - else
+      %span.text-alert= analisy[:errors]
+  %td.text-center{ class: result[:editable] && result[:errors].blank? ? 'valid' : 'invalid' }
+    - if result[:errors].blank?
+      - if result[:not_imported].present? && result[:not_imported]
+        = 'Dato non presente nel file'
+      - elsif result[:new]
+        = fa_icon 'check-circle', class: 'text-success has-tip', title: 'Nuovo risultato'
+      - elsif result[:new] == false && result[:editable]
+        = fa_icon 'warning', class: 'text-warning has-tip', title: 'Risultato già esistente. Verrà sovrascritto!'
+      - elsif result[:new] == false && result[:editable] == false 
+        = fa_icon 'ban', class: 'text-alert has-tip', title: 'Questo risultato non può essere sovrascritto!'
+    - else
+      %span.text-alert= result[:errors]

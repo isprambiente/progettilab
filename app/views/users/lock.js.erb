@@ -1,0 +1,5 @@
+<% if @user.errors.blank? %>
+  $('table#users-table').DataTable().row( $('#<%= @user.row %>') ).remove().draw();
+<% else %>
+  alert('<%= @user.errors.full_messages.join(", ") %>');
+<% end %>

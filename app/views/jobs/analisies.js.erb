@@ -1,0 +1,6 @@
+if ( $('body').hasClass('is-reveal-open') == true ) {
+  $('#modal-body').html("<%= escape_javascript(render 'analisies/analisies', job: @job, analisies: @analisies, sample: '')%>");
+} else {
+  $('#analisies').html("<%= escape_javascript(render 'analisies/analisies', job: @job, analisies: @analisies, sample: '')%>");
+}
+analisies_table();

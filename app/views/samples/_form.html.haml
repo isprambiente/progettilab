@@ -1,0 +1,49 @@
+= form_with model: @sample, url: [@job, @sample], local: !(@modal == '1'), :builder => ExtraFormWith do |f|
+  .container
+    %div.text-bold.text-upcase.text-warning= t('title', scope: 'samples.show', default: "Sample details")
+    .grid-y
+      .cell.grid-x.grid-padding-x
+        - if @sample.persisted?
+          .small-12.medium-6.cell= f.label_field :lab_code, options: { icon: 'barcode', placeholder: @sample.lab_code, help_text: "Codice composto dal codice univoco del campione, generato automaticamente dal sistema durante l'inserimento del campione, e il codice di importazione, se presente." }
+        .small-12.medium-6.cell= f.text_field :client_code, autocomplete: "off", icon: 'barcode'
+      .cell.grid-x.grid-padding-x
+        .small-12.medium-4.cell= f.date_time_field :start_at, icon: 'calendar', autocomplete: 'false'
+        .small-12.medium-4.cell= f.date_time_field :stop_at, icon: 'calendar', autocomplete: 'false'
+        .small-12.medium-4.cell= f.label_field :accepted_at, options: { required: false, placeholder: @sample.accepted_on || l(Date.today), icon: 'calendar' }
+      .cell.grid-x.grid-padding-x
+        .large-6.cell= f.text_field :latitude, autocomplete: "off", icon: 'map-o', help_text: "espressa in gradi decimali", value: number_with_precision(@sample.latitude, strip_insignificant_zeros: true, precision: 14, separator: '.', delimiter: '' )
+        .large-6.cell= f.text_field :longitude, autocomplete: "off", icon: 'map-o', help_text: "espressa in gradi decimali", value: number_with_precision(@sample.longitude, strip_insignificant_zeros: true, precision: 14, separator: '.', delimiter: '' )
+      .cell.grid-x.grid-padding-x
+        .small-12.medium-6.large-6.cell= f.select_field :category_id, [['Seleziona uno dei seguenti valori', '']] + @categories.map{ |m| [ m.title, m.id ] }, { icon: 'list', include_blank: false }, { class: 'input-group-field select2 category_id', selected: '' }
+        .small-12.medium-6.large-6.cell= f.select_field :type_matrix_id, @matrices.present? ? @matrices.map{ |m| [ m.title, m.id ] } : [] , { icon: 'list', include_blank: false }, { class: 'input-group-field select2 matrices', disabled: ( @sample.type_matrix_id.blank? ? true : false ), data: { placeholder: 'Seleziona uno dei seguenti valori' } }
+      .cell.grid-x.grid-padding-x
+        .small-12.medium-6.large-6.cell= f.textarea :conservation, autocomplete: "off", icon: 'snowflake-o'
+        .small-12.medium-6.large-6.cell= f.textarea :report, autocomplete: "off", icon: 'pencil'
+      .cell= f.textarea :body, autocomplete: "off", icon: 'pencil'
+      .cell.grid-x.grid-padding-x
+        .small-12.medium-6.large-6.cell
+          .grid-x.grid-padding-x
+            .small-12.medium-6.large-8.cell= f.label_field :created_by, options: { required: 'false', placeholder: @sample.new_record? ? current_user.label : @sample.created_by, icon: 'user' }
+            .small-12.medium-6.large-4.cell= f.label_field :created_at, options: { required: 'false', placeholder: @sample.new_record? ? l(Date.today) : l(@sample.created_at), icon: 'calendar' }
+        .small-12.medium-6.large-6.cell
+          .grid-x.grid-padding-x
+            .small-12.medium-6.large-8.cell= f.label_field :updated_by, options: { required: 'false', placeholder: current_user.label, icon: 'user' }
+            .small-12.medium-6.large-4.cell= f.label_field :updated_at, options: { required: 'false', placeholder: @sample.new_record? ? l(Date.today) : l(@sample.updated_at), icon: 'calendar' }
+
+      .cell
+        .container
+          .small-12.large-6.cell
+            %div.text-bold.text-upcase.text-warning= t('measure_type', scope: 'samples.fields', default: "Measure type")
+          - if can?(:create, @sample => Analisy) || can?(:update, @sample.analisies)
+            .links.small-12.large-6.text-right.cell= link_to_add_association fa_icon('plus', text: 'Aggiungi analisi'), f, :analisies, class: 'button small radius add-button', 'data-association-insertion-node' => "#analisies", 'data-association-insertion-method' => "append"
+          .small-12.cell
+            %table#analisies
+              %thead
+                %th.text-center{ style: "width:150px;" }= fa_icon 'hashtag'
+                %th= t('title', scope: 'analisytypes', default: "Analisy types" )
+                %th{ style: "width:600px;" }= t('title', scope: 'nuclides', default: "Nuclides")
+                %th{ style: "width:100px;" }
+              %tbody
+                = f.fields_for :analisies do |analisy|
+                  = render 'analisy_fields', f: analisy
+      .cell= f.submit_button

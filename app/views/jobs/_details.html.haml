@@ -1,0 +1,32 @@
+#details.section
+  %fieldset
+    %legend= t('registry', scope: 'jobs', default: 'Details')
+    .grid-x
+      %label.small-4.cell= t('code', scope: 'jobs.fields', default: 'Job Code')
+      %span.small-8.cell= @job.code
+    .grid-x
+      %label.small-4.cell= t('title', scope: 'jobs.fields', default: 'Title')
+      %span.small-8.cell= @job.title
+    .grid-x
+      %label.small-4.cell= t('open_at', scope: 'jobs.fields', default: 'Open at')
+      %span.small-8.cell= @job.open_on
+    .grid-x
+      %label.small-4.cell= t('planned_closure_at', scope: 'jobs.fields', default: 'Planned closure at')
+      %span.small-8.cell= @job.planned_closure_on
+    .grid-x
+      %label.small-4.cell= t('close_at', scope: 'jobs.fields', default: 'Close at')
+      %span.small-8.cell
+        = @job.close_on
+        = link_to fa_icon( 'unlock', text: t( 'title', scope: 'jobs.reopen', default: 'Reopen job' ) ), reopen_job_path(id: @job.id, url: edit_job_url( id: @job.id ) ), class: 'button alert small reveal-modal-mini', data: { url: reopen_job_path(id: @job.id, modal: '1', url: edit_job_url( id: @job.id ) ) } if can?( :reopen, @job ) && @modal.blank?
+    .grid-x
+      %label.small-4.cell= t('consolidated', scope: 'jobs.fields', default: 'Consolidated')
+      %span.small-8.cell= t( "#{@job.consolidated}" )
+    .grid-x
+      %label.small-4.cell= t('pa_support', scope: 'jobs.fields', default: 'Support PA')
+      %span.small-8.cell= t( "#{@job.pa_support}" )
+    .grid-x
+      %label.small-4.cell= t('requirements', scope: 'jobs.fields', default: 'Requirements')
+      %span.small-8.cell= @job.requirements
+    .grid-x
+      %label.small-4.cell= t('body', scope: 'jobs.fields', default: 'Note')
+      %span.small-8.cell= @job.body

@@ -1,0 +1,5 @@
+<% if @user.errors.blank? %>
+  $('#<%= @user.row %>').replaceWith("<%= escape_javascript(render @user ) %>");
+<% else %>
+  alert('<%= @user.errors.full_messages.join(", ") %>');
+<% end %>

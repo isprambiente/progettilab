@@ -1,0 +1,6 @@
+- if can?(:reopen, @job)
+  = form_with model: @job, url: reopened_job_path(id: @job.id, url: @url), method: :post, remote: true, :builder => ExtraFormWith do |f|
+    .container
+      .grid-y
+        .cell= f.textarea :reopen_reason
+        .cell= f.submit_button icon: 'save', value: t( 'title', scope: 'jobs.reopen', default: 'Reopen job' )

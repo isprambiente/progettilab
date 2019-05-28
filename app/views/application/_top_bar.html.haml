@@ -1,0 +1,25 @@
+.title-bar{ data: { responsive_toggle: "top-bar", hide_for: "large" } }
+  %button.menu-icon{ type: "button", data: { toggle: true } }
+  .title-bar-title Menu
+
+#top-bar.top-bar
+  .top-bar-left
+    %ul.dropdown.menu{ 'data-dropdown-menu': true  }
+      - if current_user.present? && current_user.jobs.present?
+        %li{ class: "#{ 'current' if controller.controller_name == 'home' && controller.action_name == 'index' }" }= link_to fa_icon('home', text: t('your_jobs', scope: 'topbar.jobs', default: 'Your jobs') ), home_path
+        %li.divider
+      %li{ class: "#{ 'current' if controller.controller_name == 'jobs' && controller.action_name == 'index' }" }= link_to fa_icon('list', text: t('list_of_jobs', scope: 'topbar.jobs', default: 'All jobs') ), jobs_path
+      %li.divider
+  .top-bar-right
+    %ul.dropdown.menu{ 'data-dropdown-menu': true  }
+      - if current_user.present?
+        %li.divider
+        %li{ class: "#{ 'current' if controller.controller_name == 'pages' && controller.action_name == 'manual' }" }= link_to fa_icon('book', text: t('title', scope: 'topbar.help', default: 'Help') ), manual_path
+        %li.divider
+        %li
+          = link_to fa_icon('user', text: current_user.label.present? ? current_user.label : current_user.username), '#', onClick: 'return false;'
+          %ul.menu.vertical
+            - if can?(:admin, User)
+              %li{ class: "#{ 'current' if controller.controller_name == 'home' && controller.action_name == 'admin' }" }= link_to fa_icon('gears', text: t('title', scope: 'topbar.administration', default: 'Administration') ), admin_path
+              %li.divider
+            %li= link_to fa_icon('sign-out', text: t('logout')), destroy_user_session_path, data: { confirm: t('logout', scope: 'topbar', default: 'Are you sure?' ) }, method: :delete

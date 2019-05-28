@@ -1,0 +1,28 @@
+@menubar = (obj_id = 'menubar', status = 'close') ->
+  if $("##{obj_id}").length
+    if  status == 'open'
+      $('#content').removeClass('with-closed-bar').addClass('with-opened-bar')
+      $("##{ obj_id }").removeClass('close').addClass('open')
+      $("##{ obj_id } ul#menu").removeClass('dropdown')
+      $.cookie("#{ obj_id }", 'open', { raw: false, path: '/' })
+      $("##{obj_id}").find('.is-dropdown-submenu-parent a.title i span.text').hide
+    else if status == 'close'
+      $('#content').removeClass('with-opened-bar').addClass('with-closed-bar')
+      $("##{ obj_id }").removeClass('open').addClass('close')
+      $("##{ obj_id } ul#menu").addClass('dropdown')
+      $.cookie("#{ obj_id }", 'close', { raw: false, path: '/' })
+      $("##{obj_id}").find('.is-dropdown-submenu-parent a.title i span.text').show
+    return
+  return
+
+@menubar_reload = ->
+  $( document ).find( '[data-menu-cookie="true"]' ).each ->
+    if $( this ).attr('id') != ''
+      menubar "#{$( this ).attr('id')}", if $.cookie("#{$( this ).attr('id')}") != null then $.cookie("#{$( this ).attr('id')}") else 'close'
+      return
+    return
+
+$(document).on 'click', '.menu-button li a', (event) ->
+  event.preventDefault()
+  menubar $(this).data('menu-id'), $(this).data('menu-op')
+  return

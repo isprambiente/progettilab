@@ -1,0 +1,43 @@
+#admin.grid-x.grid-margin-x.grid-margin-y.small-up-1.medium-up-4.large-up-6
+	- if can? :update, User
+		.cell
+			.card.text-center
+				= link_to users_path do
+					.card-image= image_tag 'users.png', alt: ''
+					.card-section= t('title', scope: 'topbar.users', default: 'Users Manage')
+	- if can? :update, AnalisyType
+		.cell
+			.card.text-center
+				= link_to analisy_types_path do
+					.card-image= image_tag 'analisytypes.png', alt: ''
+					.card-section= t('title', scope: 'topbar.analisytypes', default: "Manage analisy's types")
+	- if can? :update, Instruction
+		.cell
+			.card.text-center
+				= link_to instructions_path do
+					.card-image= image_tag 'instructions.png', alt: ''
+					.card-section= t('title', scope: 'topbar.instructions', default: "Manage operating instructions")
+	- if can? :update, Nuclide
+		.cell
+			.card.text-center
+				= link_to nuclides_path do
+					.card-image= image_tag 'nuclides.png', alt: ''
+					.card-section= t('title', scope: 'topbar.nuclides', default: "Manage nuclides")
+	- if can? :update, Unit
+		.cell
+			.card.text-center
+				= link_to units_path do
+					.card-image= image_tag 'units.png', alt: ''
+					.card-section= t('title', scope: 'topbar.units', default: "Manage units")
+	- if can? :update, MatrixType
+		.cell
+			.card.text-center
+				= link_to matrix_types_path do
+					.card-image= image_tag 'matrices.png', alt: ''
+					.card-section= t('title', scope: 'topbar.matrix_types', default: "Manage matrix types")
+	- if can? :read, Log
+		.cell
+			.card.text-center
+				= link_to logs_path do
+					.card-image= image_tag 'logs.png', alt: ''
+					.card-section= t('title', scope: 'topbar.logs', default: 'Logs Manage')

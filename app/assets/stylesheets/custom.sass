@@ -1,0 +1,423 @@
+@font-face
+  font-family: 'open_sans_regular'
+  src: url(OpenSans-Regular.eot)
+  src: local('OpenSans-Regular'), image-url('OpenSans-Regular.ttf'), format('truetype')
+
+@font-face
+  font-family: 'open_sans_bold'
+  src: url(OpenSans-Bold.eot)
+  src: local('OpenSans-Bold'), image-url('OpenSans-Bold.ttf'), format('truetype')
+
+html, body
+  margin: 0
+  height: 100%
+  overflow: hidden
+  min-height: 480px
+  /* min-width: 460px */
+
+html
+  color: $default-color
+  font-family: open_sans_regular, sans-serif, Arial
+  font-size: 14px
+
+#content
+  padding-top: 14px
+  padding-bottom: 200px
+
+#page
+  overflow-y: auto
+  overflow-x: hidden
+  height: -moz-calc(100% - (20px + 174px))
+  height: -webkit-calc(100% - (20px + 174px))
+  height: calc(100% - (20px + 174px))
+
+h1, h2, h3, h4, h5, h6
+  @extend .text-upcase
+  @extend .text-secondary
+  @extend .text-bold
+  margin-bottom: 1rem
+legend
+  @extend .text-upcase
+  @extend .text-bold
+  font-size: 0.875rem
+  color: #3366af
+
+.grid-y.grid-margin-y
+  margin-left: -1rem
+  padding-right: 1rem
+  .cell
+    &.middle
+      display: flex
+      align-items: center
+      .button
+        &.canvas-menu
+          @extend .primary
+          height: 150px
+          width: 30px
+          &.vertical
+            padding: 0
+          &.open-menu:after
+            content: ">>"
+          &.close-menu:after
+            content: "<<"
+  &.vertical-text
+    margin-left: -3.1rem
+    transform: rotate(270deg)
+    transform-origin: center 50
+    vertical-align: center
+    .cell
+      .canvas-menu
+        @extend .primary
+        height: 40px !important
+        width: 100px !important
+        &.open-menu:after
+          content: "Apri menù" !important
+        &.close-menu:after
+          content: "Chiudi menù" !important
+
+.button.transparent
+  color: black
+  &:link
+    color: black
+  &:hover, &:visited, &:active
+    color: black
+    background-color: #aaa
+  &.disabled
+    &:link, &:hover, &:visited, &:active
+      color: $secondary-color !important
+      background-color: transparent !important
+.input.error
+  label
+    @extend .is-invalid-label
+
+  input, textarea, select
+    @extend .is-invalid-input
+
+small.error
+  @extend .form-error
+  @extend .is-visible
+  @extend .text-left
+  font-weight: normal
+  margin-top: 0
+
+span
+  cursor: default
+
+#logo1
+  padding: 0.3rem 0.5rem !important
+
+.button-group
+  .button
+    margin-right: 0
+  .stacked
+    margin-right: 1px
+  .button-first
+    -webkit-border-top-left-radius: 5px
+    -webkit-border-bottom-left-radius: 5px
+    -moz-border-radius-topleft: 5px
+    -moz-border-radius-bottomleft: 5px
+    border-top-left-radius: 5px
+    border-bottom-left-radius: 5px
+  .button-last
+    -webkit-border-top-right-radius: 5px
+    -webkit-border-bottom-right-radius: 5px
+    -moz-border-radius-topright: 5px
+    -moz-border-radius-bottomright: 5px
+    border-top-right-radius: 5px
+    border-bottom-right-radius: 5px
+
+.help
+  cursor: help
+
+.has-tip
+  font-weight: normal
+
+#attachment-errors
+  color: $alert-color
+
+.checkbox-disabled
+  cursor: not-allowed
+
+.nop
+  list-style-type: none
+.no-margin-left
+  margin-left: 0px
+
+.button.radius
+  border-radius: 3px
+.button.round
+  border-radius: 1000px
+
+a.timetables
+  @extend .text-upcase
+  @extend .text-bold
+
+@media print
+  .hidden-print
+    display: none !important
+
+#spinner
+  border: 2px solid $warning-color !important
+  border-color: $warning-color !important
+  padding: 1.5rem 0
+
+.border-radius
+  border-radius: 5px 5px 5px 5px !important
+  -moz-border-radius: 5px 5px 5px 5px !important
+  -webkit-border-radius: 5px 5px 5px 5px !important
+
+.button-shadow
+  -webkit-box-shadow: 3px 3px 6px -1px rgba(0,0,0,0.75)
+  -moz-box-shadow: 3px 3px 6px -1px rgba(0,0,0,0.75)
+  box-shadow: 3px 3px 6px -1px rgba(0,0,0,0.75)
+
+.shadow
+  -webkit-box-shadow: 2px 5px 4px 1px rgba(0,0,0,0.75)
+  -moz-box-shadow: 2px 5px 4px 1px rgba(0,0,0,0.75)
+  box-shadow: 2px 5px 4px 1px rgba(0,0,0,0.75)
+
+input[type="checkbox"].required
+  -webkit-box-shadow: 1px 1px 10px 7px red
+  -moz-box-shadow: 1px 1px 10px 7px red
+  box-shadow: 1px 1px 10px 7px red
+
+.circle
+  border-radius: 20px
+
+small.error
+  @extend .text-alert
+  @extend .text-justify
+
+.breadcrumbs
+  border-style: solid
+  border-width: 1px
+  display: block
+  list-style: none
+  margin-left: 0
+  overflow: hidden
+  padding: 0.5625rem 0.875rem 0.5625rem
+  background-color: #f4f4f4
+  border-color: gainsboro
+  border-radius: 2px
+  margin-bottom: 0
+  li.base
+    &:after
+      content: '' !important
+      margin: 0 0.3rem !important
+  li
+    &.text-trim
+      overflow: hidden
+      white-space: nowrap
+      text-overflow: ellipsis
+
+.section
+  margin: 1rem 0 0.5rem 0
+  fieldset
+    border: 1px solid scale-color($secondary-color, $lightness: 80%)
+    padding: 1rem
+    min-width: 0 !important
+    legend
+      color: $warning-color
+      margin: 0 1rem
+      padding: 0 0.2rem
+      font-size: 1rem
+    label
+      color: #3366af
+      font-weight: bold
+      padding-left: 1.5rem !important
+    .dataTables_wrapper
+      padding-left: 0 !important
+  .dataTables_wrapper
+    padding-left: 1.5rem
+  .hover
+    &:hover
+      background-color: scale-color($secondary-color, $lightness: 80%)
+
+.best_in_place
+  cursor: pointer
+  &.pen
+    padding: .1m
+    cursor: hand
+    cursor: pointer
+    -moz-transition: background 0.5s linear
+    -o-transition: background 0.5s linear
+    -webkit-transition: background 0.5s linear
+    -moz-border-radius: 5px
+    -webkit-border-radius: 5px
+    -o-border-radius: 5px
+    -ms-border-radius: 5px
+    -khtml-border-radius: 5px
+    border-radius: 5px
+    &:hover
+      padding-right: 1.5em
+      background: url('red_pen.png') no-repeat right
+      background-color: #CCC
+
+.text-bold
+  font-weight: bold
+.text-upcase
+  text-transform: uppercase
+.text-info
+  color: $primary-color
+.text-success
+  color: $success-color
+.text-warning
+  color: $warning-color
+.text-alert
+  color: $alert-color
+.text-secondary
+  color: $secondary-color
+.text-blue
+  color: #004080
+.text-middle
+  display: flex
+  align-items: center
+.text-left
+  justify-content: left
+.text-center
+  justify-content: center
+.text-right
+  justify-content: right
+
+.intime
+  @extend .success
+  @extend .text-success
+.closed
+  @extend .hollow
+  @extend .secondary
+  @extend .text-secondary
+.expiring
+  @extend .warning
+  @extend .text-warning
+.expired
+  @extend .alert
+  @extend .text-alert
+.norequired
+  @extend .hollow
+  @extend .secondary
+  @extend .text-secondary
+
+.text-intime
+  @extend .text-success
+.text-closed
+  @extend .text-secondary
+.text-expiring
+  @extend .text-warning
+.text-expired
+  @extend .text-alert
+.text-null
+  @extend .hollow
+  @extend .text-secondary
+
+#purr-container
+  position: fixed
+  top: 50%
+  right: 50%
+  z-index: 1010
+  border: 1px solid black
+  background-color: $alert-color
+  color: $white
+  padding: 1rem
+
+#purr-container:empty
+  display: none
+
+.is-accordion-submenu-parent
+  a:after
+    border-color: black transparent transparent !important
+
+.small-menu
+  ul
+    width: 20%
+    span
+      display: none
+.full-menu
+  width: 80%
+
+.disabled-menu
+  a
+    opacity: 0.25
+    cursor: not-allowed
+  &:hover, &:focus
+    // background-color: #2199e8
+    color: #fefefe
+  .submenu
+    display: none
+
+.select2-container
+  width: 100% !important
+
+.small-list
+  .row
+    margin: 0px 0px 1px 0px
+    line-height: 1.2rem
+    margin-bottom: 0.5rem
+
+.turbolinks-progress-bar
+  height: 5px
+  background-color: $alert-color
+
+#admin
+  .card
+    @extend .border-radius
+    @extend .shadow
+    width: 100%
+    height: 100%
+    img
+      height: 120px
+      margin-bottom: 1.5rem
+      padding: 0.5rem
+    a
+      text-transform: uppercase
+      color: black
+      font-size: 0.85rem
+
+.callout
+  padding-left: 1rem !important
+  
+.container
+  margin-bottom: 20px
+  min-width: 0
+  padding: 5px
+  margin: 0
+  
+
+label.required
+  &:before
+    content: '*'
+    font-size: 0.8rem
+    margin-right: 0.2rem
+    color: $alert-color
+    class: 'help'
+  &:after
+    font-size: 0.8rem
+    content: '( * = campo obbligatorio )'
+    margin-left: 0.2rem
+    color: $secondary-color
+    text-transform: lowercase
+    text-decoration: none  
+  
+  div.hover
+    &:hover
+      background-color: #ffffcc
+
+ul.versions
+  @extend .nop
+  font-size: 0.8rem
+
+.off-canvas-content
+  padding: 1rem
+  table
+    margin: 0 0.5rem 1rem 0.5
+
+.signature
+  width: 48px
+  height: 48px
+
+.off-canvas-content
+  .links
+    padding-top: 0.2rem
+    div.cell
+      padding: 0.1rem 1rem
+      a:hover
+        background-color: #ffffcc

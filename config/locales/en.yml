@@ -1,0 +1,98 @@
+en:
+  "yes": 'Yes'
+  "no": 'No'
+  remove_filter: 'Remove all filter'
+  attachement:
+    categories:
+      attachment: 'Attachment'
+      documentation: 'Documentation'
+      manual: 'Manual'
+      form: 'Module'
+      template: 'Template'
+      image: 'Image'
+  topbar:
+    your_jobs: 'Your jobs'
+    new_job: 'New job'
+    list_of_jobs: 'List of jobs'
+    administration:
+      administration: 'Administration'
+      users: 'Users managment'
+      logs: 'Logs managment'
+    notify:
+      info: 'News'
+      warning: 'Alerts'
+      alert: 'Problems'
+      noinfo: 'Nessuna notifica'
+    logout: 'Are you sure?'
+  job:
+    filter:
+      status:
+        title: 'Filter by status'
+        opened: 'Jobs opened'
+        intime: 'Jobs in time'
+        expiring: 'Jobs expiring'
+        expired: 'Jobs exprired'
+        closed: 'Jobs closed'
+        remove: 'Remove filter'
+      type:
+        title: 'Filter by type'
+        consolidated: 'Jobs consolidated'
+        notconsolidated: 'Jobs not consolidated'
+        remove: 'Remove filter'
+      role:
+        title: 'Filter by role'
+        manager: 'Jobs manager'
+        operator: 'Jobs operator'
+        remove: 'Remove filter'
+      manager:
+        title: 'Filtra by manager'
+        remove: 'Remove filter'
+        manager: 'Manager'
+      operator:
+        title: 'Filtra by reference'
+        remove: 'Remove filter'
+        operator: 'Operator'
+    fields:
+      title: 'Title'
+      code: 'Code'
+      open_at: 'Open at'
+      close_at: 'Close at'
+      job_type: 'Job type'
+      pa_support: 'PA support'
+      status: 'Status'
+    job_type:
+      consolidated: 'Consolidated'
+      notconsolidated: 'Not consolidated'
+    timetables:
+      closed:
+        label: 'Closed'
+        description: 'The job is closed!'
+      intime:
+        label: 'In time'
+        description: 'All timetables are in time!'
+      required:
+        label: 'No timetables scheduled'
+        description: 'One ore more timetable are required but no timetables are planned!'
+      norequired:
+        label: 'No timetables required'
+        description: 'No timetable planned for this work!'
+      expiring:
+        label: 'Expiring'
+        description: 'One or more timetables are expiring in 5 days or less!'
+      expired:
+        label: 'Expired'
+        description: 'One or more timetables are expired!'
+  user:
+    title: 'Users'
+    fields:
+      label: 'Label'
+      email: 'E-mail'
+      manager: 'Jobs Manager'
+      reference: 'Jobs operator'
+      technician: 'Laboratory technician'
+      headtest: 'Test manager'
+      chief: 'Service Manager'
+      admin: 'Amministratore'
+      lock: 'Lock access'
+      unlock: 'Unlock access'
+

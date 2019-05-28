@@ -1,0 +1,38 @@
+%p Buongiorno #{ @manager.label },
+%p= "   con la presente per informarTi che il proc/att '#{ @job.title }', di cui sei Responsabile, ha una o più fasi di programmazione scadute."
+%p
+  Riepilogo proc/att:
+  %ul
+    %li
+      %b Codice:
+      = @job.code
+    %li
+      %b Titolo:
+      = @job.title
+    %li
+      %b Data di apertura:
+      = @job.open_on
+    %li
+      %b Supporto PA?:
+      = t(@job.pa_support? ? 'si' : 'no')
+    %li
+      %b Consolidata?:
+      = t(@job.consolidated? ? 'si' : 'no')
+    %li
+      %b Responsabile di area:
+      = @job.chief.label
+    %li
+      %b Responsabili procedimento:
+      = @job.job_managers.pluck(:label).reject(&:empty?).join(', ')
+%p
+  Per accedere al procedimento, clicca sul
+  = link_to 'link', @url, target: '_blank'
+
+%p
+  %p Buon lavoro
+  %p Programma gestione procedimenti e attività #{Settings.config.group}
+%p
+  = "=========================================="
+  %p ATTENZIONE
+  %p Questa e-mail è inviata automaticamente dal sistema dopo la verifica dello stato di programmazione.
+  %p Il programma è compatibile con i più recenti browser web che supportano HTML5(Firefox, Chrome, IE10, EDGE, ... ). Sul browser deve essere attivo javascript e i cookie per l'autenticazione e l'utente deve essere abilitato al login.

@@ -1,0 +1,64 @@
+#top-bar.top-bar, #top-bar-modal.top-bar
+  background-color: #333
+  padding: 0
+  .top-bar-title
+    background-color: $primary-color
+    padding: 1rem 1.3rem
+    margin: 0px
+    font-size: 12px
+    color: $white
+    a, a:hover
+      color: $white
+  .is-dropdown-submenu
+    z-index: 100
+    font-size: 1rem
+    border: 0
+    background-color: #555555
+  .menu
+    background-color: #333
+    // padding: 0.2rem
+    height: auto !important
+    font-size: 0.9em
+    a, a:hover
+      color: $white
+      &:after
+        border-color: rgba(255,255,255,0.4) transparent transparent !important
+  li.current
+    background-color: $secondary-color
+  li.divider
+    border: 0px
+    border-left: 1px solid $secondary-color
+  li.is-dropdown-submenu-parent
+    a, a:hover
+      color: $white
+  .menu.vertical
+    li.divider
+      border: 0px !important
+      border-bottom: 1px solid $secondary-color !important
+
+.reveal
+  @include mui-zoom($state: in, $from: 0, $to: 1, $duration: 0.3s)
+  @include mui-zoom($state: out, $from: 1, $to: 0, $duration: 0.3s)
+  padding: 0
+  border: 0
+  padding-bottom: 1em
+  line-height: 16px
+  .top-bar
+    align-items: none
+  .top-bar-title
+    font-size: 1.05em
+  .menu
+    padding: 0 !important
+    li
+      a
+        margin-top: 0.3rem
+  button.close-button
+    position: static
+    width: 1.9em
+    height: 1.75em
+    background-color: $alert-color
+  #modal-body
+    padding: 1rem 1.5rem
+  li.divider
+    border: 0px
+    border-left: 1px dashed $secondary-color

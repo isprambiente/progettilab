@@ -1,0 +1,4 @@
+.section
+  %fieldset
+    %legend=# t(@section, scope: 'topbar.reports', default: "Report #{@section} list")
+    #reports= render @section, job: @job, reports: @reports

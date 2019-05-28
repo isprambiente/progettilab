@@ -1,0 +1,63 @@
+#book
+  h1, h1, h3, h4
+    text-transform: uppercase
+    font-weight: bold
+  h5, h6
+    font-weight: bold
+  h5
+    text-transform: capitalize
+  small
+    font-size: 1rem
+    color: #767676
+  .titleize
+    font-size: 1rem
+    font-weight: bold
+  ol
+    counter-reset: item
+    &.accordion-content
+      padding: 0
+      border: 0
+    & > li
+      display: block
+      &:first-child
+        margin-top: 0 !important
+      &.liv-1
+        margin-top: 3rem
+        &:before
+          font-size: 1.4rem
+        .title
+          font-size: 1.4rem
+          text-transform: uppercase
+      &.liv-2
+        &:before
+          font-size: 1.2rem
+        .title
+          font-size: 1.2rem
+          text-transform: initial
+      &.liv-3
+        &:before
+          font-size: 1rem
+        .title
+          font-size: 1rem
+          text-transform: initial
+      &:before
+        content: counters(item, ".") " "
+        counter-increment: item
+      span.title
+        font-weight: bold
+      .content
+        @extend .text-justify
+        font-size: 1rem
+        font-weight: none
+        padding-left: 1em
+
+  ul > li
+    list-style-type: circle
+    margin-left: 0.5em
+
+  ol.restart
+    counter-reset: subsection
+    & > li
+      &:before
+        counter-increment: subsection
+        content: counter(subsection) ") "

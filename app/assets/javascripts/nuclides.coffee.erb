@@ -1,0 +1,61 @@
+@nuclides_table = () ->
+  if $('table#nuclides-table').length
+    search = window.location.search
+    lang = $('html').attr( 'lang' )
+    url = $('table#nuclides-table').data('url')
+    dom = if $('table#nuclides-table').data('button') == false then 'lfrtip' else '<"text-center"B>lfrtip'
+    $('table#nuclides-table').DataTable
+      'destroy': true
+      'cache': true
+      'processing': true
+      'serverSide': true
+      'searching': true
+      'pageLength': 10
+      'lengthMenu': [ [10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "Tutti"] ]
+      'dom': dom
+      'buttons': [
+        { extend: 'excel', className: 'button transparent', exportOptions: { columns: ':visible' } }
+        { extend: 'pdf', className: 'button transparent', exportOptions: { columns: ':visible' },  orientation: 'landscape' }
+      ]
+      'ajax': { 'url': url, 'dataType': 'json' }
+      'columns': [
+        { 'data': 'title', 'name': 'nuclides.title' }
+        { 'data': 'body', 'name': 'nuclides.body' }
+        { 'class': 'text-center', 'name': 'nuclides.active' }
+        { 'class': 'grid-container full text-right' }
+      ]
+      'columnDefs': [
+        {
+          'aTargets': [ 2 ]
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if full['active']
+              # v = "<%= I18n.t('yes', default: 'Yes') %>"
+              v = "<i class='fa fa-check'></i>"
+            else
+              # v = "<%= I18n.t('no', default: 'No') %>"
+              # v = "<i class='fa fa-circle text-alert'></i>"
+            return v
+        }
+        {
+          'aTargets': [ 3 ]
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if !$('body').hasClass('is-reveal-open')
+              v = "<div class='grid-x grid-margin-x medium-margin-collapse'>"
+              if full['editable']
+                v += "<a class='auto cell button transparent reveal-modal-mini' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' data-url='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>?modal=1' ><i class='fa fa-edit'></i></a>"
+              if full['deletable']
+                v += "<a class='auto cell button transparent' href='#{ full['url'] }' data-method='delete' data-remote='false' data-confirm='<%= I18n.t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) %>'><i class='fa fa-trash'></i></a>"
+              v += '</div>'
+            return v
+        }
+      ]
+      'fnDrawCallback': (oSettings) ->
+        link_to_modal( $('table#nuclides-table') )
+        $('table#nuclides-table').find('.disabled').unbind('click').on 'click', ->
+          return false
+        return
+      'order': [ [ 0, 'asc' ] ]
+      'language': { "url": "<%= asset_path( ( I18n.locale || I18n.default_locale ).to_s + '.json') %>" }
+    return

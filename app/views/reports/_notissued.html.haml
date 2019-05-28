@@ -1,0 +1,29 @@
+- if can?( :create, Report )
+  .report_types
+    .grid-x.grid-padding-x.text-center
+      - Report.report_type_collection.each do | report_type |
+        .small-12.large-2.cell= link_to report_type[0], filtered_job_reports_path( job_id: @job.id, section: 'notissued', report_type: report_type[1] ), remote: true, class: "button expanded #{ 'success' if report_type[1] == @report_type }"
+
+  - if @report_type.present?
+    = form_with scope: :report, url: job_reports_path(job_id: @job.id, section: @section), id: 'notissued-form', :builder => ExtraFormWith do |f|
+      = f.hidden_field :type, value: @report_type
+      - if @report_type == 'multiple'
+        .callout.alert= f.text_field :general_body, autocomplete: "off", label: "Nota incertezza visibile in tutte le pagine del report multiplo"
+      %table#reports-table.display.responsive{ data: { button: 'false', url: filtered_job_reports_url(job_id: @job.id, section: @section, report_type: @report_type, format: :json), section: @section, report_type: @report_type, job: @job.code } }
+        %thead
+          %tr
+            %th.text-center{ data: { orderable: "false", searchable: "false"} }
+              = check_box_tag 'all_reports', 'all', false if can?( :create, Report )
+            %th.text-center= t('lab_code', scope: 'samples.fields', default: 'Lab. code')
+            %th.text-center= t('code', scope: 'analisies.fields', default: 'Analisy code')
+            %th.text-left= t('title', scope: 'analisytypes', default: 'Analisy type')
+            %th.text-left{ data: { orderable: "false"} }= t('results', scope: 'reports.fields', default: 'Results')
+            %th.text-left{ data: { orderable: "false"} }= t('roles', scope: 'reports.index', default: 'Roles')
+            %th{ data: { orderable: "false", searchable: "false", visible: "false"} }
+        %tbody
+        %tfooter
+
+      - if can?( :create, Report )
+        = f.submit_button value: 'Emetti rapporti di prova selezionati', options: { content: 'false' }, confirm: 'Confermi creazione rapporti di prova?'
+- else
+  .callout.alert.text-center.text-upcase Non sei autorizzato ad emettere i rapporti di prova

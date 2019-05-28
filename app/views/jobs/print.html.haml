@@ -1,0 +1,31 @@
+= form_with( scope: :job, url: printed_job_path(id: @job.id), html: { novalidate: true, target: '_blank' }, data: { remote: 'false' }, :builder => ExtraFormWith, method: :get ) do |f|
+  .container
+    .grid-x
+      %div.text-bold.text-upcase.text-warning.small-11.cell Generale
+      .auto.cell= f.check_box :all, {id: 'select_all'}, true, false
+    .grid-x
+      .small-11.cell Dettaglio anagrafica e contatti
+      .auto.cell= f.check_box :details, {checked: true}, true, false
+    .grid-x
+      .small-11.cell Progettazione
+      .auto.cell= f.check_box_field_if !@job.consolidated?, :design, { title: "#{t( 'is_consolidated', scope: 'jobs.job_type', default: 'Design section is not available' ) if @job.consolidated? }" }
+    .grid-x
+      .small-11.cell Campioni
+      .auto.cell= f.check_box_field_if @job.samples.present?, :samples, {}, true, false, { title: "#{t( 'no_data_found', scope: 'samples', default: 'no_data_found' ) if @job.samples.blank?}" }
+    .grid-x
+      %div.text-bold.text-upcase.text-warning.small-11.cell Programmazione
+      .cell
+        .grid-x
+          .small-11.cell Programmazione
+          .auto.cell= f.check_box_field_if @job.timetables.present?, :timetables, { title: "#{t( 'no_data_found', scope: 'timetables', default: 'no_data_found' ) if @job.timetables.blank?}" }
+    .grid-x
+      %div.text-bold.text-upcase.text-warning.small-11.cell Rapporti di analisi emessi
+      .cell
+        .grid-x
+          .small-11.cell Un rapporto per pagina
+          .auto.cell= f.check_box_field_if @job.reports.singles.present?, :single, { title: "#{t( 'no_data_found', scope: 'reports.single', default: 'No single reports issued' ) if @job.reports.singles.blank? }" }
+      .cell
+        .grid-x
+          .small-11.cell Rapporti multipli nella stessa pagina
+          .auto.cell= f.check_box_field_if @job.reports.multiples.present?, :multiple, { title: "#{t( 'no_data_found', scope: 'reports.multiple', default: 'No multiplereports issued' ) if @job.reports.multiples.blank? }" }
+    .grid-x= f.submit_button icon: 'print', value: 'Stampa', options: { disable_with: 'false' }

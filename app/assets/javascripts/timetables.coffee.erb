@@ -1,0 +1,81 @@
+@timetables_table = () ->
+  if $('table#timetables-table').length
+    search = window.location.search
+    lang = $('html').attr( 'lang' )
+    url = $('table#timetables-table').data('url')
+    nrows = $('table#timetables-table').data('nrows')
+    dom = if $('table#timetables-table').data('button') == false then 'lfrtip' else '<"text-center"B>lfrtip'
+    $('table#timetables-table').DataTable
+      'destroy': true
+      'cache': true
+      'processing': true
+      'serverSide': true
+      'searching': true
+      'pageLength': 10
+      'lengthMenu': [ [10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "Tutti"] ]
+      'dom': dom
+      'buttons': [
+        { extend: 'excel', title: 'programmazione', key: { key: 'e', altKey: false }, className: 'button transparent', exportOptions: { columns: [2,3,4,5,6,7,8,9] } }
+        { extend: 'pdf',   title: 'programmazione', key: { key: 'p', altKey: false }, className: 'button transparent', exportOptions: { columns: [2,3,4,5,6,7,8,9] }, orientation: 'landscape' }
+      ]
+      'ajax': { 'url': url, 'dataType': 'json' }
+      'columns': [
+        { 'class': 'text-center', 'class': 'small-1', 'name': '' }
+        { 'data': 'sortorder', 'class': 'text-center', 'name': 'timetables.sortorder' }
+        { 'data': 'title', 'class': 'text-left', 'name': 'timetables.title' }
+        { 'data': 'start_on', 'class': 'text-center', 'name': 'timetables.start_at' }
+        { 'data': 'stop_on', 'class': 'text-center', 'name': 'timetables.stop_at'  }
+        { 'data': 'execute_on', 'class': 'text-center', 'name': 'timetables.execute_at' }
+        { 'data': 'products', 'class': 'text-justify', 'name': 'timetables.products' }
+        { 'data': 'restrict', 'class': 'text-center', 'name': 'timetables.restrict' }
+        { 'data': 'body', 'class': 'text-justify', 'name': 'timetables.body' }
+        { 'class': 'grid-container full text-right' }
+      ]
+      'columnDefs': [
+        {
+          'aTargets': [ 0 ]
+          'mRender': ( data, type, full ) ->
+            title = ''
+            if full['status'] == 'intime'
+              title = 'La data prevista di chiusura è ancora lontana!'
+            else if full['status'] == 'expiring'
+              title = 'La data prevista di chiusura si avvicina!'
+            else if full['status'] == 'expired'
+              title = 'La data prevista di chiusura è stata superata!'
+            v = ''
+            v += "<div class='small-4 columns'>"
+            v += "<i class='fa fa-circle help text-#{full['status']}' title='#{title}''></i>"
+            v += "</div>"
+            v += "<div class='small-7 columns'>"
+            if nrows > 1 && full['editable'] && !$('body').hasClass('is-reveal-open')
+              v += "<i id='#{full['job_id']}-#{full['id']}-up' class='fa fa-arrow-up up ' style='cursor:pointer;font-size:0.8rem;' ></i>"
+              v += "<i id='#{full['job_id']}-#{full['id']}-down'class='fa fa-arrow-down down ' style='cursor:pointer;font-size:0.8rem;' ></i>"
+            v += "</div>"
+            return v
+        }
+        {
+          'aTargets': [ 9 ]
+          'mRender': ( data, type, full ) ->
+            v = ''
+            if ( !$('body').hasClass('is-reveal-open') )
+              v = "<div class='grid-x grid-margin-x medium-margin-collapse'>"
+              if full['editable']
+                v += "<a class='auto cell button transparent' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' data-remote='true'><i class='fa fa-edit'></i></a>"
+              if full['deletable']
+                v += "<a class='auto cell button transparent' href='#{ full['url'] }' data-method='delete' data-remote='true' data-confirm='<%= I18n.t('delete', scope: 'confirmations', default: 'The deleted data can not be recovered. If you confirm, all data, connected to it, will be deleted. Are you sure?' ) %>'><i class='fa fa-trash'></i></a>"
+              v += '</div>'
+            return v
+        }
+      ]
+      'createdRow': (row, data, index) ->
+        $(row).attr( 'id', data['id'] )
+        $(row).attr( 'data-url', "/<%= I18n.t('jobs', scope: 'routes', default: 'jobs') %>/#{data['job_id']}/<%= I18n.t('timetables', scope: 'routes', default: 'timetables') %>/#{data['id']}/changeorder" )
+      'drawCallback': (settings, json) ->
+        $(this).find('tbody').children().first().find('.up').addClass('hide')
+        $(this).find('tbody').children().last().find('.down').addClass('hide')
+        link_to_modal( $('table#timetables-table') )
+        $('table#timetables-table').find('.disabled').unbind('click').on 'click', ->
+          return false
+      'order': [ [ 1, 'asc' ] ]
+      'language': { "url": "<%= asset_path( ( I18n.locale || I18n.default_locale ).to_s + '.json') %>" }
+    return

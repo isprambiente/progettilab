@@ -1,0 +1,3 @@
+<% unless @job.errors.blank? %>
+  $('#modal-body').html("<%= escape_javascript( render 'reopen' ) %>");
+<% end %>

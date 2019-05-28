@@ -1,0 +1,35 @@
+@logs_table = () ->
+  if $('table#logs-table').length
+    search = window.location.search
+    lang = $('html').attr( 'lang' )
+    url = $('table#logs-table').data('url')
+    dom = if $('table#logs-table').data('button') == false then 'lfrtip' else '<"text-center"B>lfrtip'
+    $('table#logs-table').DataTable
+      'destroy': true
+      'cache': true
+      'processing': true
+      'serverSide': true
+      'searching': true
+      'pageLength': 10
+      'lengthMenu': [ [10, 20, 30, 50, 100, -1], [10, 20, 30, 50, 100, "Tutti"] ]
+      'dom': dom
+      'buttons': [
+        { extend: 'excel', className: 'button transparent', exportOptions: { columns: ':visible' } }
+        { extend: 'pdf', className: 'button transparent', exportOptions: { columns: ':visible' },  orientation: 'landscape' }
+      ]
+      'ajax': { url, 'dataType': 'json' }
+      'columns': [
+        { 'data': 'created_on', 'class': 'text-center', 'order': 'created_at', 'name': 'logs.created_at' }
+        { 'data': 'job.code', 'name': 'jobs.code', 'class': 'text-center' }
+        { 'data': 'action', 'name': 'logs.action', 'class': 'text-center' }
+        { 'data': 'values', 'name': 'logs.body', 'class': 'text-left' }
+        { 'data': 'author', 'name': 'logs.author', 'class': 'text-center' }
+      ]
+      'fnDrawCallback': (oSettings) ->
+        link_to_modal( $('table#logs-table') )
+        $('table#logs-table').find('.disabled').unbind('click').on 'click', ->
+          return false
+        return
+      'order': [ [ 0, 'desc' ] ]
+      'language': { "url": "<%= asset_path( ( I18n.locale || I18n.default_locale ).to_s + '.json') %>" }
+    return

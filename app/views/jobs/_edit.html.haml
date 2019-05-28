@@ -1,0 +1,15 @@
+- if can? :update, @job
+  #details= render 'jobs/edit_details', job: @job, section: section if @section == 'details'
+  #contacts= render 'jobs/edit_contacts', job: @job, section: section if @section == 'contacts'
+  - unless @job.consolidated?
+    #design= render 'jobs/edit_design', job: @job, section: section if @section == 'design'
+  #roles= render 'jobs/edit_roles', job: @job, section: section if @section == 'roles'
+  #attachments= render 'jobs/edit_attachments', job: @job, section: section if @section == 'attachments'
+- else
+  .callout.alert.text-justify
+    - reason = "Non sei abilitato a modificare questa area del proc/att "
+    - if job.closed?
+      - reason += "poichè è stata chiusa. Contattare il Responsabile del area."
+    = reason
+
+  = render 'jobs/show'

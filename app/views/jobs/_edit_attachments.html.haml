@@ -1,0 +1,19 @@
+= form_with model: job,  url: job_path( id: job.id, section: 'attachments'), method: :put, :html => { :multipart => true }, data: {remote: 'false'}, :builder => ExtraFormWith do |f|
+  %h4.text-center= "Allegati #{ t('title', scope: 'jobs', default: 'Details').downcase }"
+  %table
+    %tbody
+      - if job.attachments.blank?
+        = 'Nessun allegato inserito'.upcase
+      - else
+        - job.attachments.each do | attachment |
+          %tr
+            %td= t( attachment.category, scope: 'attachments.categories', default: "#{attachment.category}".capitalize )
+            %td= link_to attachment.file_file_name, attachment_download_job_path( id: @job.id, file_id: attachment.id ) , target: '_blank'
+            %td.text-right= link_to fa_icon( 'trash' ), attachment_destroy_job_path( id: @job.id, file_id: attachment.id ), remote: true, class: 'button transparent', method: :delete, data: { confirm: 'Sicuro di voler rimuovere questo allegato?' }
+    - if can?( :create, job => Attachment )
+      %tfoot
+        = f.fields_for :attachments, job.attachments.new do | a |
+          %tr
+            %td= a.select_field :category, Attachment.category_collection,  options: { icon: 'list', include_blank: false }, input_options: { class: 'input-group-field ' }, label: 'false'
+            %td= a.file_field :file, options: { label: 'false' }
+            %td= f.submit_button icon: 'upload', value: 'Carica', options: { content: 'false', class: 'small' }

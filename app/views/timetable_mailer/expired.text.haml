@@ -1,0 +1,23 @@
+Buongiorno #{ @manager.label },
+con la presente per informarTi che la proc/att '#{ @job.title }', di cui sei Responsabile, ha una o più fasi di programmazione scadute.
+
+Da questo momento puoi gestire e modificare gli attributi del proc/att.
+
+Riepilogo proc/att:
+= "  Codice: #{ @job.code }"
+= "  Titolo: #{ @job.title }"
+= "  Data di apertura: #{ @job.open_on }"
+= "  Supporto PA?: #{ t(@job.pa_support? ? 'si' : 'no') }"
+= "  Consolidata?: #{ t(@job.consolidated? ? 'si' : 'no') }"
+= "  Responsabile di area: #{ @job.chief.label }"
+= "  Responsabili proc/att: #{ @job.job_managers.pluck(:label).reject(&:empty?).join(', ') }"
+
+Per accedere al proc/att, copia e incolla sul browser il link #{ @url }
+
+Buon lavoro
+Programma gestione proc/att #{Settings.config.group}
+
+= "========================================="
+ATTENZIONE
+Questa e-mail è inviata automaticamente dal sistema dopo la verifica dello stato di programmazione.
+Il programma è compatibile con i più recenti browser web che supportano HTML5(Firefox, Chrome, IE10, EDGE, ... ). Sul browser deve essere attivo javascript e i cookie per l'autenticazione e l'utente deve essere abilitato al login.

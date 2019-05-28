@@ -1,0 +1,8 @@
+<% if @samples.present? %>
+  if ( $('#content').find( '.dataTable' ).length > 0 ) {
+    $('.dataTable').DataTable().ajax.reload( null, false );
+  }
+<% else %>
+  $('#samples').replaceWith("<%= escape_javascript( render 'samples' ) %>");
+  samples_table();
+<% end %>

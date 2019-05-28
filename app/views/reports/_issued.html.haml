@@ -1,0 +1,13 @@
+%h4.text-center= t(@section, scope: 'topbar.reports', default: "Report #{@section} list")
+%table#reports-table.display.responsive{ data: { url: filtered_job_reports_url(job_id: @job.id, section: @section, format: :json), button: "#{ (@modal != '1') }", section: @section, job: @job.code } }
+  %thead
+    %tr
+      %th.hide{ data: { orderable: "false", searchable: "false", visible: "false"} }
+      %th.text-center{ data: { orderable: 'true', searchable: 'true' } }= t('code', scope: 'reports.fields', default: 'Report code')
+      %th.text-center{ data: { orderable: 'true', searchable: 'true' } }= t('report_type', scope: 'reports.fields', default: 'Report type')
+      %th.text-center{ data: { orderable: 'true', searchable: 'true' } }= t('issued_at', scope: 'reports.fields', default: 'Data emissione')
+      %th.hide{ data: { orderable: "false", searchable: "false", visible: "false"} }
+      %th.hide{ data: { orderable: "false", searchable: "false", visible: "false"} }
+      %th{ data: { orderable: "false", searchable: "false" } }
+  %tbody
+  %tfooter

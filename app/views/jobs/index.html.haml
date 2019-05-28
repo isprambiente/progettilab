@@ -1,0 +1,15 @@
+- if can? :create, Job
+  .grid-x
+    .small-12.large-2.large-offset-10.cell= link_to fa_icon('plus', text: t('title', scope: 'jobs.new', default: 'New job') ), new_job_path, class: 'button radius expanded'
+%table#jobs-table.display.responsive{ data: { url: jobs_url(format: :json) } }
+  %thead
+    %tr
+      %th.text-center= t('code', scope: 'jobs.fields', default: 'Code')
+      %th.text-left= t('title', scope: 'jobs.fields', default: 'Title')
+      %th.text-center= t('customer', scope: 'jobs.fields', default: 'Customer')
+      %th.text-center= t('job_manager_ids', scope: 'jobs.fields', default: 'Managers')
+      %th.text-center= t('open_at', scope: 'jobs.fields', default: 'Open at')
+      %th.text-center= t('planned_closure_at', scope: 'jobs.fields', default: 'Planned closure at')
+      %th.text-center= t('close_at', scope: 'jobs.fields', default: 'Close at')
+      %th.small-1.text-right{ data: { orderable: "false", searchable: "false"} }
+  %tbody

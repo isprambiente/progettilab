@@ -1,0 +1,42 @@
+%p Buongiorno #{ @user.label },
+%p= "   con la presente per informarTi che #{ @author.label } ti ha definito #{ t( @role, scope: 'jobs.filter.roles', default: @role ).upcase } del proc/att '#{ @job.title }' con codice identificativo numero #{ @job.code }."
+%p Da questo momento puoi gestire, e modificare, gli attributi del proc/att.
+%p
+  Riepilogo proc/att:
+  %ul
+    %li
+      %b Codice:
+      = @job.code
+    %li
+      %b Titolo:
+      = @job.title
+    %li
+      %b Data di apertura:
+      = @job.open_on
+    %li
+      %b Supporto PA?:
+      = t(@job.pa_support? ? 'yes' : 'no')
+    %li
+      %b Consolidata?:
+      = t(@job.consolidated? ? 'yes' : 'no')
+    %li
+      %b Responsabile di area:
+      = @job.chief.label
+    %li
+      %b Responsabili:
+      = @job.job_managers.pluck(:label).reject(&:empty?).join(', ')
+    %li
+      %b Referenti:
+      = @job.job_technicians.pluck(:label).reject(&:empty?).join(', ')
+%p
+  Per accedere al proc/att, clicca sul
+  = link_to 'link', @url, target: '_blank'
+
+%p
+  %p Buon lavoro
+  %p Programma gestione procedimenti e attività #{Settings.config.group}
+%p
+  = "=========================================="
+  %p ATTENZIONE
+  %p Questa e-mail è inviata automaticamente dal sistema dopo la creazione di un nuovo proc/att.
+  %p Il programma è compatibile con i più recenti browser web che supportano HTML5(Firefox, Chrome, IE11, EDGE, ... ). Sul browser deve essere attivo javascript e i cookie per l'autenticazione e l'utente deve essere abilitato al login.

@@ -1,0 +1,193 @@
+wb = xlsx_package.workbook
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376",
+                                   border: Axlsx::STYLE_THIN_BORDER,
+                                   alignment: { horizontal: :center })
+
+  import = wb.add_worksheet(name: "Importazione multipla") do |sheet|
+    sheet.add_row [
+      "Chiave collegamento dati - programma",
+      "Codice campione cliente",
+      "Latitudine(gradi decimali)",
+      "Longitudine(gradi decimali)",
+      "Data inizio",
+      "Data fine",
+      "Data accettazione",
+      "Data riferimento",
+      "Matrice II livello",
+      "Conservazione",
+      "Verbale cliente",
+      "Note Campione",
+      "Tipologie analisi",
+      "Misurando",
+      "Metodo",
+      "Descrizione",
+      "Misura",
+      "Unità di misura",
+      "incertezza",
+      "Unità di misura",
+      "MCR",
+      "Doc.Rif.Int.",
+      "Info incertezza",
+      "Note Misure",
+      "Causa mancata analisi",
+      "Responsabile di prova",
+      "Tecnici di laboratorio1",
+      "Tecnici di laboratorio2",
+      "Tecnici di laboratorio3",
+    ], style: [
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell,
+      highlight_cell
+    ]
+  end
+
+  wb.add_worksheet(name: "Matrici II Livello") do |sheet|
+    i = 0
+    MatrixType.matrices.each do |row|
+      sheet.add_row [ row.title ]
+      i=i+1
+    end
+    import.add_data_validation("I2", {
+      :type => :list,
+      :formula1 => "'Matrici II Livello'!$A$1:$A$"+i.to_s,
+      :showDropDown => false,
+      :showInputMessage => true,
+      :promptTitle => 'Matrici II Livello',
+      :prompt => 'Seleziona una delle seguenti Matrici II Livello'
+    })
+  end
+
+  wb.add_worksheet(name: "Tipologie di analisi") do |sheet|
+    i = 0
+    AnalisyType.all.each do |row|
+      sheet.add_row [ row.title ]
+      i= i+1
+    end
+    import.add_data_validation("M2", {
+      :type => :list,
+      :formula1 => "'Tipologie di analisi'!$A$1:$A$"+i.to_s,
+      :showDropDown => false,
+      :showInputMessage => true,
+      :promptTitle => 'Tipologie di analisi',
+      :prompt => 'Seleziona una delle seguenti Tipologie di analisi'
+    })
+  end
+
+  wb.add_worksheet(name: "Nuclide") do |sheet|
+    i = 0
+    Nuclide.all.each do |row|
+      sheet.add_row [ row.title ]
+      i= i+1
+    end
+    import.add_data_validation("N2", {
+      :type => :list,
+      :formula1 => "'Nuclide'!$A$1:$A$"+i.to_s,
+      :showDropDown => false,
+      :showInputMessage => true,
+      :promptTitle => 'Nuclide',
+      :prompt => 'Seleziona una delle seguenti Nuclidi'
+    })
+  end
+
+  wb.add_worksheet(name: "Unità") do |sheet|
+    i = 0
+    Unit.all.each do |row|
+      sheet.add_row [ row.title ]
+      i= i+1
+    end
+    import.add_data_validation("R2", {
+      :type => :list,
+      :formula1 => "'Unità'!$A$1:$A$"+i.to_s,
+      :showDropDown => false,
+      :showInputMessage => true,
+      :promptTitle => 'Unità',
+      :prompt => 'Seleziona una delle seguenti Unità'
+    })
+
+    import.add_data_validation("T2", {
+      :type => :list,
+      :formula1 => "'Unità'!$A$1:$A$"+i.to_s,
+      :showDropDown => false,
+      :showInputMessage => true,
+      :promptTitle => 'Unità',
+      :prompt => 'Seleziona una delle seguenti Unità'
+    })
+  end
+
+  wb.add_worksheet(name: "Responsabile di prova") do |sheet|
+    i = 0
+    User.headtests.each do |row|
+      sheet.add_row [ row.label ]
+      i= i+1
+    end
+    import.add_data_validation("Z2", {
+      :type => :list,
+      :formula1 => "'Responsabile di prova'!$A$1:$A$"+i.to_s,
+      :showDropDown => false,
+      :showInputMessage => true,
+      :promptTitle => 'Responsabile di prova',
+      :prompt => 'Responsabile di prova'
+    })
+  end
+
+  wb.add_worksheet(name: "Tecnici di laboratorio") do |sheet|
+    i = 0
+    User.technics.each do |row|
+      sheet.add_row [ row.label ]
+      i= i+1
+    end
+    import.add_data_validation("AA2", {
+      :type => :list,
+      :formula1 => "'Tecnici di laboratorio'!$A$1:$A$"+i.to_s,
+      :showDropDown => false,
+      :showInputMessage => true,
+      :promptTitle => 'Tecnici di laboratorio',
+      :prompt => 'Seleziona un dei seguenti Tecnici di laboratorio'
+    })
+    import.add_data_validation("AB2", {
+      :type => :list,
+      :formula1 => "'Tecnici di laboratorio'!$A$1:$A$"+i.to_s,
+      :showDropDown => false,
+      :showInputMessage => true,
+      :promptTitle => 'Tecnici di laboratorio',
+      :prompt => 'Seleziona un dei seguenti Tecnici di laboratorio'
+    })
+    import.add_data_validation("AC2", {
+      :type => :list,
+      :formula1 => "'Tecnici di laboratorio'!$A$1:$A$"+i.to_s,
+      :showDropDown => false,
+      :showInputMessage => true,
+      :promptTitle => 'Tecnici di laboratorio',
+      :prompt => 'Seleziona un dei seguenti Tecnici di laboratorio'
+    })
+  end
+end

@@ -1,0 +1,11 @@
+.grid-x
+  .small-12.large-2.cell= link_to fa_icon('plus', text: 'Nuovo'), new_nuclide_path, class: 'button expanded radius medium reveal-modal-mini', data: { url: new_nuclide_path( modal: 1 ) }
+#nuclides.container
+  %table#nuclides-table.display.responsive{ data: { url: nuclides_url(format: :json), button: 'false' } }
+    %thead
+      %tr
+        %th.small-5.text-left= t('title', scope: 'nuclides.fields', default: 'Title')
+        %th.small-5.text-left= t('body', scope: 'nuclides.fields', default: 'Body')
+        %th.small-1.text-left= t('active', scope: 'nuclides.fields', default: 'Active?')
+        %th.small-1{ data: { orderable: "false" } }
+    %tbody

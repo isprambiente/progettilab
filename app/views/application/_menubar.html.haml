@@ -1,0 +1,6 @@
+#menubar.menubar{ data: { menu_cookie: 'true' } }
+  %ul#menu.menu.vertical.dropdown{ data: { dropdown_menu: true, closing_time: 0 } }
+    = render 'navigation'
+    .menu-button
+      %li.opened-button{ title: 'Chiudi' }= link_to fa_icon('backward', text: 'Chiudi' ), '#', data: { menu_id: 'menubar', menu_op: 'close' }
+      %li.closed-button{ title: 'Apri' }= link_to fa_icon('forward', title: 'Apri' ), '#', data: { menu_id: 'menubar', menu_op: 'open' }

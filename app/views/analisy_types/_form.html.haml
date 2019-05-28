@@ -1,0 +1,9 @@
+= form_with model: @analisy_type, :builder => ExtraFormWith do |f|
+  = hidden_field_tag(:page, @page)
+  .container
+    .grid-y
+      .cell= f.text_field :title, autocomplete: "off", inline: true, icon: 'pencil', label: t('title', scope: "analisytypes.fields", default: 'Title' ), help: false
+      .cell= f.select_field :instruction_id, [['Seleziona una delle seguenti istruzioni', '']] + @istructions.pluck(:title,:id), { icon: 'list', help: false, include_blank: false, inline: true, label: t('instruction_id', scope: "analisytypes.fields", default: 'Title' ) }, { class: 'input-group-field select2' }
+      .cell= f.switch_field :radon, class: 'switch-input input-group-field', inline: true, label: t('radon', scope: "analisytypes.fields", default: 'Is Radon?' ), help: false
+      .cell= f.switch_field :active, class: 'switch-input input-group-field', inline: true, label: t('active', scope: "analisytypes.fields", default: 'Title' ), help: false
+      .cell= f.submit_button icon: 'save', value: t( 'save' ) #, options: { label: 'false' }

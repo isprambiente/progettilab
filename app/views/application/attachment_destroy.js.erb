@@ -1,0 +1,6 @@
+<% if @attachment.errors.blank? %>
+  $('#alert').html("").addClass('hide');
+  $('#attachments').html("<%= escape_javascript( render 'jobs/edit_attachments', job: @daddy, section: @section ) %>");
+<% else %>
+  $('#alert').html("<%= @attachment.errors.full_messages.join(', ') %>").removeClass('hide');
+<% end %>

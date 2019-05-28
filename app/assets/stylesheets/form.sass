@@ -1,0 +1,178 @@
+form
+  .hover:hover
+    background-color: scale-color($secondary-color, $lightness: 80%)
+  input, select, textarea
+    &:required:invalid, &:focus:invalid
+      border: 2px solid $alert-color
+      -webkit-box-shadow: 2px rgba(0,0,0,0.75)
+      -moz-box-shadow: 2px rgba(0,0,0,0.75)
+      box-shadow: 2px rgba(0,0,0,0.75)
+    &:required:valid
+      border: 1px solid ccc
+      -moz-box-shadow: none
+    &.invalid
+      border: 2px solid $alert-color !important
+      -webkit-box-shadow: 2px rgba(0,0,0,0.75) !important
+      -moz-box-shadow: 2px rgba(0,0,0,0.75) !important
+      box-shadow: 2px rgba(0,0,0,0.75) !important
+  select
+    @extend .border-radius
+    overflow: hidden
+    margin: 0px !important
+  label
+    @extend .text-upcase
+    @extend .text-bold
+    color: #3366af
+    cursor: default
+    abbr
+      color: $alert-color
+    span
+      color: $primary-color
+      &.invalid
+        color: $alert-color
+  fieldset
+    margin: 0 0 1.125rem 0 !important
+    min-width: 0 !important
+    legend
+      @extend .text-upcase
+      @extend .text-bold
+      font-size: 0.875rem
+      color: #3366af !important
+      cursor: default
+      abbr
+        color: $alert-color
+      span
+        color: $primary-color
+        &.invalid
+          color: $alert-color
+
+  .switch
+    .input-group
+      border: 0px !important
+      label.switch-paddle
+        float: left !important
+        .switch-active, .switch-inactive
+          color: white
+  .valign-top
+    vertical-align: top
+    padding-top: 0.5rem !important
+  .valign-middle
+    vertical-align: middle
+  .valign-bottom
+    vertical-align: bottom
+    padding-bottom: 0.5rem !important
+  .input
+    .input-group-multiple
+      display: table
+    .input-group
+      border-radius: 4px
+      min-height: 34px !important
+      border: 1px solid #ccc
+      .input-group-label
+        background: scale-color($secondary-color, $lightness: 90%)
+        color: none
+        border: none
+        border-right: 1px solid #ccc
+        width: 30px
+        padding: 0 0.5rem
+      input.input-group-field
+        background-color: #fff
+        box-shadow: none
+        color: #555
+        height: 34px !important
+        border: none
+        border-top-right-radius: 4px
+        border-bottom-right-radius: 4px
+      textarea.input-group-field
+        white-space: normal
+        resize: none
+        background-color: #fff
+        box-shadow: none
+        color: #555
+        height: 100px !important
+        border: none
+        border-top-right-radius: 4px
+        border-bottom-right-radius: 4px
+      select.input-group-field
+        background-color: #fff
+        box-shadow: none
+        color: #555
+        border: none
+        border-top-right-radius: 4px
+        border-bottom-right-radius: 4px
+      .select2-selection__rendered, .select2-search, .select2-search--inline, .select2-search__field
+        width: 100%
+
+      .select2-selection
+        border: none
+        border-top-right-radius: 4px
+        border-bottom-right-radius: 4px
+      &.invalid
+        border: 2px solid $alert-color !important
+        -webkit-box-shadow: 2px rgba(0,0,0,0.75) !important
+        -moz-box-shadow: 2px rgba(0,0,0,0.75) !important
+        box-shadow: 2px rgba(0,0,0,0.75) !important
+  .text-box
+    border: 1px solid #aaa
+    padding: 0.5rem
+    margin: 0 0 0.4rem 0rem
+    height: 2.5rem
+
+  .text-area
+    border: 1px solid #aaa
+    padding: 0.5rem
+    margin: 0 0 0.4rem 0rem
+    height: 6rem
+    overflow-y: auto
+
+  .text-area-big
+    border: 1px solid #aaa
+    padding: 0.5rem 1rem
+    margin: 0 0 0.4rem 1rem
+    height: 9rem
+    overflow-y: auto
+  ul
+    margin-left: 0 !important
+  .form-inputs
+    .alert-box
+      @extend .text-alert
+    .input.error
+      .error
+        @extend .text-alert
+  .label_field
+    @extend .text-justify
+    cursor: default
+    padding: 0.5rem
+  .input-inline
+    @extend .input
+    @extend .grid-x
+    @extend .grid-padding-x
+    label
+      @extend .small-12
+      @extend .large-4
+      @extend .cell
+    .input-group
+      @extend .small-12
+      @extend .large-8
+      @extend .cell
+      padding: 0
+      .input-group-label
+        margin-left: 0
+        width: 30px
+    .text-help
+      font-size: 0.8rem
+      color: $secondary-color
+      padding-left: 34%
+      margin-top: -10px
+    .error
+      padding-left: 34%
+      margin-top: -10px
+
+  button, input.submit
+    @extend .primary
+    @extend .button
+    @extend .expanded
+    @extend .small
+    @extend .text-upcase
+    @extend .text-bold
+    margin-bottom: 0px

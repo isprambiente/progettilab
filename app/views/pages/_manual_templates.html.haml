@@ -1,0 +1,15 @@
+%span.title.liv1-title
+  Template di stampa
+.content 
+  A ogni nuovo proc/att il sistema assegna automaticamente l'ultimo template di stampa impostato di default. Questa impostazione consente di stampare tutta la documentazione del proc/att sempre con lo stesso template di stampa anche dopo molto tempo.
+.content
+  La gestione e modifica dei template di stampa è riservata al solo amministratore di sistema che, su indicazione esplicita del Responsabile di area, può modificare un template esistente o aggiungerne uno nuovo.
+%ol
+  %li#templates-add.liv-2
+    %span.title.liv2-title Aggiunta di un template
+    .content 
+      L'aggiunta di un template comporta un rilascio di una nuova versione di un template nel repository dei templates del programma. Il nuovo template sarà automaticamente associato ai nuovi proc/att create dopo il rilascio, ma può anche essere associato a un proc/att esistente forzando il formato. In questo caso i report stampati con il template precedente resteranno col vecchio formato. Per stamparli col nuovo template dovranno essere annullati e ristampati.
+  %li#templates-exist.liv-2
+    %span.title.liv2-title Modifica di un template esistente
+    .content 
+      La modifica di un template esistente comporta sempre il rilascio di una nuova versione nel repository dei templates del programma che però sovrascriverebbe il modello precedente col medesimo nome. Il template modificato non necessita di modifiche sui proc/att e sarà automaticamente acquisito anche dai proc/att esistenti. In questo caso i report stampati con il template precedente resteranno col vecchio formato. Per stamparli col nuovo template dovranno essere annullati e ristampati. Esclusi i rapporti di prova, il nuovo formato viene invece applicato alla stampa della anagrafica, della progettazione e programmazione del proc/att e ai campioni poiché non hanno una storicizzazione e non sono certificati e quindi non necessitano di essere salvati ogni volta sul sistema.

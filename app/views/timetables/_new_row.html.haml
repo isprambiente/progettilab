@@ -1,0 +1,10 @@
+%tr
+  %td.text-center{colspan: 2}= f.input :sortorder, as: :isort, input_html: { class: 'form-control text-right', value: f.object.next_order }, label: false
+  %td.text-justify= f.input :title, as: :citext, input_html: { class: 'form-control text-justify' }, label: false, required: true
+  %td.text-center= f.input :start_at, as: :string, input_html: { class: 'form-control datepicker datepicker_start' }, label: false, required: true
+  %td.text-center= f.input :stop_at, as: :string, input_html: { class: 'form-control datepicker datepicker_end' }, label: false, required: true
+  %td.text-center= f.input :execute_at, as: :string, input_html: { class: 'form-control datepicker datepicker_end' }, label: false
+  %td.text-center= f.input :products, as: :string, input_html: { class: 'form-control', value: f.object.products || '' }, label: false
+  %td.text-center= f.input :restrict, label: false
+  %td.text-justify= f.input :body, as: :string, input_html: { class: 'form-control' }, label: false
+  %td.text-center= f.button :button, fa_icon("#{f.object.new_record? ? 'plus' : 'save' }"), data: { disable_witd: fa_icon( 'spinner pulse', text: t('wait', default: "Wait please..." ) ) }, class: 'transparent'

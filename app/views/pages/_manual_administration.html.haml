@@ -1,0 +1,75 @@
+%span.title.liv1-title
+  Pannello amministrativo
+.content Il pannello di amministrazione serve a gestire le funzionalità strutturali del programma.
+.content Il link al pannello è accessibile solo se si possiede le autorizzazioni per effettuare questo tipo di operazione.
+.content
+  Le funzionalità disponibili sono:
+  %ul
+    %li= link_to 'Gestione utenti', '#users'
+    %li= link_to 'Gestione tipologia analisi', '#analisy_types'
+    %li= link_to 'Gestione istruzioni operative', '#instructions'
+    %li= link_to 'Gestione nuclidi', '#nuclides'
+    %li= link_to 'Gestione unità', '#units'
+    %li= link_to 'Gestione matrici', '#matrices'
+    %li= link_to 'Gestione log', '#logs'
+  %p#users
+    .titleize Gestione utenti:
+    .content In gestione utenti sono elencati tutti gli utenti autorizzati ad accedere al programma. Ogni utente, al primo tentativo di accesso, è automaticamente bloccato dal sistema. Pertanto una volta completato l'accesso, l'amministratore dovrà manualmente autorizzare l'utente ad accedere sbloccando il suo account. 
+    .content L'amministratore può decidere, in qualsiasi momento, il ruolo che gli utenti assumono nell'intero sistema, autorizzando o revocando i ruoli per ciascun utente secondo la tabella ruoli indicata in questo manuale.
+    .content Questo pannello permette anche una rapida visualizzazione dei procedimenti e attività in carico a ciascun utente sia come di responsabile che come referente. Sono indicate in verde i procedimenti e attività attive e grigio quelle che risultano chiuse.
+
+  %p#analisy_types
+    .titleize Gestione tipologia analisi:
+    .content In questa sezione è possibile gestire le tipologie di analisi selezionabili in fase di gestione di un campione.
+    .content Ogni tipologia è visibile all'interno della tabella visualizzata. 
+    .content Cliccando sul bottone "Aggiungi" è possibile aggiungere una nuova tipologia compilando il form dove richiesto.
+    .content Cliccando invece sul bottone di modifica (#{ image_tag 'edit.png', alt: '' }) è possibile modificare una tipologia già inserita. <b>La modifica si ripercuoterà su tutte le analisi inserite nel sistema esclusi i rapporti di prova già emessi.</b>.
+    .content Cliccando sul bottone cancella (#{ image_tag 'trash.png', alt: '' }) è possibile cancellare la tipologia di analisi. <b>La cancellazione si ripercuoterà su tutte le analisi inserite nel sistema esclusi i rapporti di prova già emessi.</b>. PPer scongiurare problemi, è consigliabile evitare la cancellazione procedendo a una più semplice e sicura disattivazione del record selezionato cliccando su "NO" nel form di modifica.
+
+
+  %p#instructions
+    .titleize Gestione istruzioni operative:
+    .content In questa sezione è possibile gestire le istruzioni operative. Ogni istruzione operativa generata, può poi essere collegata a una o più tipologie di analisi.
+    .content Per ciascuna istruzione è possibile allegare un file in formato word, pdf, excel o immagine purché la dimensione non sia superiore a 20Mbit.
+    .content Cliccando sul bottone "Aggiungi" è possibile aggiungere una nuova istruzione operativa compilando il form dove richiesto.
+    .content Cliccando invece sul bottone di modifica (#{ image_tag 'edit.png', alt: '' }) è possibile modificare una istruzione operativa già inserita. <b>La modifica si ripercuoterà su tutte le tipologie di analisi inserite nel sistema esclusi i rapporti di prova già emessi.</b>.
+    .content Cliccando sul bottone cancella (#{ image_tag 'trash.png', alt: '' }) è possibile cancellare la istruzione operativa. <b>La cancellazione si ripercuoterà su tutte le tipologie di analisi inserite nel sistema esclusi i rapporti di prova già emessi.</b>. Per scongiurare problemi, è consigliabile evitare la cancellazione procedendo a una più semplice e sicura disattivazione del record selezionato cliccando su "NO" nel form di modifica.
+
+  %p#nuclides
+    .titleize Gestione nuclidi:
+    .content In questa sezione è possibile gestire i nuclidi che saranno selezionabili, ad esempio, in fase di creazione di una nuova analisi.
+    .content Cliccando sul bottone "Nuovo" è possibile aggiungere un nuovo nuclide compilando il form dove richiesto.
+    .content Cliccando invece sul bottone di modifica (#{ image_tag 'edit.png', alt: '' }) è possibile modificare un nuclide già inserito. <b>La modifica si ripercuoterà su tutte le tipologie di analisi inserite nel sistema esclusi i rapporti di prova già emessi.</b>.
+    .content Cliccando sul bottone cancella (#{ image_tag 'trash.png', alt: '' }) è possibile cancellare il nuclide. <b>La cancellazione si ripercuoterà su tutte le analisi inserite nel sistema esclusi i rapporti di prova già emessi.</b>. Per scongiurare problemi, è consigliabile evitare la cancellazione procedendo a una più semplice e sicura disattivazione del record selezionato cliccando su "NO" nel form di modifica.
+
+  %p#units.nobreak
+    .titleize Gestione unità:
+    .content In questa sezione è possibile gestire le unità che saranno selezionabili durante l'inserimento dei risultati di analisi.
+    .content Cliccando sul bottone "Nuovo" è possibile aggiungere una nuova unità compilando il form dove richiesto.
+    .content Cliccando invece sul bottone di modifica (#{ image_tag 'edit.png', alt: '' }) è possibile modificare un'unità' già inserita. <b>La modifica si ripercuoterà su tutti i risultati di analisi inserite nel sistema esclusi i rapporti di prova già emessi.</b>.
+    .content Cliccando sul bottone cancella (#{ image_tag 'trash.png', alt: '' }) è possibile cancellare un'unità. <b>La cancellazione si ripercuoterà su tutte le analisi inserite nel sistema esclusi i rapporti di prova già emessi.</b>. Per scongiurare problemi, è consigliabile evitare la cancellazione procedendo a una più semplice e sicura disattivazione del record selezionato cliccando su "NO" nel form di modifica.
+
+  %p#matrices
+    .titleize Gestione matrici:
+    .content In questa sezione è possibile gestire le matrici che saranno selezionabili durante la gestione dei campioni.
+    .content Ogni matrice è inserita in una categoria.
+    .content Cliccando sul bottone "Nuovo" è possibile aggiungere una nuova matrice compilando il form dove richiesto.
+    .content Cliccando invece sul bottone di modifica (#{ image_tag 'edit.png', alt: '' }) è possibile modificare una matrice' già inserita. <b>La modifica si ripercuoterà su tutti i campioni inseriti nel sistema esclusi i rapporti di prova già emessi.</b>.
+    .content Cliccando sul bottone cancella (#{ image_tag 'trash.png', alt: '' }) è possibile cancellare una matrice. <b>La cancellazione si ripercuoterà su tutti i campioni inseriti nel sistema esclusi i rapporti di prova già emessi.</b>. Per scongiurare problemi, è consigliabile evitare la cancellazione procedendo a una più semplice e sicura disattivazione del record selezionato cliccando su "NO" nel form di modifica.
+
+  %p#logs
+    .titleize Gestione log:
+    .content In questa sezione è possibile visualizzare tutte le modifiche effettuate in tutte i procedimenti e attività dal momento della creazione.
+    .content A differenza del log presente nella gestione del proc/att, definito "Storico modifiche", in questo caso nella tabella visualizzata saranno presenti tutti i log del sistema insieme ai log dei procedimenti e attività e quindi insieme a tutte le operazioni effettuate su qualsiasi dato del programma.
+    .content Al fine di evitare di sovra caricare questa tabella di log non più necessari, si consiglia di storicizzare questi dati non meno di una volta l'anno valutando anche storicizzazioni più frequenti. Questo renderà la ricerca, in questa tabella, sicuramente più rapida.
+    .content 
+      Le informazioni disponibili sono:
+      %ul
+        %li la data relativa all'evento;
+        %li il codice del proc/att;
+        %li una breve descrizione dell'evento;
+        %li una descrizione dettagliata delle modifiche effettuate sul database;
+        %li l'autore dell'operazione.
+    .content L'elenco non è modificabile ed è in sola consultazione.
+
+  

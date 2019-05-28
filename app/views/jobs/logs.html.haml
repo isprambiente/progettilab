@@ -1,0 +1,11 @@
+#logs.container
+  %table#logs-table{ data: { url: logs_job_url(id: @job.id, format: :json), button: 'true' } }
+    %thead
+      %tr
+        %th.small-1.text-center= t( 'created_at', scope: 'histories.fields', default: 'Created at' )
+        %th.small-1.text-center= t( 'job_title', default: 'Job' )
+        %th.small-1.text-center= t( 'action', scope: 'histories.fields', default: 'Action' )
+        %th.text-left{ data: { orderable: "false" } }= t( 'body', scope: 'histories.fields', default: 'Description' )
+        %th.small-1.text-center= t( 'author', scope: 'histories.fields', default: 'Author' )
+    %body
+= render 'left_bar' unless @modal == '1' # || @nobar == true

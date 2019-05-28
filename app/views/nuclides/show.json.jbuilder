@@ -1,0 +1,1 @@
+json.partial! "nuclides/nuclide", nuclide: @nuclide

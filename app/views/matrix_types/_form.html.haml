@@ -1,0 +1,11 @@
+= form_with model: @matrix_type, :builder => ExtraFormWith do |f|
+  .container
+    .grid-y
+      - if ( @matrix_type.pid.present? || @matrix_type.new_record? ) && !@new_category
+        .cell= f.select_field :pid, [['Seleziona una delle seguenti categorie', '']] + @categories.pluck(:title,:id), { icon: 'list', include_blank: false, inline: true, label: t('category', scope: "matrixtypes.fields", default: 'Category' ), help: false }, { class: 'input-group-field select2' }
+      .cell= f.text_field :title, autocomplete: "off", inline: true, icon: 'pencil', label: t('title', scope: "matrixtypes.fields", default: 'Title' ), help: false
+      .cell= f.textarea :body, inline: true, autocomplete: "off", icon: 'pencil', valign: 'top', label: t('body', scope: "matrixtypes.fields", default: 'Body' ), help: false
+      - if !@new_category
+        .cell= f.text_field :radia, autocomplete: "off", inline: true, icon: 'pencil', label: t('radia', scope: "matrixtypes.fields", default: 'Radia' ), help: false
+      .cell= f.switch_field :active, class: 'switch-input input-group-field', inline: true, help: false, label: t('active', scope: "matrixtypes.fields", default: 'Active?' )
+      .cell= f.submit_button icon: 'save', value: t( 'save' )

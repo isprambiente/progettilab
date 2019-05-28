@@ -1,0 +1,4 @@
+<% unless @job.errors.blank? %>
+  $('#content').html("<%= escape_javascript( render 'new' ) %>");
+<% end %>
+reload_js();

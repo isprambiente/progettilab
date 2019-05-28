@@ -1,0 +1,20 @@
+%h4.text-center= t("breadcrumbs.timetables.title")
+#timetables.section
+	%fieldset
+		%legend=# "#{t('title', scope: 'timetables.index', default: 'Activity list')}".html_safe
+		.text-right= link_to fa_icon('plus', text: t('title', scope: 'timetables.create', default: 'Create new timetable')), new_job_timetable_path(@job, anchor: 'timetable-form'), remote: true, class: 'button' if can?( :create, @job => Timetable ) && @modal != '1'
+		%table#timetables-table.display.responsive{ data: { url: job_timetables_path(@job, format: :json), button: "#{ @modal != '1' }", nrows: @timetables.count } }
+			%thead
+				%tr
+					%th{ data: { orderable: "false", searchable: "false"} }
+					%th.text-center= t('sortorder', scope: 'timetables.fields', default: 'N° order')
+					%th.text-justify= t('title', scope: 'timetables.fields', default: 'Title')
+					%th.text-center= t('start_at', scope: 'timetables.fields', default: 'Start at')
+					%th.text-center= t('stop_at', scope: 'timetables.fields', default: 'Stop at')
+					%th.text-center= t('execute_at', scope: 'timetables.fields', default: 'Executed at')
+					%th.text-center= t('products', scope: 'timetables.fields', default: 'Products')
+					%th.text-center= t('restrict', scope: 'timetables.fields', default: 'Restrict?')
+					%th.text-justify{ data: { orderable: "false" } }= t('body', scope: 'timetables.fields', default: 'Body')
+					%th.text-center
+			%tbody
+	#timetable-form.section{ name: 'timetable-form' }
