@@ -17,7 +17,7 @@ Il sito è sviluppato in linguaggio Ruby 2.6 e framework Rails 5.2 .
 * HTML5 + CSS3
 * jQuery3
 * Zurb Foundation 6.5
-* CAS Server
+* Cas Client per autenticazione SSO
 
 === Requisiti tecnici per ambiente server
 * Sistema operativo: Linux
