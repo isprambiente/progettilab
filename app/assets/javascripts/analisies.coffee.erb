@@ -34,7 +34,7 @@
           'mRender': ( data, type, full ) ->
             v = ''
             if full['valid?']
-              v = "<i data-tooltip aria-haspopup='true' class='fa fa-check-circle text-success has-tip right' data-disable-hover='false' title='Questa analisi è valida'></i>"              
+              v = "<i data-tooltip aria-haspopup='true' class='fa fa-check-circle text-success has-tip right' data-disable-hover='false' title='Questa analisi è valida'></i>"
             else
               v = "<i data-tooltip aria-haspopup='true' class='fa fa-exclamation-circle text-alert has-tip right' data-disable-hover='false' title='Questa analisi presenta valori mancanti o errati.'></i>"
             return v
@@ -56,7 +56,7 @@
           'class': 'grid-container full text-right'
           'mRender': ( data, type, full ) ->
             v = ''
-            if !$('body').hasClass('is-reveal-open')
+            if !$('html').hasClass('is-reveal-open')
               if full['editable']
                 v += "<a class='button transparent reveal-modal' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' data-url='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>?modal=1'><i class='fa fa-edit' title='Modifica record'></i></a>"
               else

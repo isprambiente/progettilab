@@ -3,7 +3,7 @@
   if ( $('table#timetables-table').length ) {
     $('table#timetables-table').DataTable().ajax.reload();
   }
-  if( $('body').hasClass('is-reveal-open') ) {
+  if( $('html').hasClass('is-reveal-open') ) {
     $('#myModal').foundation('close');
   }
 <% else %>

@@ -47,7 +47,7 @@
             v += "<i class='fa fa-circle help text-#{full['status']}' title='#{title}''></i>"
             v += "</div>"
             v += "<div class='small-7 columns'>"
-            if nrows > 1 && full['editable'] && !$('body').hasClass('is-reveal-open')
+            if nrows > 1 && full['editable'] && !$('html').hasClass('is-reveal-open')
               v += "<i id='#{full['job_id']}-#{full['id']}-up' class='fa fa-arrow-up up ' style='cursor:pointer;font-size:0.8rem;' ></i>"
               v += "<i id='#{full['job_id']}-#{full['id']}-down'class='fa fa-arrow-down down ' style='cursor:pointer;font-size:0.8rem;' ></i>"
             v += "</div>"
@@ -57,7 +57,7 @@
           'aTargets': [ 9 ]
           'mRender': ( data, type, full ) ->
             v = ''
-            if ( !$('body').hasClass('is-reveal-open') )
+            if ( !$('html').hasClass('is-reveal-open') )
               v = "<div class='grid-x grid-margin-x medium-margin-collapse'>"
               if full['editable']
                 v += "<a class='auto cell button transparent' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' data-remote='true'><i class='fa fa-edit'></i></a>"

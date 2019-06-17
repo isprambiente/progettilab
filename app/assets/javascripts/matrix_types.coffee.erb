@@ -49,7 +49,7 @@
           'aTargets': [ 5 ]
           'mRender': ( data, type, full ) ->
             v = ''
-            if !$('body').hasClass('is-reveal-open')
+            if !$('html').hasClass('is-reveal-open')
               v = "<div class='grid-x grid-margin-x medium-margin-collapse'>"
               if full['editable']
                 v += "<a class='auto cell button transparent reveal-modal-mini' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' data-url='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>?modal=1'><i class='fa fa-edit'></i></a>"

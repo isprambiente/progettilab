@@ -2,6 +2,13 @@
   .container
     %div.text-bold.text-upcase.text-warning= t('title', scope: 'samples.show', default: "Sample details")
     .grid-y
+      - if @sample.errors.any?
+        .cell.grid-x.grid-padding-x
+          .error_explanation
+            %h2= #{pluralize(@sample.errors.count, "error")} bloccano il salvataggio di questo campione:
+            %ul
+            - @user.errors.full_messages.each do |msg|
+              %li= msg
       .cell.grid-x.grid-padding-x
         - if @sample.persisted?
           .small-12.medium-6.cell= f.label_field :lab_code, options: { icon: 'barcode', placeholder: @sample.lab_code, help_text: "Codice composto dal codice univoco del campione, generato automaticamente dal sistema durante l'inserimento del campione, e il codice di importazione, se presente." }
@@ -34,7 +41,7 @@
         .container
           .small-12.large-6.cell
             %div.text-bold.text-upcase.text-warning= t('measure_type', scope: 'samples.fields', default: "Measure type")
-          - if can?(:create, @sample => Analisy) || can?(:update, @sample.analisies)
+          - if can?(:create, Analisy, sample_id: @sample.id) || can?(:update, Analisy, sample_id: @sample.id)
             .links.small-12.large-6.text-right.cell= link_to_add_association fa_icon('plus', text: 'Aggiungi analisi'), f, :analisies, class: 'button small radius add-button', 'data-association-insertion-node' => "#analisies", 'data-association-insertion-method' => "append"
           .small-12.cell
             %table#analisies

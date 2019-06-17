@@ -147,7 +147,7 @@
                 v += "<a class='button transparent disabled' title='File non disponibile' href='#{ full['url'] }' target='_blank'><i class='fa fa-download'></i></a>"
               else
                 v += "<a class='button transparent' href='#{ full['url'] }/<%= I18n.t('download', scope: 'routes', default: 'download') %>' target='_blank'><i class='fa fa-download'></i></a>"
-            if section == 'issued' && full['deletable'] && !$('body').hasClass('is-reveal-open')
+            if section == 'issued' && full['deletable'] && !$('html').hasClass('is-reveal-open')
               v += "<a class='button transparent reveal-modal-mini' href='#{ full['url'] }/<%= I18n.t('delete', scope: 'routes', default: 'delete') %>' data-remote='false' data-url='#{ full['url'] }/<%= I18n.t('delete', scope: 'routes', default: 'delete') %>?modal=1' title='Cancella report emesso'><i class='fa fa-trash'></i></a>"
             return v
         }

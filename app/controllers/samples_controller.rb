@@ -136,7 +136,7 @@ class SamplesController < ApplicationController
     @matrices = MatrixType.all
     @modal = params[:modal]
     respond_to do |format|
-      if @sample.update(sample_params)
+      if @sample.update_attributes(sample_params)
         format.html { redirect_to job_samples_path(job_id: @job.id), notice: I18n.t('notice', scope: 'samples.update', default: 'Sample was successfully updated.') }
         format.js
         format.json { render :show, status: :created, location: @sample }

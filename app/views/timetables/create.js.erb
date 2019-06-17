@@ -3,13 +3,13 @@
   if ( $('table#timetables-table').length ) {
     $('table#timetables-table').DataTable().ajax.reload();
   }
-  
-  if( $('body').hasClass('is-reveal-open') ) {
+
+  if( $('html').hasClass('is-reveal-open') ) {
     $('#myModal').foundation('close');
   }
 <% else %>
   // alert( "<%= @timetable.errors.map{ |k,v| "#{t(k, scope: 'timetables.fields', default: k)}: #{v}" }.join(', ') %>" );
-  if( $('body').hasClass('is-reveal-open') ) {
+  if( $('html').hasClass('is-reveal-open') ) {
     $('#modal-body').html("<%= escape_javascript(render 'new')%>");
   } else {
     $('#timetable-form').html("<%= escape_javascript(render 'new')%>");

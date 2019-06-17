@@ -1,4 +1,4 @@
-if( !$('body').hasClass('is-reveal-open') ) {
+if( !$('html').hasClass('is-reveal-open') ) {
   $('#timetables').html("<%= escape_javascript(render 'index')%>");
 } else {
   $('#modal-body').html("<%= escape_javascript(render 'table')%>");

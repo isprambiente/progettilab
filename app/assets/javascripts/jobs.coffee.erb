@@ -52,7 +52,7 @@
           'aTargets': [ 7 ]
           'mRender': ( data, type, full ) ->
             v = ''
-            if !$('body').hasClass('is-reveal-open')
+            if !$('html').hasClass('is-reveal-open')
               v = "<div class='tools grid-x grid-margin-x medium-margin-collapse'>"
               if full['editable']
                 v = v + "<a class='auto cell button transparent' href='#{ full['url'] }/<%= I18n.t('edit', scope: 'routes', default: 'edit') %>' title='<%= I18n.t('title', scope: 'jobs.update', default: 'Edit job') %>'><i class='fa fa-edit'></i></a>"

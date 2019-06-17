@@ -261,7 +261,7 @@ create_html_element = ( parent, obj_id='', obj_value='', obj_array=[], obj_type=
         return
       return
   parent_obj.find('select.select2.invalid').closest('div.input-group').addClass('invalid')
-  
+
   return
 
 @reinit_zurb_js = (parent_obj = $(document) ) ->
@@ -279,7 +279,7 @@ document.addEventListener "turbolinks:load", ->
   return
 
 document.addEventListener 'turbolinks:request-start', ->
-  $('#spinner').foundation 'open'
+  # $('#spinner').foundation 'open'
   return
 
 $(document).on 'ajaxComplete', (event, xhr, settings) ->

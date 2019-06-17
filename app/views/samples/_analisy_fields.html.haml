@@ -2,7 +2,7 @@
 	%tr.nested-fields{ class: "#{ 'new' if f.object.new_record? }  " }
 		%td.small-1.text-center.field
 			= f.object.code.blank? ? 'Nuovo' : f.object.code
-			= f.hidden_field :skip_validate, value: 'true'
+			= f.hidden_field :skip_validate, value: true
 			= f.hidden_field :id, value: f.object.id
 			= f.hidden_field :author, value: current_user.label
 		%td.small-5.field= f.select_field :analisy_type_id, AnalisyType.all.map{ |m| [ m.title, m.id ] }, { include_blank: false, label: 'false' }, { class: 'input-group-field select2' }

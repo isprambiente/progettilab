@@ -1,12 +1,12 @@
 <% if @sample.errors.blank? %>
-  if ( $('body').hasClass('is-reveal-open') == true ) {
+  if ( $('html').hasClass('is-reveal-open') == true ) {
     $('#myModal').foundation('close');
   }else{
     $('#sample').html("<%= escape_javascript( render 'edit' ) %>");
     alert('Modifica avvenuta con successo!');
   }
 <% else %>
-  if ( $('body').hasClass('is-reveal-open') == true ) {
+  if ( $('html').hasClass('is-reveal-open') == true ) {
     $('#modal-body').html("<%= escape_javascript( render 'form' ) %>");
   }else{
     $('#sample').html("<%= escape_javascript( render 'edit' ) %>");
