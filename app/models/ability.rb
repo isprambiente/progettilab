@@ -10,7 +10,7 @@ class Ability
     #  user.admin? # Amministratore del programma
     #  user.chief? # Resp. area
     #  user.supervisor? # Supervisore (es. Resp. Qualità)
-    
+
     if user
       can :viewer, :all
       Job.unscoped.each do | job |
