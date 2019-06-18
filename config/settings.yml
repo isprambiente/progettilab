@@ -1,4 +1,5 @@
 config:
+  application: application_name
   group: "GROUP"
   title: "TITLE"
   expired_days: 5
