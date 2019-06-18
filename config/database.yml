@@ -1,0 +1,26 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  schema_search_path: public
+  pool: 5
+
+development:
+  <<: *default
+  database: <%= Rails.application.credentials.development[:database] %>
+  username: <%= Rails.application.credentials.development[:username] %>
+  password: <%= Rails.application.credentials.development[:password] %>
+  host: <%= Rails.application.credentials.development[:host] %>
+
+test:
+  <<: *default
+  database: <%= Rails.application.credentials.test[:database] %>
+  username: <%= Rails.application.credentials.test[:username] %>
+  password: <%= Rails.application.credentials.test[:password] %>
+  host: <%= Rails.application.credentials.test[:host] %>
+
+production:
+  <<: *default
+  database: <%= Rails.application.credentials.production[:database] %>
+  username: <%= Rails.application.credentials.production[:username] %>
+  password: <%= Rails.application.credentials.production[:password] %>
+  host: <%= Rails.application.credentials.production[:host] %>
