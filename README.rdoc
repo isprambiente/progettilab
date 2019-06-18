@@ -53,43 +53,44 @@ https://gorails.com/deploy/ubuntu/18.04
 
 == Modificare i parametri di configurazione nel file credential.yml.enc
 La prima volta è necessario generare la master.key con il comando "rails secret"
+
 Successivamente usare il comando "rails credentials:edit" per modificare il file
 
 
-secret_key_base:
+  secret_key_base:
 
-cas:
-  base_url: 'https://tuoserverdi autenticazione/cas/'
+  cas:
+    base_url: 'https://tuoserverdi autenticazione/cas/'
 
-development:
-  database: nomeistanza_development
-  username: username
-  password: password
-  host: hostname
-test:
-  database: nomeistanza_test
-  username: username
-  password: password
-  host: hostname
+  development:
+    database: nomeistanza_development
+    username: username
+    password: password
+    host: hostname
+  test:
+    database: nomeistanza_test
+    username: username
+    password: password
+    host: hostname
 
-production:
-  database: nomeistanza_production
-  username: username
-  password: password
-  host: hostname
+  production:
+    database: nomeistanza_production
+    username: username
+    password: password
+    host: hostname
 
-# Link per sincronizzare i dati degli utenti con il database del personale. Procedura path 'app/models/user.rb'
-api:
-  link: ''
-  filter: ''
-  user: username
-  secret_access_key: password
+  # Link per sincronizzare i dati degli utenti con il database del personale. Procedura path 'app/models/user.rb'
+  api:
+    link: ''
+    filter: ''
+    user: username
+    secret_access_key: password
 
-deploy:
-  repo_url: "https://github.com/isprambiente/progettilab.git"
-  site_url: "link_sito_web"
+  deploy:
+    repo_url: "https://github.com/isprambiente/progettilab.git"
+    site_url: "link_sito_web"
 
-mail:
-  domain_name: 'domain_name.it'
-  smtp: 'smtp.domain_name.it'
-  sender: "indirizzoemail"
+  mail:
+    domain_name: 'domain_name.it'
+    smtp: 'smtp.domain_name.it'
+    sender: "indirizzoemail"
