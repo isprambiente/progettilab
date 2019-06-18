@@ -1,8 +1,7 @@
 @jobs_table = () ->
   if $('table#jobs-table').length
-    search = window.location.search
     lang = $('html').attr( 'lang' )
-    url = $('table#jobs-table').data('url')+'?'+search
+    url = $('table#jobs-table').data('url')
     dom = if $('table#jobs-table').data('button') == false then 'lfrtip' else '<"text-center"B>lfrtip'
     $('table#jobs-table').DataTable
       'destroy': true
