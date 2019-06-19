@@ -1,6 +1,6 @@
 lock '3.11.0'
 set :application, "progettilab"
-set :repo_url, "git@github.com:isprambiente/progettilab.git"
+set :repo_url, "https://github.com/isprambiente/progettilab.git"
 set :deploy_to, "/home/progettilab"
 # set :pty, true
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/master.key', 'puma.rb', 'config/settings.local.yml')
