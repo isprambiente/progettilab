@@ -1,6 +1,6 @@
 Devise.setup do |config|
-  config.cas_base_url = Rails.application.credentials.cas[:base_url]
-  config.mailer_sender = Rails.application.credentials.mail[:sender]
+  config.cas_base_url = Settings.config.site.cas
+  config.mailer_sender = Settings.config.email
   require 'devise/orm/active_record'
   config.authentication_keys = [:username]
   config.case_insensitive_keys = [:username]
