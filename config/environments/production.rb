@@ -85,11 +85,11 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: Rails.application.credentials.deploy[:site_url], :protocol => 'https' }
+  config.action_mailer.default_url_options = { host: Settings.config.site.url, :protocol => 'https' }
   config.action_mailer.smtp_settings = {
-    address:              Rails.application.credentials.mail[:smtp],
+    address:              Settings.config.site.smtp,
     port:                 25,
-    domain:               Rails.application.credentials.mail[:domain_name],
+    domain:               Settings.config.site.domain_name,
     #user_name:            '', # Al momento se non messa login e passwod il server non invia le email
     #password:             '',
     #authentication:       'plain',
