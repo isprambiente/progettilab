@@ -1,8 +1,8 @@
-role :app, [ "#{Settings.config.application}@"+Rails.application.credentials.deploy[:site_url] ]
-role :web, [ "#{Settings.config.application}@"+Rails.application.credentials.deploy[:site_url] ]
-role :db,  [ "#{Settings.config.application}@"+Rails.application.credentials.deploy[:site_url] ]
+role :app, [ "progettilab@progettirad.areafisica.cnlab.intranet.isprambiente.it" ]
+role :web, [ "progettilab@progettirad.areafisica.cnlab.intranet.isprambiente.it" ]
+role :db,  [ "progettilab@progettirad.areafisica.cnlab.intranet.isprambiente.it" ]
 
-server Rails.application.credentials.deploy[:site_url], user: "#{Settings.config.application}", roles: %w{app db web}
+server "progettirad.areafisica.cnlab.intranet.isprambiente.it", user: "progettilab", roles: %w{app db web}
 
 set :branch, 'master'
 set :rails_env, 'production'

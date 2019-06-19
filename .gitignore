@@ -12,6 +12,7 @@
 /*.sublime-workspace
 /*.sublime-project
 /storage/*
+/config/deploy/production.rb
 
 # Ignore Byebug command history file.
 .byebug_history
