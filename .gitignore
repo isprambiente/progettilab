@@ -5,7 +5,6 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-/config/secrets.yml
 /config/settings.local.yml
 /private/*
 /public/system

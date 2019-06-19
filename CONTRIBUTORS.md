@@ -1,4 +1,4 @@
-# Contributions to the ProgettiRAD project
+# Contributions to the ProgettiLAB project
 
 ## Creator & Maintainer
 
