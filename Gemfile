@@ -16,6 +16,7 @@ gem 'puma'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'sprockets-es6'
+gem 'nokogiri', '~> 1.10.4'
 
 group :development, :test do
   gem 'byebug'
