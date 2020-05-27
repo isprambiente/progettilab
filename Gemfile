@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.7.1'
 
 gem 'rails', '~> 5.2.0'
 gem 'rails-i18n'
@@ -14,9 +14,9 @@ gem 'turbolinks'
 gem 'jbuilder'
 gem 'puma'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootsnap', require: false
 gem 'sprockets-es6'
-gem 'nokogiri', '~> 1.10.8'
+gem 'nokogiri', '~> 1.11.rc1', platforms: :ruby
 gem "loofah", ">= 2.3.1"
 
 group :development, :test do
