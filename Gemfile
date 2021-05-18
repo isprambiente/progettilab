@@ -16,7 +16,7 @@ gem 'puma'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootsnap', require: false
 gem 'sprockets-es6'
-gem 'nokogiri', '~> 1.11.rc1', platforms: :ruby
+gem 'nokogiri', '~> 1.11', platforms: :ruby
 gem "loofah", ">= 2.3.1"
 
 group :development, :test do
